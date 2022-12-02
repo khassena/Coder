@@ -8,18 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4EFC2937801400486E5A /* AppDelegate.swift */; };
-		FABB4F012937801400486E5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F002937801400486E5A /* ViewController.swift */; };
+		FABB4F012937801400486E5A /* StaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F002937801400486E5A /* StaffViewController.swift */; };
 		FABB4F062937801500486E5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F052937801500486E5A /* Assets.xcassets */; };
 		FABB4F092937801500486E5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F072937801500486E5A /* LaunchScreen.storyboard */; };
+		FABB4F132937A47800486E5A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F122937A47800486E5A /* NetworkService.swift */; };
+		FABB4F152937B7D300486E5A /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F142937B7D300486E5A /* APIModel.swift */; };
+		FABB4F182937C9C700486E5A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F172937C9C700486E5A /* Constants.swift */; };
+		FABB4F1B2938C01800486E5A /* StaffPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F1A2938C01800486E5A /* StaffPresenter.swift */; };
+		FABB4F1E2938CB2B00486E5A /* StaffSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F1D2938CB2B00486E5A /* StaffSearchBar.swift */; };
+		FABB4F202938CB4D00486E5A /* StaffRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F1F2938CB4D00486E5A /* StaffRootView.swift */; };
+		FABB4F252938FF2F00486E5A /* DepartmentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F242938FF2F00486E5A /* DepartmentCollectionView.swift */; };
+		FABB4F3029390B2B00486E5A /* StaffTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F2F29390B2B00486E5A /* StaffTableView.swift */; };
+		FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F3129390C7A00486E5A /* StaffModel.swift */; };
+		FABB4F34293A0E7400486E5A /* DepartmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F33293A0E7400486E5A /* DepartmentCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FABB4EF92937801400486E5A /* Coder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABB4EFC2937801400486E5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FABB4F002937801400486E5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FABB4F002937801400486E5A /* StaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewController.swift; sourceTree = "<group>"; };
 		FABB4F052937801500486E5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FABB4F082937801500486E5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FABB4F0A2937801500486E5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FABB4F122937A47800486E5A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		FABB4F142937B7D300486E5A /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
+		FABB4F172937C9C700486E5A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FABB4F1A2938C01800486E5A /* StaffPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffPresenter.swift; sourceTree = "<group>"; };
+		FABB4F1D2938CB2B00486E5A /* StaffSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffSearchBar.swift; sourceTree = "<group>"; };
+		FABB4F1F2938CB4D00486E5A /* StaffRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffRootView.swift; sourceTree = "<group>"; };
+		FABB4F242938FF2F00486E5A /* DepartmentCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentCollectionView.swift; sourceTree = "<group>"; };
+		FABB4F2F29390B2B00486E5A /* StaffTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffTableView.swift; sourceTree = "<group>"; };
+		FABB4F3129390C7A00486E5A /* StaffModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffModel.swift; sourceTree = "<group>"; };
+		FABB4F33293A0E7400486E5A /* DepartmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,12 +73,142 @@
 			isa = PBXGroup;
 			children = (
 				FABB4EFC2937801400486E5A /* AppDelegate.swift */,
-				FABB4F002937801400486E5A /* ViewController.swift */,
-				FABB4F052937801500486E5A /* Assets.xcassets */,
-				FABB4F072937801500486E5A /* LaunchScreen.storyboard */,
+				FABB4F112937A43700486E5A /* Services */,
+				FABB4F262939023F00486E5A /* Presentation */,
+				FABB4F272939037600486E5A /* Resources */,
 				FABB4F0A2937801500486E5A /* Info.plist */,
+				FABB4F192937C9CB00486E5A /* Helpers */,
 			);
 			path = Coder;
+			sourceTree = "<group>";
+		};
+		FABB4F10293784F900486E5A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F212938D88400486E5A /* Controller */,
+				FABB4F1F2938CB4D00486E5A /* StaffRootView.swift */,
+				FABB4F1D2938CB2B00486E5A /* StaffSearchBar.swift */,
+				FABB4F242938FF2F00486E5A /* DepartmentCollectionView.swift */,
+				FABB4F2F29390B2B00486E5A /* StaffTableView.swift */,
+				FABB4F33293A0E7400486E5A /* DepartmentCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FABB4F112937A43700486E5A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F2A293905CF00486E5A /* NetworkService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FABB4F162937B7DE00486E5A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F3129390C7A00486E5A /* StaffModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FABB4F192937C9CB00486E5A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F172937C9C700486E5A /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FABB4F1C2938C15B00486E5A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F1A2938C01800486E5A /* StaffPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FABB4F212938D88400486E5A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F002937801400486E5A /* StaffViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FABB4F262939023F00486E5A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F2E2939085200486E5A /* LaunchScreen */,
+				FABB4F282939049900486E5A /* MainScreen */,
+				FABB4F29293904F900486E5A /* ProfileScreen */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		FABB4F272939037600486E5A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F052937801500486E5A /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FABB4F282939049900486E5A /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F162937B7DE00486E5A /* Model */,
+				FABB4F10293784F900486E5A /* View */,
+				FABB4F1C2938C15B00486E5A /* Presenter */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		FABB4F29293904F900486E5A /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F2B2939068200486E5A /* Model */,
+				FABB4F2C2939068A00486E5A /* View */,
+				FABB4F2D2939069300486E5A /* Presenter */,
+			);
+			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
+		FABB4F2A293905CF00486E5A /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F122937A47800486E5A /* NetworkService.swift */,
+				FABB4F142937B7D300486E5A /* APIModel.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		FABB4F2B2939068200486E5A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FABB4F2C2939068A00486E5A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FABB4F2D2939069300486E5A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FABB4F2E2939085200486E5A /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F072937801500486E5A /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,7 +281,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FABB4F012937801400486E5A /* ViewController.swift in Sources */,
+				FABB4F34293A0E7400486E5A /* DepartmentCollectionViewCell.swift in Sources */,
+				FABB4F1E2938CB2B00486E5A /* StaffSearchBar.swift in Sources */,
+				FABB4F202938CB4D00486E5A /* StaffRootView.swift in Sources */,
+				FABB4F182937C9C700486E5A /* Constants.swift in Sources */,
+				FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */,
+				FABB4F1B2938C01800486E5A /* StaffPresenter.swift in Sources */,
+				FABB4F012937801400486E5A /* StaffViewController.swift in Sources */,
+				FABB4F132937A47800486E5A /* NetworkService.swift in Sources */,
+				FABB4F152937B7D300486E5A /* APIModel.swift in Sources */,
+				FABB4F252938FF2F00486E5A /* DepartmentCollectionView.swift in Sources */,
+				FABB4F3029390B2B00486E5A /* StaffTableView.swift in Sources */,
 				FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
