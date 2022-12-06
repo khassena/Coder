@@ -20,7 +20,7 @@ class StaffRootView: UIView {
             departmentCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             departmentCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             departmentCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            departmentCollectionView.heightAnchor.constraint(equalToConstant: 50)
+            departmentCollectionView.heightAnchor.constraint(equalToConstant: 36.5)
         ])
     }
     

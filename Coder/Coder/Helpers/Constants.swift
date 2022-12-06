@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Constants {
+enum APIConstants {
     static let baseUrl = "https://stoplight.io/mocks/kode-education/trainee-test/25143926/users"
     static let headers = [
         "Content-Type": "application/json",

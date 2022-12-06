@@ -8,7 +8,7 @@
 import Foundation
 
 struct Staff: Decodable {
-    let staff: [Person]
+    let items: [Person]
 }
 
 struct Person: Decodable {
@@ -18,20 +18,47 @@ struct Person: Decodable {
     let lastName: String
     let userTag: String
     let department: Department
+    let position: String
+    let birthday: String
+    let phone: String
 }
 
 enum Department: String, Decodable, CaseIterable {
-    case All
+    case start
+    case all
     case android
     case ios
     case design
-    case management
+    case frontend
+    case backend
     case qa
     case backOffice = "back_office"
-    case frontend
     case hr
+    case management
     case pr
-    case backend
     case support
     case analytics
+    case end
+}
+
+extension Department {
+    var name: String {
+        switch self {
+        case .start:      return ""
+        case .all:        return "All"
+        case .android:    return "Android"
+        case .ios:        return "iOS"
+        case .design:     return "Design"
+        case .frontend:   return "Frontend"
+        case .qa:         return "QA"
+        case .backend:    return "Backend"
+        case .backOffice: return "Back office"
+        case .hr:         return "HR"
+        case .management: return "Management"
+        case .pr:         return "PR"
+        case .support:    return "Support"
+        case .analytics:  return "Analytics"
+        case .end:        return ""
+        }
+    }
 }
