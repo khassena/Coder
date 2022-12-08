@@ -16,6 +16,7 @@ protocol StaffViewPresenterProtocol {
     init(view: StaffViewProtocol, networkService: NetworkServiceProtocol)
     func getData()
     var staff: Staff? { get set }
+    var items: [Person]? { get }
     var selectedDepartment: IndexPath? { get set }
     var departments: [String] { get }
 }
@@ -24,6 +25,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
     weak var view: StaffViewProtocol?
     let networkService: NetworkServiceProtocol
     var staff: Staff?
+    var items: [Person]?
     var selectedDepartment: IndexPath?
     var departments = [String]()
     
@@ -32,6 +34,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
         self.networkService = networkService
         initDepartments()
         getData()
+        self.items = staff?.items
     }
     
     func initDepartments() {

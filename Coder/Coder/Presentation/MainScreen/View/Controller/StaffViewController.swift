@@ -7,17 +7,8 @@
 
 import UIKit
 
-class StaffViewController: UIViewController, StaffViewProtocol {
-    func networkSuccess() {
-        print(presenter?.staff?.items[0].firstName ?? 0)
-        print("S")
-    }
-    
-    func networkFailure(error: Error) {
-        print("F")
-    }
-    
-    
+class StaffViewController: UIViewController {
+
     // MARK: Casting super view to custom StaffRootView
     var rootView: StaffRootView {
         return self.view as! StaffRootView
@@ -29,14 +20,26 @@ class StaffViewController: UIViewController, StaffViewProtocol {
     }
     
     var presenter: StaffViewPresenterProtocol?
-    
+    var staffNumber: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = rootView.searchBar
-        rootView.departmentCollectionView.register(DepartmentCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         rootView.setup()
         rootView.departmentCollectionView.delegate = self
         rootView.departmentCollectionView.dataSource = self
+        rootView.staffTableView.delegate = self
+        rootView.staffTableView.dataSource = self
+    }
+}
+
+extension StaffViewController: StaffViewProtocol {
+    func networkSuccess() {
+        staffNumber = presenter?.staff?.items.count
+        rootView.staffTableView.reloadData()
+    }
+    
+    func networkFailure(error: Error) {
+        print("F")
     }
 }
 
@@ -59,10 +62,10 @@ extension StaffViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? DepartmentCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DepartmentCollectionViewCell.cell, for: indexPath) as? DepartmentCollectionViewCell else { return UICollectionViewCell() }
         cell.departmentLabel.text = presenter?.departments[indexPath.row]
         
-        cell.setup(isSelected: presenter?.selectedDepartment == indexPath)
+        cell.setSelected(isSelected: presenter?.selectedDepartment == indexPath)
         return cell
     }
 }
@@ -70,9 +73,35 @@ extension StaffViewController: UICollectionViewDataSource {
 extension StaffViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        presenter?.selectedDepartment = indexPath
+        if presenter?.selectedDepartment == indexPath {
+            presenter?.selectedDepartment = nil
+        } else {
+            presenter?.selectedDepartment = indexPath
+        }
         collectionView.reloadData()
     }
 }
 
 
+extension StaffViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return staffNumber ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StaffTableViewCell.cell, for: indexPath) as? StaffTableViewCell else { return UITableViewCell()
+        }
+//        cell.personFullName.text = (presenter?.staff?.items[indexPath.row].firstName ?? "") + " " + (presenter?.staff?.items[indexPath.row].lastName ?? "")
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 84
+    }
+    
+}
+
+extension StaffViewController: UITableViewDelegate {
+    
+}

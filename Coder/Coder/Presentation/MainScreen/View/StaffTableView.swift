@@ -9,12 +9,19 @@ import UIKit
 
 class StaffTableView: UITableView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    init() {
+        super.init(frame: .zero, style: .plain)
+        register(StaffTableViewCell.self, forCellReuseIdentifier: StaffTableViewCell.cell)
+        showsVerticalScrollIndicator = false
+//        preservesSuperviewLayoutMargins = true
+//        self.separatorInset = .zero
+//        self.preservesSuperviewLayoutMargins = false
+//        self.layoutMargins = .zero
+        separatorStyle = .none
     }
-    */
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }

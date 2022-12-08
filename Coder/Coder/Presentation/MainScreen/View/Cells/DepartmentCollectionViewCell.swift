@@ -9,6 +9,8 @@ import UIKit
 
 class DepartmentCollectionViewCell: UICollectionViewCell {
     
+    static let cell = "departmentCell"
+    
     public let departmentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +46,7 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
             departmentLabel.topAnchor.constraint(equalTo: layoutMargins.topAnchor),
             departmentLabel.bottomAnchor.constraint(equalTo: layoutMargins.bottomAnchor),
             
-            stroke.heightAnchor.constraint(equalToConstant: 3),
+            stroke.heightAnchor.constraint(equalToConstant: 2),
             stroke.leadingAnchor.constraint(equalTo: leadingAnchor),
             stroke.trailingAnchor.constraint(equalTo: trailingAnchor),
             stroke.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -57,15 +59,7 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(isSelected: Bool) {
-//        addSubview(stroke)
-//        NSLayoutConstraint.activate([
-//            stroke.heightAnchor.constraint(equalToConstant: 3),
-//            stroke.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            stroke.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            stroke.bottomAnchor.constraint(equalTo: bottomAnchor),
-//        ])
-        //stroke.isHidden = true
+    func setSelected(isSelected: Bool) {
         if isSelected == true {
             stroke.isHidden = false
         } else {
