@@ -34,7 +34,6 @@ class StaffPresenter: StaffViewPresenterProtocol {
         self.networkService = networkService
         initDepartments()
         getData()
-        self.items = staff?.items
     }
     
     func initDepartments() {
@@ -49,6 +48,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
                 switch result {
                 case .success(let staff):
                     self?.staff = staff
+                    self?.items = staff?.items
                     self?.view?.networkSuccess()
                 case .failure(let error):
                     self?.view?.networkFailure(error: error)

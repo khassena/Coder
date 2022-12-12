@@ -11,17 +11,18 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
     
     static let cell = "departmentCell"
     
-    public let departmentLabel: UILabel = {
+    private let departmentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemGray
         return label
     }()
     
-    public let stroke: UIView = {
+    private let stroke: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 0.396, green: 0.204, blue: 1, alpha: 1)
+        view.isHidden = true
+        view.backgroundColor = Color.purple
         return view
     }()
     
@@ -32,38 +33,49 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        //stroke.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 5.0)
-        //departmentLabel.center = self.center
-        addSubview(departmentLabel)
-        //guard departmentLabel.text?.isEmpty == false else { return }
-        addSubview(stroke)
-        stroke.isHidden = true
-        let layoutMargins = self.layoutMarginsGuide
-        self.layoutMargins = UIEdgeInsets(top: 8.0, left: 12.0, bottom: 8.0, right: 12.0)
-        NSLayoutConstraint.activate([
-            departmentLabel.leadingAnchor.constraint(equalTo: layoutMargins.leadingAnchor),
-            departmentLabel.topAnchor.constraint(equalTo: layoutMargins.topAnchor),
-            departmentLabel.bottomAnchor.constraint(equalTo: layoutMargins.bottomAnchor),
-            
-            stroke.heightAnchor.constraint(equalToConstant: 2),
-            stroke.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stroke.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stroke.bottomAnchor.constraint(equalTo: bottomAnchor),
-        
-        ])
-        
+        setupViews()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setSelected(isSelected: Bool) {
+    private func setupViews() {
+        addSubview(departmentLabel)
+        addSubview(stroke)
+        let layoutMargins = self.layoutMarginsGuide
+        self.layoutMargins = Constants.Department.edgeInsets
+        
+        NSLayoutConstraint.activate([
+            departmentLabel.leadingAnchor.constraint(equalTo: layoutMargins.leadingAnchor),
+            departmentLabel.topAnchor.constraint(equalTo: layoutMargins.topAnchor),
+            departmentLabel.bottomAnchor.constraint(equalTo: layoutMargins.bottomAnchor),
+            
+            stroke.heightAnchor.constraint(equalToConstant: Constants.Department.strokeHeight),
+            stroke.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stroke.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stroke.bottomAnchor.constraint(equalTo: bottomAnchor),
+        
+        ])
+    }
+    
+    public func setValue(itemTitle: String?, selected: IndexPath?, indexPath: IndexPath) {
+        departmentLabel.text = itemTitle
+        if selected == nil,
+           departmentLabel.text == Constants.Department.selectedDefault {
+           setSelected(true)
+        } else {
+            setSelected(selected == indexPath)
+        }
+    }
+    
+    private func setSelected(_ isSelected: Bool) {
         if isSelected == true {
             stroke.isHidden = false
+            departmentLabel.textColor = .black
         } else {
             stroke.isHidden = true
+            departmentLabel.textColor = .systemGray
         }
     }
     

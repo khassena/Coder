@@ -22,6 +22,7 @@
 		FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F3129390C7A00486E5A /* StaffModel.swift */; };
 		FABB4F34293A0E7400486E5A /* DepartmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F33293A0E7400486E5A /* DepartmentCollectionViewCell.swift */; };
 		FABB4F36293F9CD900486E5A /* StaffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F35293F9CD900486E5A /* StaffTableViewCell.swift */; };
+		FABB4F39294331D600486E5A /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F38294331D600486E5A /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		FABB4F3129390C7A00486E5A /* StaffModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffModel.swift; sourceTree = "<group>"; };
 		FABB4F33293A0E7400486E5A /* DepartmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		FABB4F35293F9CD900486E5A /* StaffTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffTableViewCell.swift; sourceTree = "<group>"; };
+		FABB4F38294331D600486E5A /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 			children = (
 				FABB4F122937A47800486E5A /* NetworkService.swift */,
 				FABB4F142937B7D300486E5A /* APIModel.swift */,
+				FABB4F38294331D600486E5A /* ImageLoader.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABB4F39294331D600486E5A /* ImageLoader.swift in Sources */,
 				FABB4F34293A0E7400486E5A /* DepartmentCollectionViewCell.swift in Sources */,
 				FABB4F1E2938CB2B00486E5A /* StaffSearchBar.swift in Sources */,
 				FABB4F202938CB4D00486E5A /* StaffRootView.swift in Sources */,

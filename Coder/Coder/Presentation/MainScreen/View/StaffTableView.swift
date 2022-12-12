@@ -13,10 +13,6 @@ class StaffTableView: UITableView {
         super.init(frame: .zero, style: .plain)
         register(StaffTableViewCell.self, forCellReuseIdentifier: StaffTableViewCell.cell)
         showsVerticalScrollIndicator = false
-//        preservesSuperviewLayoutMargins = true
-//        self.separatorInset = .zero
-//        self.preservesSuperviewLayoutMargins = false
-//        self.layoutMargins = .zero
         separatorStyle = .none
     }
     

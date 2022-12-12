@@ -11,7 +11,7 @@ class StaffTableViewCell: UITableViewCell {
 
     static let cell = "staffCell"
     
-    let personImage: UIImageView = StaffTableViewCell.imageView()
+    let personImage = StaffTableViewCell.imageView()
     
     var personFullName = StaffTableViewCell.label(color: .black)
     
@@ -21,17 +21,15 @@ class StaffTableViewCell: UITableViewCell {
     
     let personDateOfBirth = StaffTableViewCell.label(color: .systemGray)
     
-    lazy var nameTagStackView = StaffTableViewCell.stackView(views:
-                                                                [personFullName, personUserTag],
+    lazy var nameTagStackView = StaffTableViewCell.stackView(views: [personFullName,                                                                personUserTag],
                                                              axis: .horizontal)
     
     lazy var namePositionStackView = StaffTableViewCell.stackView(views:
-                                                                    [nameTagStackView, personPosition],
+                                                                    [nameTagStackView,            personPosition],
                                                                   axis: .vertical)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = .white
         setupView()
     }
     
@@ -40,11 +38,7 @@ class StaffTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
-        personFullName.text = "Amanzhan Khassen"
-        personUserTag.text = "jk"
-        personPosition.text = "Position"
-        personDateOfBirth.text = "Date"
-        
+
         contentView.addSubview(personImage)
         contentView.addSubview(personDateOfBirth)
         contentView.addSubview(namePositionStackView)
@@ -52,23 +46,23 @@ class StaffTableViewCell: UITableViewCell {
         personImage.translatesAutoresizingMaskIntoConstraints = false
         namePositionStackView.translatesAutoresizingMaskIntoConstraints = false
         personDateOfBirth.translatesAutoresizingMaskIntoConstraints = false
-        self.contentView.layoutMargins = UIEdgeInsets(top: 0.0, left: 20, bottom: 0.0, right: 19.5)
+        self.contentView.layoutMargins = Constants.Staff.edgeInsets
         let layoutMargin = self.contentView.layoutMarginsGuide
         
         NSLayoutConstraint.activate([
             personImage.leadingAnchor.constraint(equalTo: layoutMargin.leadingAnchor),
             personImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            personImage.widthAnchor.constraint(equalToConstant: 72.0),
-            personImage.heightAnchor.constraint(equalToConstant: 72.0),
+            personImage.widthAnchor.constraint(equalToConstant: Constants.Staff.imageSize),
+            personImage.heightAnchor.constraint(equalToConstant: Constants.Staff.imageSize),
             
-            namePositionStackView.leadingAnchor.constraint(equalTo: personImage.trailingAnchor, constant: 16),
+            namePositionStackView.leadingAnchor.constraint(equalTo: personImage.trailingAnchor, constant: Constants.Staff.imageTrailing),
             namePositionStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            namePositionStackView.trailingAnchor.constraint(equalTo: personDateOfBirth.leadingAnchor, constant: -20),
-            namePositionStackView.heightAnchor.constraint(equalToConstant: 40),
+            namePositionStackView.trailingAnchor.constraint(equalTo: personDateOfBirth.leadingAnchor, constant: Constants.Staff.dateOfBirthLeading),
+            namePositionStackView.heightAnchor.constraint(equalToConstant: Constants.Staff.namePositionHeight),
             
             personDateOfBirth.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             personDateOfBirth.trailingAnchor.constraint(equalTo: layoutMargin.trailingAnchor),
-            personDateOfBirth.widthAnchor.constraint(equalToConstant: 40),
+            personDateOfBirth.widthAnchor.constraint(equalToConstant: Constants.Staff.dateOfBirthWidth),
         ])
     }
     
@@ -76,28 +70,28 @@ class StaffTableViewCell: UITableViewCell {
 
 extension StaffTableViewCell {
     
-    static func imageView() -> UIImageView {
+    private static func imageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 36
-        imageView.backgroundColor = .brown
+        imageView.layer.cornerRadius = Constants.Staff.imageCornerRadius
+        imageView.backgroundColor = Color.purple
         
         return imageView
     }
     
-    static func label(color: UIColor) -> UILabel {
+    private static func label(color: UIColor) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = color
         return label
     }
     
-    static func stackView(views: [UIView], axis: NSLayoutConstraint.Axis) -> UIStackView {
+    private static func stackView(views: [UIView], axis: NSLayoutConstraint.Axis) -> UIStackView {
         var stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView = UIStackView(arrangedSubviews: views)
         stackView.axis = axis
-        stackView.spacing = 4
+        stackView.spacing = Constants.Staff.stackViewSpacing
         stackView.alignment = .leading
         stackView.distribution = .fill
         return stackView

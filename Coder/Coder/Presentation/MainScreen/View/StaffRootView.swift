@@ -30,12 +30,12 @@ class StaffRootView: UIView {
             departmentCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             departmentCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             departmentCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            departmentCollectionView.heightAnchor.constraint(equalToConstant: 36.5),
+            departmentCollectionView.heightAnchor.constraint(equalToConstant: Constants.Department.viewHeight),
             
             separetorbottomLine.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             separetorbottomLine.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             separetorbottomLine.topAnchor.constraint(equalTo: departmentCollectionView.bottomAnchor),
-            separetorbottomLine.heightAnchor.constraint(equalToConstant: 0.33),
+            separetorbottomLine.heightAnchor.constraint(equalToConstant: Constants.separateHeight),
             
             staffTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             staffTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),

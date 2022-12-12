@@ -16,9 +16,9 @@ class NetworkService: NetworkServiceProtocol {
     
     func fetchData(completion: @escaping (Result<Staff?, Error>) -> Void) {
         
-        guard let url = URL(string: APIConstants.baseUrl) else { return }
+        guard let url = URL(string: Constants.API.baseUrl) else { return }
         var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = APIConstants.headers
+        request.allHTTPHeaderFields = Constants.API.headers
         
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
