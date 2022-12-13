@@ -20,7 +20,6 @@ class StaffViewController: UIViewController {
     }
     
     var presenter: StaffViewPresenterProtocol?
-    var staffNumber: Int = Constants.Staff.defaultStaffCount
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +35,6 @@ class StaffViewController: UIViewController {
 extension StaffViewController: StaffViewProtocol {
     
     func networkSuccess() {
-        staffNumber = presenter?.items?.count ?? 0
         rootView.staffTableView.reloadData()
     }
     
@@ -53,7 +51,7 @@ extension StaffViewController: StaffViewProtocol {
 extension StaffViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label = UILabel(frame: .zero)
-        label.text = presenter?.departments[indexPath.row]
+        label.text = presenter?.departments[indexPath.row].name
         label.sizeToFit()
         let itemWidth = Constants.departmentWidth(label)
         return CGSize(width: itemWidth, height: collectionView.frame.height)
@@ -68,8 +66,8 @@ extension StaffViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DepartmentCollectionViewCell.cell, for: indexPath) as? DepartmentCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.setValue(itemTitle: presenter?.departments[indexPath.row],
-                      selected: presenter?.selectedDepartment,
+        cell.setValue(itemTitle: presenter?.departments[indexPath.row].name,
+                      selected: presenter?.selectedDepartmentPath,
                       indexPath: indexPath)
 
         return cell
@@ -81,19 +79,23 @@ extension StaffViewController: UICollectionViewDelegate {
         
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         
-        if presenter?.selectedDepartment == indexPath {
-            presenter?.selectedDepartment = nil
+        if presenter?.selectedDepartmentPath == indexPath ||
+            presenter?.departments[indexPath.row].name == "" {
+            presenter?.selectedDepartmentPath = nil
         } else {
-            presenter?.selectedDepartment = indexPath
+            presenter?.selectedDepartmentPath = indexPath
         }
         collectionView.reloadData()
+        rootView.staffTableView.reloadData()
+        
     }
 }
 
 
 extension StaffViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return staffNumber
+        
+        return presenter?.items?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

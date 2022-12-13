@@ -18,9 +18,10 @@ protocol StaffViewPresenterProtocol {
     init(view: StaffViewProtocol, networkService: NetworkServiceProtocol)
     func getData()
     func getImage(with url: URL, indexPath: IndexPath)
-    var items: [Person]? { get }
-    var selectedDepartment: IndexPath? { get set }
-    var departments: [String] { get }
+    var staff: Staff? { get }
+    var items: [Person]? { get set }
+    var selectedDepartmentPath: IndexPath? { get set }
+    var departments: [Department] { get }
 }
 
 class StaffPresenter: StaffViewPresenterProtocol {
@@ -28,8 +29,13 @@ class StaffPresenter: StaffViewPresenterProtocol {
     weak var view: StaffViewProtocol?
     let networkService: NetworkServiceProtocol
     var items: [Person]?
-    var selectedDepartment: IndexPath?
-    var departments = [String]()
+    var departments = [Department]()
+    var staff: Staff?
+    var selectedDepartmentPath: IndexPath? {
+        didSet {
+            gotData()
+        }
+    }
     
     required init(view: StaffViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
@@ -40,7 +46,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
     
     func initDepartments() {
         Department.allCases.forEach { department in
-            self.departments.append(department.name)
+            self.departments.append(department)
         }
     }
     
@@ -49,7 +55,8 @@ class StaffPresenter: StaffViewPresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let staff):
-                    self?.items = staff?.items
+                    self?.staff = staff
+                    self?.gotData()
                     self?.view?.networkSuccess()
                 case .failure(let error):
                     self?.view?.networkFailure(error: error)
@@ -70,5 +77,16 @@ class StaffPresenter: StaffViewPresenterProtocol {
             }
             
         }
+    }
+    
+    func gotData() {
+        guard let selected = selectedDepartmentPath, departments[selected.row].name != Constants.Department.selectedDefault  else {
+            self.items = staff?.items
+            return
+        }
+        
+        self.items = staff?.items.filter({ person in
+            person.department == departments[selected.row]
+        }) as? [Person]
     }
 }

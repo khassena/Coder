@@ -11,7 +11,7 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
     
     static let cell = "departmentCell"
     
-    private let departmentLabel: UILabel = {
+     let departmentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemGray
@@ -61,7 +61,9 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
     }
     
     public func setValue(itemTitle: String?, selected: IndexPath?, indexPath: IndexPath) {
+        
         departmentLabel.text = itemTitle
+        
         if selected == nil,
            departmentLabel.text == Constants.Department.selectedDefault {
            setSelected(true)

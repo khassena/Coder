@@ -234,10 +234,10 @@
 		FABB4F422947A73900486E5A /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				FABB4F3D2947A66100486E5A /* Inter-Bold.ttf */,
-				FABB4F3C2947A66100486E5A /* Inter-Medium.ttf */,
 				FABB4F3A2947A66100486E5A /* Inter-Regular.ttf */,
+				FABB4F3C2947A66100486E5A /* Inter-Medium.ttf */,
 				FABB4F3B2947A66100486E5A /* Inter-SemiBold.ttf */,
+				FABB4F3D2947A66100486E5A /* Inter-Bold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
