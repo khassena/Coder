@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
 protocol NetworkServiceProtocol {
     func fetchData(completion: @escaping (Result<Staff?, Error>) -> Void)
+    func fetchImage(with url: URL, completion: @escaping (Result<UIImage, Error>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol {
-    
     
     func fetchData(completion: @escaping (Result<Staff?, Error>) -> Void) {
         
@@ -31,6 +32,28 @@ class NetworkService: NetworkServiceProtocol {
                 } catch {
                     completion(.failure(error))
                 }
+            }
+        }
+        task.resume()
+    }
+    
+    //MARK: Load Image and Cache
+    
+    private let imageCache = NSCache<AnyObject, AnyObject>()
+    
+    func fetchImage(with url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        if let imageFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage {
+            completion(.success(imageFromCache))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            } else if let data = data, let imageToCache = UIImage(data: data) {
+                self.imageCache.setObject(imageToCache, forKey: url as AnyObject)
+                completion(.success(imageToCache))
             }
         }
         task.resume()

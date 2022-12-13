@@ -13,20 +13,26 @@ class StaffTableViewCell: UITableViewCell {
     
     let personImage = StaffTableViewCell.imageView()
     
-    var personFullName = StaffTableViewCell.label(color: .black)
+    var personFullName = StaffTableViewCell.label(color: .black, font: Fonts.fontFullName)
     
-    let personUserTag = StaffTableViewCell.label(color: .systemGray)
+    let personUserTag = StaffTableViewCell.label(color: .systemGray, font: Fonts.fontUserTag)
     
-    let personPosition = StaffTableViewCell.label(color: .systemGray)
+    let personPosition = StaffTableViewCell.label(color: .systemGray, font: Fonts.fontPosition)
     
-    let personDateOfBirth = StaffTableViewCell.label(color: .systemGray)
+    let personDateOfBirth = StaffTableViewCell.label(color: .systemGray, font: Fonts.fontBirthDay)
     
     lazy var nameTagStackView = StaffTableViewCell.stackView(views: [personFullName,                                                                personUserTag],
-                                                             axis: .horizontal)
+                                                             axis: .horizontal,
+                                                             alignment: .center)
     
     lazy var namePositionStackView = StaffTableViewCell.stackView(views:
                                                                     [nameTagStackView,            personPosition],
-                                                                  axis: .vertical)
+                                                                  axis: .vertical,
+                                                                  alignment: .leading)
+    
+    override func prepareForReuse() {
+        personImage.image = Constants.Staff.defaultImage
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -58,7 +64,6 @@ class StaffTableViewCell: UITableViewCell {
             namePositionStackView.leadingAnchor.constraint(equalTo: personImage.trailingAnchor, constant: Constants.Staff.imageTrailing),
             namePositionStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             namePositionStackView.trailingAnchor.constraint(equalTo: personDateOfBirth.leadingAnchor, constant: Constants.Staff.dateOfBirthLeading),
-            namePositionStackView.heightAnchor.constraint(equalToConstant: Constants.Staff.namePositionHeight),
             
             personDateOfBirth.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             personDateOfBirth.trailingAnchor.constraint(equalTo: layoutMargin.trailingAnchor),
@@ -66,6 +71,21 @@ class StaffTableViewCell: UITableViewCell {
         ])
     }
     
+    public func setImage(with image: UIImage) {
+        personImage.image = image
+    }
+    
+    public func setupValue(firstName: String,
+                           lastName: String,
+                           userTag: String,
+                           position: String,
+                           birthday: String) {
+        personFullName.text = "\(firstName) \(lastName)"
+        personUserTag.text = userTag
+        personPosition.text = position
+        personDateOfBirth.text = birthday        
+    }
+
 }
 
 extension StaffTableViewCell {
@@ -74,25 +94,27 @@ extension StaffTableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = Constants.Staff.imageCornerRadius
-        imageView.backgroundColor = Color.purple
-        
+        imageView.image = Constants.Staff.defaultImage
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }
     
-    private static func label(color: UIColor) -> UILabel {
+    private static func label(color: UIColor, font: UIFont) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = color
+        label.font = font
         return label
     }
     
-    private static func stackView(views: [UIView], axis: NSLayoutConstraint.Axis) -> UIStackView {
+    private static func stackView(views: [UIView], axis: NSLayoutConstraint.Axis, alignment: UIStackView.Alignment) -> UIStackView {
         var stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView = UIStackView(arrangedSubviews: views)
         stackView.axis = axis
         stackView.spacing = Constants.Staff.stackViewSpacing
-        stackView.alignment = .leading
+        stackView.alignment = alignment
         stackView.distribution = .fill
         return stackView
     }

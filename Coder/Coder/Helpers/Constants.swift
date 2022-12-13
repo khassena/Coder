@@ -39,15 +39,25 @@ enum Constants {
         static let imageSize: CGFloat = 72.0
         static let imageTrailing: CGFloat = 16.0
         static let dateOfBirthLeading: CGFloat = -20.0
-        static let namePositionHeight: CGFloat = 40.0
         static let dateOfBirthWidth: CGFloat = 40.0
         static let imageCornerRadius: CGFloat = 36.0
         static let stackViewSpacing: CGFloat = 4.0
+        static let defaultImage: UIImage = UIImage(named: "goose.svg") ?? UIImage()
     }
     
     static let separateHeight: CGFloat = 0.34
+
 }
 
 enum Color {
     static let purple = UIColor(red: 0.396, green: 0.204, blue: 1, alpha: 1)
+}
+
+enum Fonts {
+    static let fontDepBold: UIFont = UIFont(name: "Inter-SemiBold", size: 15) ?? UIFont()
+    static let fontDepMedium: UIFont = UIFont(name: "Inter-Medium", size: 15) ?? UIFont()
+    static let fontFullName: UIFont = UIFont(name: "Inter-Medium", size: 16) ?? UIFont()
+    static let fontUserTag: UIFont = UIFont(name: "Inter-Medium", size: 14) ?? UIFont()
+    static let fontPosition: UIFont = UIFont(name: "Inter-Regular", size: 13) ?? UIFont()
+    static let fontBirthDay: UIFont = UIFont(name: "Inter-Regular", size: 15) ?? UIFont()
 }

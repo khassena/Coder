@@ -15,6 +15,7 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemGray
+        label.font = Fonts.fontDepMedium
         return label
     }()
     
@@ -73,9 +74,11 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
         if isSelected == true {
             stroke.isHidden = false
             departmentLabel.textColor = .black
+            departmentLabel.font = Fonts.fontDepBold
         } else {
             stroke.isHidden = true
             departmentLabel.textColor = .systemGray
+            departmentLabel.font = Fonts.fontDepMedium
         }
     }
     

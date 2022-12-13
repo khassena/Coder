@@ -6,25 +6,27 @@
 //
 
 import Foundation
+import UIKit
 
 protocol StaffViewProtocol: AnyObject {
     func networkSuccess()
+    func imageLoader(with image: UIImage, indexPath: IndexPath)
     func networkFailure(error: Error)
 }
 
 protocol StaffViewPresenterProtocol {
     init(view: StaffViewProtocol, networkService: NetworkServiceProtocol)
     func getData()
-    var staff: Staff? { get set }
+    func getImage(with url: URL, indexPath: IndexPath)
     var items: [Person]? { get }
     var selectedDepartment: IndexPath? { get set }
     var departments: [String] { get }
 }
 
 class StaffPresenter: StaffViewPresenterProtocol {
+    
     weak var view: StaffViewProtocol?
     let networkService: NetworkServiceProtocol
-    var staff: Staff?
     var items: [Person]?
     var selectedDepartment: IndexPath?
     var departments = [String]()
@@ -47,13 +49,26 @@ class StaffPresenter: StaffViewPresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let staff):
-                    self?.staff = staff
                     self?.items = staff?.items
                     self?.view?.networkSuccess()
                 case .failure(let error):
                     self?.view?.networkFailure(error: error)
                 }
             }
+        }
+    }
+    
+    func getImage(with url: URL, indexPath: IndexPath) {
+        networkService.fetchImage(with: url) { [weak self] result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self?.view?.imageLoader(with: image, indexPath: indexPath)
+                }
+            case .failure(let error):
+                print(error)
+            }
+            
         }
     }
 }

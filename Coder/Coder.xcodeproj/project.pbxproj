@@ -22,7 +22,10 @@
 		FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F3129390C7A00486E5A /* StaffModel.swift */; };
 		FABB4F34293A0E7400486E5A /* DepartmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F33293A0E7400486E5A /* DepartmentCollectionViewCell.swift */; };
 		FABB4F36293F9CD900486E5A /* StaffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F35293F9CD900486E5A /* StaffTableViewCell.swift */; };
-		FABB4F39294331D600486E5A /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F38294331D600486E5A /* ImageLoader.swift */; };
+		FABB4F3E2947A66100486E5A /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F3A2947A66100486E5A /* Inter-Regular.ttf */; };
+		FABB4F3F2947A66100486E5A /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F3B2947A66100486E5A /* Inter-SemiBold.ttf */; };
+		FABB4F402947A66100486E5A /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F3C2947A66100486E5A /* Inter-Medium.ttf */; };
+		FABB4F412947A66100486E5A /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F3D2947A66100486E5A /* Inter-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +46,10 @@
 		FABB4F3129390C7A00486E5A /* StaffModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffModel.swift; sourceTree = "<group>"; };
 		FABB4F33293A0E7400486E5A /* DepartmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		FABB4F35293F9CD900486E5A /* StaffTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffTableViewCell.swift; sourceTree = "<group>"; };
-		FABB4F38294331D600486E5A /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		FABB4F3A2947A66100486E5A /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		FABB4F3B2947A66100486E5A /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		FABB4F3C2947A66100486E5A /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		FABB4F3D2947A66100486E5A /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				FABB4F052937801500486E5A /* Assets.xcassets */,
+				FABB4F422947A73900486E5A /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -182,7 +189,6 @@
 			children = (
 				FABB4F122937A47800486E5A /* NetworkService.swift */,
 				FABB4F142937B7D300486E5A /* APIModel.swift */,
-				FABB4F38294331D600486E5A /* ImageLoader.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -223,6 +229,17 @@
 				FABB4F35293F9CD900486E5A /* StaffTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		FABB4F422947A73900486E5A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FABB4F3D2947A66100486E5A /* Inter-Bold.ttf */,
+				FABB4F3C2947A66100486E5A /* Inter-Medium.ttf */,
+				FABB4F3A2947A66100486E5A /* Inter-Regular.ttf */,
+				FABB4F3B2947A66100486E5A /* Inter-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,7 +300,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABB4F412947A66100486E5A /* Inter-Bold.ttf in Resources */,
+				FABB4F3F2947A66100486E5A /* Inter-SemiBold.ttf in Resources */,
 				FABB4F092937801500486E5A /* LaunchScreen.storyboard in Resources */,
+				FABB4F3E2947A66100486E5A /* Inter-Regular.ttf in Resources */,
+				FABB4F402947A66100486E5A /* Inter-Medium.ttf in Resources */,
 				FABB4F062937801500486E5A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,7 +316,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FABB4F39294331D600486E5A /* ImageLoader.swift in Sources */,
 				FABB4F34293A0E7400486E5A /* DepartmentCollectionViewCell.swift in Sources */,
 				FABB4F1E2938CB2B00486E5A /* StaffSearchBar.swift in Sources */,
 				FABB4F202938CB4D00486E5A /* StaffRootView.swift in Sources */,

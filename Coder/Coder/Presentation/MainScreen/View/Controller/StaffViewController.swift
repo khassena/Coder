@@ -34,9 +34,15 @@ class StaffViewController: UIViewController {
 }
 
 extension StaffViewController: StaffViewProtocol {
+    
     func networkSuccess() {
-        staffNumber = presenter?.staff?.items.count ?? 0
+        staffNumber = presenter?.items?.count ?? 0
         rootView.staffTableView.reloadData()
+    }
+    
+    func imageLoader(with image: UIImage, indexPath: IndexPath) {
+        let cell = rootView.staffTableView.cellForRow(at: indexPath) as? StaffTableViewCell
+        cell?.setImage(with: image)
     }
     
     func networkFailure(error: Error) {
@@ -63,8 +69,8 @@ extension StaffViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DepartmentCollectionViewCell.cell, for: indexPath) as? DepartmentCollectionViewCell else { return UICollectionViewCell() }
         
         cell.setValue(itemTitle: presenter?.departments[indexPath.row],
-                   selected: presenter?.selectedDepartment,
-                   indexPath: indexPath)
+                      selected: presenter?.selectedDepartment,
+                      indexPath: indexPath)
 
         return cell
     }
@@ -94,8 +100,17 @@ extension StaffViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StaffTableViewCell.cell, for: indexPath) as? StaffTableViewCell else { return UITableViewCell()
         }
         
+        guard let items = presenter?.items?[indexPath.row],
+              let avatarUrl = URL(string: items.avatarUrl) else {
+            return UITableViewCell()
+        }
         
-        
+        presenter?.getImage(with: avatarUrl, indexPath: indexPath)
+        cell.setupValue(firstName: items.firstName,
+                        lastName:  items.lastName,
+                        userTag:   items.userTag.lowercased(),
+                        position:  items.position,
+                        birthday:  items.birthday)
         return cell
     }
     
