@@ -16,7 +16,7 @@ protocol NetworkServiceProtocol {
 class NetworkService: NetworkServiceProtocol {
     
     func fetchData(completion: @escaping (Result<Staff?, Error>) -> Void) {
-        
+        imageCache.removeAllObjects()
         guard let url = URL(string: Constants.API.baseUrl) else { return }
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = Constants.API.headers

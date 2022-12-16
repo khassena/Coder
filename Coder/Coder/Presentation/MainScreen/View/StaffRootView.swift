@@ -13,8 +13,9 @@ class StaffRootView: UIView {
     
     let departmentCollectionView = DepartmentCollectionView()
     let separetorbottomLine = UIView()
-    
-    let staffTableView = StaffTableView()
+    let refreshControl = UIRefreshControl()
+    let circularSpinner = CircularSpinner(frame: Constants.refreshViewRect)
+    lazy var staffTableView = StaffTableView(refreshControl: refreshControl)
     
     func setup() {
         addSubview(departmentCollectionView)
@@ -24,7 +25,8 @@ class StaffRootView: UIView {
         separetorbottomLine.translatesAutoresizingMaskIntoConstraints = false
         separetorbottomLine.backgroundColor = .systemGray
         staffTableView.translatesAutoresizingMaskIntoConstraints = false
-        
+        refreshControl.addSubview(circularSpinner)
+        refreshControl.tintColor = .clear
         
         NSLayoutConstraint.activate([
             departmentCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
@@ -40,7 +42,7 @@ class StaffRootView: UIView {
             staffTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             staffTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             staffTableView.topAnchor.constraint(equalTo: separetorbottomLine.bottomAnchor),
-            staffTableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            staffTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

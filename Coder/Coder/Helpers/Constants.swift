@@ -29,7 +29,6 @@ enum Constants {
         static let viewHeight: CGFloat = 36.5
         static let selectedDefault: String = "All"
         static let edgeInsets = UIEdgeInsets(top: 8.0, left: 12.0, bottom: 8.0, right: 12.0)
-        static let strokeHeight: CGFloat = 2.0
     }
     
     enum Staff {
@@ -43,10 +42,12 @@ enum Constants {
         static let imageCornerRadius: CGFloat = 36.0
         static let stackViewSpacing: CGFloat = 4.0
         static let defaultImage: UIImage = UIImage(named: "goose.svg") ?? UIImage()
+        
     }
     
     static let separateHeight: CGFloat = 0.34
-
+    static let refreshViewRect = CGRect(x: UIScreen.main.bounds.width / 2.1, y: 20, width: 20, height: 20)
+    static let strokeHeight: CGFloat = 2.0
 }
 
 enum Color {

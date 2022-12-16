@@ -9,6 +9,11 @@ import UIKit
 
 class StaffTableView: UITableView {
 
+    convenience init(refreshControl: UIRefreshControl) {
+        self.init()
+        self.refreshControl = refreshControl
+    }
+    
     init() {
         super.init(frame: .zero, style: .plain)
         register(StaffTableViewCell.self, forCellReuseIdentifier: StaffTableViewCell.cell)

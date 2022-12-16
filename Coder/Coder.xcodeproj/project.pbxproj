@@ -26,6 +26,8 @@
 		FABB4F3F2947A66100486E5A /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F3B2947A66100486E5A /* Inter-SemiBold.ttf */; };
 		FABB4F402947A66100486E5A /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F3C2947A66100486E5A /* Inter-Medium.ttf */; };
 		FABB4F412947A66100486E5A /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F3D2947A66100486E5A /* Inter-Bold.ttf */; };
+		FABB4F44294B4B3A00486E5A /* CircularSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F43294B4B3A00486E5A /* CircularSpinner.swift */; };
+		FADF5948294C78680006A2B5 /* SpinnerBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF5947294C78680006A2B5 /* SpinnerBackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		FABB4F3B2947A66100486E5A /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		FABB4F3C2947A66100486E5A /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		FABB4F3D2947A66100486E5A /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		FABB4F43294B4B3A00486E5A /* CircularSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularSpinner.swift; sourceTree = "<group>"; };
+		FADF5947294C78680006A2B5 /* SpinnerBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerBackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 				FABB4F242938FF2F00486E5A /* DepartmentCollectionView.swift */,
 				FABB4F2F29390B2B00486E5A /* StaffTableView.swift */,
 				FABB4F37293FA40C00486E5A /* Cells */,
+				FABB4F43294B4B3A00486E5A /* CircularSpinner.swift */,
+				FADF5947294C78680006A2B5 /* SpinnerBackgroundView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -322,12 +328,14 @@
 				FABB4F182937C9C700486E5A /* Constants.swift in Sources */,
 				FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */,
 				FABB4F1B2938C01800486E5A /* StaffPresenter.swift in Sources */,
+				FADF5948294C78680006A2B5 /* SpinnerBackgroundView.swift in Sources */,
 				FABB4F36293F9CD900486E5A /* StaffTableViewCell.swift in Sources */,
 				FABB4F012937801400486E5A /* StaffViewController.swift in Sources */,
 				FABB4F132937A47800486E5A /* NetworkService.swift in Sources */,
 				FABB4F152937B7D300486E5A /* APIModel.swift in Sources */,
 				FABB4F252938FF2F00486E5A /* DepartmentCollectionView.swift in Sources */,
 				FABB4F3029390B2B00486E5A /* StaffTableView.swift in Sources */,
+				FABB4F44294B4B3A00486E5A /* CircularSpinner.swift in Sources */,
 				FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

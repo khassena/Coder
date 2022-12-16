@@ -29,6 +29,13 @@ class StaffViewController: UIViewController {
         rootView.departmentCollectionView.dataSource = self
         rootView.staffTableView.delegate = self
         rootView.staffTableView.dataSource = self
+        rootView.refreshControl.addTarget(self, action: #selector(pulledToRefresh), for: .valueChanged)
+    }
+    
+    @objc private func pulledToRefresh() {
+        presenter?.getData()
+        rootView.refreshControl.layer.removeAllAnimations()
+        rootView.refreshControl.endRefreshing()
     }
 }
 
@@ -111,7 +118,7 @@ extension StaffViewController: UITableViewDataSource {
         cell.setupValue(firstName: items.firstName,
                         lastName:  items.lastName,
                         userTag:   items.userTag.lowercased(),
-                        position:  items.position,
+                        position:  items.department.name,
                         birthday:  items.birthday)
         return cell
     }

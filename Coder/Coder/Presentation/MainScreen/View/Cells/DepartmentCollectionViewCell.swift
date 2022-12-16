@@ -52,7 +52,7 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
             departmentLabel.topAnchor.constraint(equalTo: layoutMargins.topAnchor),
             departmentLabel.bottomAnchor.constraint(equalTo: layoutMargins.bottomAnchor),
             
-            stroke.heightAnchor.constraint(equalToConstant: Constants.Department.strokeHeight),
+            stroke.heightAnchor.constraint(equalToConstant: Constants.strokeHeight),
             stroke.leadingAnchor.constraint(equalTo: leadingAnchor),
             stroke.trailingAnchor.constraint(equalTo: trailingAnchor),
             stroke.bottomAnchor.constraint(equalTo: bottomAnchor),

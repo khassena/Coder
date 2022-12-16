@@ -33,7 +33,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
     var staff: Staff?
     var selectedDepartmentPath: IndexPath? {
         didSet {
-            gotData()
+            filterTableView()
         }
     }
     
@@ -56,7 +56,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
                 switch result {
                 case .success(let staff):
                     self?.staff = staff
-                    self?.gotData()
+                    self?.filterTableView()
                     self?.view?.networkSuccess()
                 case .failure(let error):
                     self?.view?.networkFailure(error: error)
@@ -79,7 +79,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
         }
     }
     
-    func gotData() {
+    func filterTableView() {
         guard let selected = selectedDepartmentPath, departments[selected.row].name != Constants.Department.selectedDefault  else {
             self.items = staff?.items
             return
