@@ -20,6 +20,7 @@ class StaffViewController: UIViewController {
     }
     
     var presenter: StaffViewPresenterProtocol?
+    private var skeleton = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class StaffViewController: UIViewController {
 extension StaffViewController: StaffViewProtocol {
     
     func networkSuccess() {
+        self.skeleton = false
         rootView.staffTableView.reloadData()
     }
     
@@ -102,18 +104,27 @@ extension StaffViewController: UICollectionViewDelegate {
 extension StaffViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if skeleton == true {
+            return Constants.Staff.defaultItemsCount
+        }
+        
         return presenter?.items?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StaffTableViewCell.cell, for: indexPath) as? StaffTableViewCell else { return UITableViewCell()
         }
+        if skeleton == true {
+            cell.showSkeleton(skeleton)
+            return cell
+        }
+        
         
         guard let items = presenter?.items?[indexPath.row],
               let avatarUrl = URL(string: items.avatarUrl) else {
             return UITableViewCell()
         }
-        
+        cell.showSkeleton(false)
         presenter?.getImage(with: avatarUrl, indexPath: indexPath)
         cell.setupValue(firstName: items.firstName,
                         lastName:  items.lastName,

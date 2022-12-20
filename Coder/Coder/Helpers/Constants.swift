@@ -42,7 +42,28 @@ enum Constants {
         static let imageCornerRadius: CGFloat = 36.0
         static let stackViewSpacing: CGFloat = 4.0
         static let defaultImage: UIImage = UIImage(named: "goose.svg") ?? UIImage()
-        
+        static let defaultItemsCount: Int = 20
+    }
+    
+    enum Skeleton {
+        static let imageCornerRadius: CGFloat = 36.0
+        static let nameCornerRadius: CGFloat = 8.0
+        static let posCornerRadius: CGFloat = 6.0
+        static let skeletonStart = UIColor(red: 0.955, green: 0.955, blue: 0.965, alpha: 1).cgColor
+        static let skeletonEnd = UIColor(red: 0.979, green: 0.979, blue: 0.981, alpha: 1).cgColor
+        static let nameViewWidth: CGFloat = 144.0
+        static let nameViewHeight: CGFloat = 16.0
+        static let positionViewWidth: CGFloat = 80.0
+        static let positionViewHeight: CGFloat = 12.0
+        static let spacing: CGFloat = 6.0
+        static let imageFrame: CGRect = CGRect(x: 0, y: 0, width: 72, height: 72)
+        static let nameFrame: CGRect = CGRect(x: 0, y: 0, width: 144, height: 16)
+        static let posFrame: CGRect = CGRect(x: 0, y: 0, width: 80, height: 12)
+    }
+    
+    enum Gradient {
+        static let start: CGPoint = CGPoint(x: 0.25, y: 0.5)
+        static let end: CGPoint = CGPoint(x: 0.75, y: 0.5)
     }
     
     static let separateHeight: CGFloat = 0.34
@@ -52,6 +73,7 @@ enum Constants {
 
 enum Color {
     static let purple = UIColor(red: 0.396, green: 0.204, blue: 1, alpha: 1)
+    static let borderColor = UIColor(red: 0.969, green: 0.969, blue: 0.973, alpha: 1)
 }
 
 enum Fonts {

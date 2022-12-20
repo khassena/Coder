@@ -11,7 +11,8 @@ class CircularSpinner: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.addSublayer(circleLayer)
+        layer.addSublayer(backgroundLayer)
+        layer.addSublayer(spinnerLayer)
         startAnimation()
     }
     
@@ -20,20 +21,13 @@ class CircularSpinner: UIView {
     }
     
     private func startAnimation() {
-        circleLayer.add(strokeAnimationGroup, forKey: nil)
+        spinnerLayer.add(strokeAnimationGroup, forKey: nil)
         self.rotateAnimation()
     }
     
-    private lazy var circleLayer: CAShapeLayer = {
-        let circleLayer = CAShapeLayer()
-        let rect = self.bounds
-        let bezierPath = UIBezierPath(ovalIn: rect)
-        circleLayer.path = bezierPath.cgPath
-        circleLayer.strokeColor = Color.purple.cgColor
-        circleLayer.lineWidth = Constants.strokeHeight
-        circleLayer.fillColor = UIColor.clear.cgColor
-        return circleLayer
-    }()
+    private lazy var spinnerLayer: CAShapeLayer = circleLayer(color: Color.purple)
+    
+    private lazy var backgroundLayer: CAShapeLayer = circleLayer(color: Color.borderColor)
     
     private lazy var strokeStartAnimation = strokeAnimation(keyPath: "strokeStart", beginTime: 0.5)
     
@@ -51,14 +45,24 @@ class CircularSpinner: UIView {
 }
 
 extension CircularSpinner {
-    private func strokeAnimation(keyPath: String, beginTime: CFTimeInterval?) -> CABasicAnimation {
+    
+    private func circleLayer(color: UIColor) -> CAShapeLayer {
+        let circleLayer = CAShapeLayer()
+        let rect = self.bounds
+        let bezierPath = UIBezierPath(ovalIn: rect)
+        circleLayer.path = bezierPath.cgPath
+        circleLayer.strokeColor = color.cgColor
+        circleLayer.lineWidth = Constants.strokeHeight
+        circleLayer.fillColor = UIColor.clear.cgColor
+        return circleLayer
+    }
+    
+    private func strokeAnimation(keyPath: String, beginTime: CFTimeInterval) -> CABasicAnimation {
         let strokeAnimation = CABasicAnimation(keyPath: keyPath)
         strokeAnimation.fromValue = 0
         strokeAnimation.toValue = 1
         strokeAnimation.duration = 1.5
-        if let beginTime = beginTime {
-            strokeAnimation.beginTime = beginTime
-        }
+        strokeAnimation.beginTime = beginTime
         return strokeAnimation
     }
     

@@ -18,14 +18,16 @@ class StaffRootView: UIView {
     lazy var staffTableView = StaffTableView(refreshControl: refreshControl)
     
     func setup() {
-        addSubview(departmentCollectionView)
-        addSubview(separetorbottomLine)
-        addSubview(staffTableView)
-        departmentCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        separetorbottomLine.translatesAutoresizingMaskIntoConstraints = false
-        separetorbottomLine.backgroundColor = .systemGray
-        staffTableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        [departmentCollectionView, separetorbottomLine, staffTableView].forEach {
+            addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
         refreshControl.addSubview(circularSpinner)
+        circularSpinner.translatesAutoresizingMaskIntoConstraints = false
+        
+        separetorbottomLine.backgroundColor = .systemGray
         refreshControl.tintColor = .clear
         
         NSLayoutConstraint.activate([

@@ -42,8 +42,11 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupViews() {
-        addSubview(departmentLabel)
-        addSubview(stroke)
+        
+        [departmentLabel, stroke].forEach {
+            addSubview($0)
+        }
+        
         let layoutMargins = self.layoutMarginsGuide
         self.layoutMargins = Constants.Department.edgeInsets
         
