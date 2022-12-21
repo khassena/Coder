@@ -15,7 +15,7 @@ class DepartmentCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemGray
-        label.font = Fonts.fontDepMedium
+        label.font = Fonts.fontDepBold
         return label
     }()
     

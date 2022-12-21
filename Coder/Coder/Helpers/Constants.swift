@@ -69,6 +69,32 @@ enum Constants {
     static let separateHeight: CGFloat = 0.34
     static let refreshViewRect = CGRect(x: UIScreen.main.bounds.width / 2.1, y: 20, width: 20, height: 20)
     static let strokeHeight: CGFloat = 2.0
+    
+    enum SearchBar {
+        static let magnifierGray = UIImageView(image: UIImage(named: "magnifierGray"))
+        static let magnifierBlack = UIImage(named: "magnifierBlack")
+        static let sortButtonNormal = UIImage(named: "sortButtonNormal")
+        static let sortButtonSelected = UIImage(named: "sortButtonSelected")
+        static let clear = UIImage(named: "clear")
+        static let cornerRadius: CGFloat = 16.0
+        static let backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.973, alpha: 1)
+        static let size = CGSize(width: 1, height: 40)
+        static let placeholderColor = UIColor(red: 0.765, green: 0.765, blue: 0.776, alpha: 1)
+        static let leftPositionAdjust = UIOffset(horizontal: 10, vertical: 0)
+        static let rightPositionAdjust = UIOffset(horizontal: -10, vertical: 0)
+        static let placeholderAttributes: [NSAttributedString.Key: Any] = [
+            .font: Fonts.fontBirthDay,
+            .foregroundColor: placeholderColor
+        ]
+        static let attributedString: NSAttributedString = .init(
+            string: "Enter your name, tag, email...",
+            attributes: placeholderAttributes
+        )
+        static let cancelAttributes: [NSAttributedString.Key: Any] = [
+            .font: Fonts.fontDepBold,
+            .foregroundColor: Color.purple
+        ]
+    }
 }
 
 enum Color {
