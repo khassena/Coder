@@ -41,7 +41,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
         self.view = view
         self.networkService = networkService
         initDepartments()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.getData()
         }
     }
