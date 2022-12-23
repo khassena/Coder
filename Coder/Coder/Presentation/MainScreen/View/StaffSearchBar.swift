@@ -37,8 +37,6 @@ class SearchBar: UISearchBar {
         setImage(Constants.SearchBar.sortButtonSelected, for: .bookmark, state: .selected)
         setImage(Constants.SearchBar.clear , for: .clear, state: .normal)
         
-        showsCancelButton = true
-        
         let barButtonAppearance = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
         barButtonAppearance.setTitleTextAttributes(Constants.SearchBar.cancelAttributes, for: .normal)
     }

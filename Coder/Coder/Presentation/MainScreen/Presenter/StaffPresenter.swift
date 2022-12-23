@@ -22,18 +22,20 @@ protocol StaffViewPresenterProtocol {
     var items: [Person]? { get set }
     var selectedDepartmentPath: IndexPath? { get set }
     var departments: [Department] { get }
+    func filterTableView(searchText: String?)
 }
 
 class StaffPresenter: StaffViewPresenterProtocol {
-    
+
     weak var view: StaffViewProtocol?
     let networkService: NetworkServiceProtocol
     var items: [Person]?
     var departments = [Department]()
     var staff: Staff?
+    private lazy var staffModel = StaffModel()
     var selectedDepartmentPath: IndexPath? {
         didSet {
-            filterTableView()
+            filterTableView(searchText: nil)
         }
     }
     
@@ -58,7 +60,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
                 switch result {
                 case .success(let staff):
                     self?.staff = staff
-                    self?.filterTableView()
+                    self?.filterTableView(searchText: nil)
                     self?.view?.networkSuccess()
                 case .failure(let error):
                     self?.view?.networkFailure(error: error)
@@ -81,14 +83,11 @@ class StaffPresenter: StaffViewPresenterProtocol {
         }
     }
     
-    func filterTableView() {
-        guard let selected = selectedDepartmentPath, departments[selected.row].name != Constants.Department.selectedDefault  else {
-            self.items = staff?.items
-            return
-        }
-        
-        self.items = staff?.items.filter({ person in
-            person.department == departments[selected.row]
-        }) as? [Person]
+    func filterTableView(searchText: String?) {
+        staffModel.items = staff?.items
+        staffModel.departments = departments
+        staffModel.selectedDepartmentPath = self.selectedDepartmentPath
+        staffModel.searchText = searchText?.lowercased() ?? ""
+        self.items = staffModel.filteredData()
     }
 }

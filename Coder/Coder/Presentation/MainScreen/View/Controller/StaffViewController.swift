@@ -30,6 +30,7 @@ class StaffViewController: UIViewController {
         rootView.departmentCollectionView.dataSource = self
         rootView.staffTableView.delegate = self
         rootView.staffTableView.dataSource = self
+        rootView.searchBar.delegate = self
         rootView.refreshControl.addTarget(self, action: #selector(pulledToRefresh), for: .valueChanged)
     }
     
@@ -53,7 +54,25 @@ extension StaffViewController: StaffViewProtocol {
     }
     
     func networkFailure(error: Error) {
-        print("F")
+        print("Network Fail")
+    }
+}
+
+extension StaffViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        rootView.searchBar.searchTextField.leftView = Constants.SearchBar.magnifierBlack
+        rootView.searchBar.showsCancelButton = true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.filterTableView(searchText: searchText)
+        rootView.staffTableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        rootView.searchBar.searchTextField.leftView = Constants.SearchBar.magnifierGray
+        rootView.searchBar.showsCancelButton = false
+        rootView.searchBar.endEditing(true)
     }
 }
 
