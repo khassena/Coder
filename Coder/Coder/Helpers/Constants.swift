@@ -72,7 +72,7 @@ enum Constants {
     
     enum SearchBar {
         static let magnifierGray = UIImageView(image: UIImage(named: "magnifierGray"))
-        static let magnifierBlack = UIImage(named: "magnifierBlack")
+        static let magnifierBlack = UIImageView(image: UIImage(named: "magnifierBlack"))
         static let sortButtonNormal = UIImage(named: "sortButtonNormal")
         static let sortButtonSelected = UIImage(named: "sortButtonSelected")
         static let clear = UIImage(named: "clear")
