@@ -27,6 +27,7 @@
 		FABB4F402947A66100486E5A /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F3C2947A66100486E5A /* Inter-Medium.ttf */; };
 		FABB4F412947A66100486E5A /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F3D2947A66100486E5A /* Inter-Bold.ttf */; };
 		FABB4F44294B4B3A00486E5A /* CircularSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F43294B4B3A00486E5A /* CircularSpinner.swift */; };
+		FADF594A295712FA0006A2B5 /* SearchErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF5949295712FA0006A2B5 /* SearchErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		FABB4F3C2947A66100486E5A /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		FABB4F3D2947A66100486E5A /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		FABB4F43294B4B3A00486E5A /* CircularSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularSpinner.swift; sourceTree = "<group>"; };
+		FADF5949295712FA0006A2B5 /* SearchErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				FABB4F2F29390B2B00486E5A /* StaffTableView.swift */,
 				FABB4F37293FA40C00486E5A /* Cells */,
 				FABB4F43294B4B3A00486E5A /* CircularSpinner.swift */,
+				FADF594B2957130A0006A2B5 /* Errors */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -245,6 +248,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		FADF594B2957130A0006A2B5 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				FADF5949295712FA0006A2B5 /* SearchErrorView.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -333,6 +344,7 @@
 				FABB4F3029390B2B00486E5A /* StaffTableView.swift in Sources */,
 				FABB4F44294B4B3A00486E5A /* CircularSpinner.swift in Sources */,
 				FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */,
+				FADF594A295712FA0006A2B5 /* SearchErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

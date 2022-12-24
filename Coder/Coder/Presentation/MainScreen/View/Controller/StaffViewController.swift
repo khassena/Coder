@@ -66,13 +66,18 @@ extension StaffViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter?.filterTableView(searchText: searchText)
+        rootView.setErrorView(show: presenter?.items?.isEmpty)
         rootView.staffTableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         rootView.searchBar.searchTextField.leftView = Constants.SearchBar.magnifierGray
         rootView.searchBar.showsCancelButton = false
+        rootView.searchBar.text = nil
+        presenter?.filterTableView(searchText: nil)
+        rootView.setErrorView(show: false)
         rootView.searchBar.endEditing(true)
+        rootView.staffTableView.reloadData()
     }
 }
 
