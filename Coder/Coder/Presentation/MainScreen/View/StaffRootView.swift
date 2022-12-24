@@ -16,10 +16,11 @@ class StaffRootView: UIView {
     let refreshControl = UIRefreshControl()
     let circularSpinner = CircularSpinner(frame: Constants.refreshViewRect)
     lazy var staffTableView = StaffTableView(refreshControl: refreshControl)
+    let searchErrorView = SearchErrorView()
     
     func setup() {
         
-        [departmentCollectionView, separetorbottomLine, staffTableView].forEach {
+        [departmentCollectionView, separetorbottomLine, staffTableView, searchErrorView].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -29,6 +30,8 @@ class StaffRootView: UIView {
         
         separetorbottomLine.backgroundColor = .systemGray
         refreshControl.tintColor = .clear
+        
+        searchErrorView.isHidden = true
         
         NSLayoutConstraint.activate([
             departmentCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
@@ -44,8 +47,17 @@ class StaffRootView: UIView {
             staffTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             staffTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             staffTableView.topAnchor.constraint(equalTo: separetorbottomLine.bottomAnchor),
-            staffTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            staffTableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            searchErrorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            searchErrorView.topAnchor.constraint(equalTo: separetorbottomLine.bottomAnchor),
+            searchErrorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            searchErrorView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    func setErrorView(show: Bool?) {
+        searchErrorView.isHidden = !(show ?? false)
     }
     
 }

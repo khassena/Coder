@@ -95,6 +95,16 @@ enum Constants {
             .foregroundColor: Color.purple
         ]
     }
+    
+    enum SearchError {
+        static let image = UIImage(named: "errorMagnifier")
+        static let blackColor = UIColor(red: 0.02, green: 0.02, blue: 0.063, alpha: 1)
+        static let grayColor = UIColor(red: 0.591, green: 0.591, blue: 0.609, alpha: 1)
+        static let imageTop: CGFloat = 80.0
+        static let imageSize: CGFloat = 56.0
+        static let messageTop: CGFloat = 8.0
+        static let adviceTop: CGFloat = 12.0
+    }
 }
 
 enum Color {
@@ -103,10 +113,12 @@ enum Color {
 }
 
 enum Fonts {
-    static let fontDepBold: UIFont = UIFont(name: "Inter-SemiBold", size: 15) ?? UIFont()
-    static let fontDepMedium: UIFont = UIFont(name: "Inter-Medium", size: 15) ?? UIFont()
-    static let fontFullName: UIFont = UIFont(name: "Inter-Medium", size: 16) ?? UIFont()
-    static let fontUserTag: UIFont = UIFont(name: "Inter-Medium", size: 14) ?? UIFont()
-    static let fontPosition: UIFont = UIFont(name: "Inter-Regular", size: 13) ?? UIFont()
-    static let fontBirthDay: UIFont = UIFont(name: "Inter-Regular", size: 15) ?? UIFont()
+    static let fontDepBold = UIFont(name: "Inter-SemiBold", size: 15) ?? UIFont()
+    static let fontDepMedium = UIFont(name: "Inter-Medium", size: 15) ?? UIFont()
+    static let fontFullName = UIFont(name: "Inter-Medium", size: 16) ?? UIFont()
+    static let fontUserTag = UIFont(name: "Inter-Medium", size: 14) ?? UIFont()
+    static let fontPosition = UIFont(name: "Inter-Regular", size: 13) ?? UIFont()
+    static let fontBirthDay = UIFont(name: "Inter-Regular", size: 15) ?? UIFont()
+    static let messageFont = UIFont(name: "Inter-SemiBold", size: 17) ?? UIFont()
+    static let adviceFont = UIFont(name: "Inter-Regular", size: 16) ?? UIFont()
 }
