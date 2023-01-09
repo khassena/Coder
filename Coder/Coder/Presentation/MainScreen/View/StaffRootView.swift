@@ -25,6 +25,8 @@ class StaffRootView: UIView {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
+        departmentCollectionView.backgroundColor = .white
+        
         refreshControl.addSubview(circularSpinner)
         circularSpinner.translatesAutoresizingMaskIntoConstraints = false
         

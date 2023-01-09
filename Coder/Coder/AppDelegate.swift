@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let presenter = StaffPresenter(view: view, networkService: net)
         view.presenter = presenter
         let navController = UINavigationController(rootViewController: view)
+        navController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navController.navigationBar.shadowImage = UIImage()
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
         return true

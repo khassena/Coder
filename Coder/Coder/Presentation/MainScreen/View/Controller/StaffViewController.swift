@@ -21,6 +21,7 @@ class StaffViewController: UIViewController {
     
     var presenter: StaffViewPresenterProtocol?
     private var skeleton = true
+    private lazy var sortController = SortViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,19 @@ class StaffViewController: UIViewController {
         presenter?.getData()
         rootView.refreshControl.layer.removeAllAnimations()
         rootView.refreshControl.endRefreshing()
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        sortController.modalPresentationStyle = .custom
+        sortController.transitioningDelegate = self
+        present(sortController, animated: true)
+    }
+}
+
+extension StaffViewController: UIViewControllerTransitioningDelegate {
+    
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        PresentationViewController(presentedViewController: presented, presenting: presenting)
     }
 }
 

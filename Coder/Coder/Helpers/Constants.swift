@@ -105,6 +105,14 @@ enum Constants {
         static let messageTop: CGFloat = 8.0
         static let adviceTop: CGFloat = 12.0
     }
+    
+    enum SortView {
+        static let cornerRadius: CGFloat = 10.0
+        static let slideWidth: CGFloat = 56.0
+        static let slideHeight: CGFloat = 4.0
+        static let slideTop: CGFloat = 12.0
+        static let textColor: UIColor = UIColor(red: 0.02, green: 0.02, blue: 0.063, alpha: 1)
+    }
 }
 
 enum Color {
@@ -121,4 +129,5 @@ enum Fonts {
     static let fontBirthDay = UIFont(name: "Inter-Regular", size: 15) ?? UIFont()
     static let messageFont = UIFont(name: "Inter-SemiBold", size: 17) ?? UIFont()
     static let adviceFont = UIFont(name: "Inter-Regular", size: 16) ?? UIFont()
+    static let sortTitle = UIFont(name: "Inter-SemiBold", size: 20) ?? UIFont()
 }
