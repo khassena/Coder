@@ -44,6 +44,9 @@ class StaffViewController: UIViewController {
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         sortController.modalPresentationStyle = .custom
         sortController.transitioningDelegate = self
+        sortController.presenter?.staff = presenter?.staff
+        let presenterSort = SortPresenter(view: self)
+        sortController.presenter = presenterSort
         present(sortController, animated: true)
     }
 }
@@ -72,6 +75,14 @@ extension StaffViewController: StaffViewProtocol {
     }
 }
 
+extension StaffViewController: SortViewProtocol {
+    func sortBy(_ button: SortModel) {
+        presenter?.filterTableView(searchText: nil, sort: button)
+        rootView.searchBar.setImage(Constants.SearchBar.sortButtonSelected, for: .bookmark, state: .normal)
+        rootView.staffTableView.reloadData()
+    }
+}
+
 extension StaffViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         rootView.searchBar.searchTextField.leftView = Constants.SearchBar.magnifierBlack
@@ -79,7 +90,7 @@ extension StaffViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter?.filterTableView(searchText: searchText)
+        presenter?.filterTableView(searchText: searchText, sort: nil)
         rootView.setErrorView(show: presenter?.items?.isEmpty)
         rootView.staffTableView.reloadData()
     }
@@ -88,7 +99,7 @@ extension StaffViewController: UISearchBarDelegate {
         rootView.searchBar.searchTextField.leftView = Constants.SearchBar.magnifierGray
         rootView.searchBar.showsCancelButton = false
         rootView.searchBar.text = nil
-        presenter?.filterTableView(searchText: nil)
+        presenter?.filterTableView(searchText: nil, sort: nil)
         rootView.setErrorView(show: false)
         rootView.searchBar.endEditing(true)
         rootView.staffTableView.reloadData()
@@ -168,7 +179,7 @@ extension StaffViewController: UITableViewDataSource {
                         lastName:  items.lastName,
                         userTag:   items.userTag.lowercased(),
                         position:  items.department.name,
-                        birthday:  items.birthday)
+                        birthdayDate:  items.birthdayDate ?? Date())
         return cell
     }
     

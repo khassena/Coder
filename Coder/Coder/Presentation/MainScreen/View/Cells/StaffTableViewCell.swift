@@ -17,9 +17,9 @@ class StaffTableViewCell: UITableViewCell {
     
     private let personUserTag = StaffTableViewCell.label(color: .systemGray, font: Fonts.fontUserTag)
     
-    private let personPosition = StaffTableViewCell.label(color: .systemGray, font: Fonts.fontPosition)
+    private let personPosition = StaffTableViewCell.label(color: .darkGray, font: Fonts.fontPosition)
     
-    private let personDateOfBirth = StaffTableViewCell.label(color: .systemGray, font: Fonts.fontBirthDay)
+    private let personDateOfBirth = StaffTableViewCell.label(color: .darkGray, font: Fonts.fontBirthDay)
     
     private lazy var nameTagStackView = StaffTableViewCell.stackView(views:                                                                [personFullName,                                                                personUserTag],
                                                              axis: .horizontal,
@@ -76,7 +76,7 @@ class StaffTableViewCell: UITableViewCell {
             
             personDateOfBirth.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             personDateOfBirth.trailingAnchor.constraint(equalTo: layoutMargin.trailingAnchor),
-            personDateOfBirth.widthAnchor.constraint(equalToConstant: Constants.Staff.dateOfBirthWidth),
+            personDateOfBirth.widthAnchor.constraint(greaterThanOrEqualToConstant: Constants.Staff.dateOfBirthWidth),
         ])
     }
     
@@ -88,11 +88,11 @@ class StaffTableViewCell: UITableViewCell {
                            lastName: String,
                            userTag: String,
                            position: String,
-                           birthday: String) {
+                           birthdayDate: Date) {
         personFullName.text = "\(firstName) \(lastName)"
         personUserTag.text = userTag
         personPosition.text = position
-        personDateOfBirth.text = birthday        
+        personDateOfBirth.text = "\(birthdayDate.getNumOfMonth()) \(birthdayDate.getNameOfMonth())"
     }
 
     public func showSkeleton(_ bool: Bool) {
@@ -122,6 +122,7 @@ extension StaffTableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = color
         label.font = font
+        label.textAlignment = .right
         return label
     }
     

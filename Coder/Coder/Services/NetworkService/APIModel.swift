@@ -62,3 +62,13 @@ extension Department {
         }
     }
 }
+
+extension Person {
+    var birthdayDate: Date? {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        return dateFormatter.date(from: birthday)
+    }
+}

@@ -38,7 +38,7 @@ enum Constants {
         static let imageSize: CGFloat = 72.0
         static let imageTrailing: CGFloat = 16.0
         static let dateOfBirthLeading: CGFloat = -20.0
-        static let dateOfBirthWidth: CGFloat = 40.0
+        static let dateOfBirthWidth: CGFloat = 50.0
         static let imageCornerRadius: CGFloat = 36.0
         static let stackViewSpacing: CGFloat = 4.0
         static let defaultImage: UIImage = UIImage(named: "goose.svg") ?? UIImage()
@@ -112,6 +112,13 @@ enum Constants {
         static let slideHeight: CGFloat = 4.0
         static let slideTop: CGFloat = 12.0
         static let textColor: UIColor = UIColor(red: 0.02, green: 0.02, blue: 0.063, alpha: 1)
+        static let spacingStack: CGFloat = 14.0
+        static let sortButtonFrame: CGFloat = 20.0
+        static let alphabetTop: CGFloat = 35.0
+        static let stackViewLeft: CGFloat = 18.0
+        static let birthdayTop: CGFloat = 35.0
+        static let unselectedImage = UIImage(named: "unselected")
+        static let selectedImage = UIImage(named: "selected")
     }
 }
 
@@ -130,4 +137,5 @@ enum Fonts {
     static let messageFont = UIFont(name: "Inter-SemiBold", size: 17) ?? UIFont()
     static let adviceFont = UIFont(name: "Inter-Regular", size: 16) ?? UIFont()
     static let sortTitle = UIFont(name: "Inter-SemiBold", size: 20) ?? UIFont()
+    static let sortFont = UIFont(name: "Inter-Medium", size: 16) ?? UIFont()
 }

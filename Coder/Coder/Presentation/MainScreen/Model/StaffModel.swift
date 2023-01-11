@@ -14,6 +14,7 @@ struct StaffModel {
     var departments: [Department] = []
     var selectedDepartmentPath: IndexPath?
     var searching: Bool = false
+    var sortModel: SortModel?
 }
 
 extension StaffModel {
@@ -22,6 +23,7 @@ extension StaffModel {
         guard let selected = selectedDepartmentPath, departments[selected.row].name != Constants.Department.selectedDefault  else {
             filteredItems = self.items
             searchFilter()
+            sortItems()
             return filteredItems
         }
         
@@ -30,6 +32,7 @@ extension StaffModel {
         }) as? [Person]
         
         searchFilter()
+        sortItems()
         
         return filteredItems
     }
@@ -41,4 +44,23 @@ extension StaffModel {
             $0.userTag.lowercased().prefix(searchText.count) == searchText
         })
     }
+    
+    private mutating func sortItems() {
+        guard let sortModel = sortModel else { return }
+        
+        switch sortModel {
+        case .alphabet:
+            filteredItems = filteredItems?.sorted(by: {
+                $0.firstName < $1.firstName
+            })
+        case .birthday:
+            sortByDate()
+        }
+    }
+
+    private mutating func sortByDate() {
+        
+    }
+    
+    
 }

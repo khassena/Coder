@@ -11,6 +11,7 @@ class SortViewController: UIViewController {
     
     var hasSetPointOrigin = false
     var pointOrigin: CGPoint?
+    var presenter: SortViewPresenterProtocol?
     
     private let slideIndicator: UIView = {
         let view = UIView()
@@ -29,6 +30,15 @@ class SortViewController: UIViewController {
         return label
     }()
     
+    private let byAlphabet = SortViewController.createLabel(text: "By alphabet")
+    private let sortButtonAlph = SortViewController.createSortButton()
+    private let byBirthday = SortViewController.createLabel(text: "By birthday")
+    private let sortButtonBirth = SortViewController.createSortButton()
+    
+    private lazy var alphabetStackView = SortStackView(views: [sortButtonAlph, byAlphabet], button: .alphabet, view: self)
+    private lazy var birthdayStackView = SortStackView(views: [sortButtonBirth, byBirthday], button: .birthday, view: self)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -45,10 +55,13 @@ class SortViewController: UIViewController {
     }
     
     private func setupViews() {
-        [slideIndicator, sortLabel].forEach {
+        [slideIndicator, sortLabel, alphabetStackView, birthdayStackView].forEach {
             view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
         }
         slideIndicator.roundCorners(.allCorners, radius: Constants.SortView.cornerRadius)
+        sortButtonAlph.image = Constants.SortView.unselectedImage
+        sortButtonBirth.image = Constants.SortView.unselectedImage
         
         NSLayoutConstraint.activate([
             slideIndicator.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.SortView.slideTop),
@@ -56,6 +69,14 @@ class SortViewController: UIViewController {
             slideIndicator.heightAnchor.constraint(equalToConstant: Constants.SortView.slideHeight),
             slideIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
+            sortLabel.topAnchor.constraint(equalTo: slideIndicator.bottomAnchor, constant: Constants.SortView.slideTop),
+            sortLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            alphabetStackView.topAnchor.constraint(equalTo: sortLabel.bottomAnchor, constant: Constants.SortView.alphabetTop),
+            alphabetStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.SortView.stackViewLeft),
+            
+            birthdayStackView.topAnchor.constraint(equalTo: alphabetStackView.bottomAnchor, constant: Constants.SortView.birthdayTop),
+            birthdayStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.SortView.stackViewLeft)
         ])
     }
     
@@ -80,5 +101,40 @@ class SortViewController: UIViewController {
             }
         }
     }
+}
+
+extension SortViewController: SortStackViewDelegate {
+    
+    func didTap(button: SortModel) {
+        presenter?.didTapSortButton(button)
+        switch button {
+        case .alphabet:
+            sortButtonAlph.image = Constants.SortView.selectedImage
+            sortButtonBirth.image = Constants.SortView.unselectedImage
+        case .birthday:
+            sortButtonBirth.image = Constants.SortView.selectedImage
+            sortButtonAlph.image = Constants.SortView.unselectedImage
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SortViewController {
+    private static func createLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = text
+        label.font = Fonts.sortFont
+        return label
+    }
+    
+    private static func createSortButton() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.image = Constants.SortView.unselectedImage
+        imageView.frame = CGRect(x: .zero, y: .zero, width: Constants.SortView.sortButtonFrame, height: Constants.SortView.sortButtonFrame)
+        return imageView
+    }
+    
     
 }

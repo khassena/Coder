@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA82886F296EBF1A009F1619 /* Data+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82886E296EBF1A009F1619 /* Data+Settings.swift */; };
 		FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4EFC2937801400486E5A /* AppDelegate.swift */; };
 		FABB4F012937801400486E5A /* StaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F002937801400486E5A /* StaffViewController.swift */; };
 		FABB4F062937801500486E5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F052937801500486E5A /* Assets.xcassets */; };
@@ -30,9 +31,13 @@
 		FADF594A295712FA0006A2B5 /* SearchErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF5949295712FA0006A2B5 /* SearchErrorView.swift */; };
 		FADF5950295EFCEA0006A2B5 /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF594F295EFCEA0006A2B5 /* PresentationViewController.swift */; };
 		FADF5952296C3BC70006A2B5 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF5951296C3BC70006A2B5 /* SortViewController.swift */; };
+		FADF5956296D29350006A2B5 /* SortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF5955296D29350006A2B5 /* SortModel.swift */; };
+		FADF5959296D71120006A2B5 /* SortStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF5958296D71120006A2B5 /* SortStackView.swift */; };
+		FADF595B296D74150006A2B5 /* SortPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF595A296D74150006A2B5 /* SortPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA82886E296EBF1A009F1619 /* Data+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Settings.swift"; sourceTree = "<group>"; };
 		FABB4EF92937801400486E5A /* Coder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABB4EFC2937801400486E5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FABB4F002937801400486E5A /* StaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +63,9 @@
 		FADF5949295712FA0006A2B5 /* SearchErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchErrorView.swift; sourceTree = "<group>"; };
 		FADF594F295EFCEA0006A2B5 /* PresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
 		FADF5951296C3BC70006A2B5 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
+		FADF5955296D29350006A2B5 /* SortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortModel.swift; sourceTree = "<group>"; };
+		FADF5958296D71120006A2B5 /* SortStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortStackView.swift; sourceTree = "<group>"; };
+		FADF595A296D74150006A2B5 /* SortPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA828870296EC150009F1619 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FA82886E296EBF1A009F1619 /* Data+Settings.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		FABB4EF02937801400486E5A = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +111,7 @@
 				FABB4F262939023F00486E5A /* Presentation */,
 				FABB4F272939037600486E5A /* Resources */,
 				FABB4F0A2937801500486E5A /* Info.plist */,
+				FA828870296EC150009F1619 /* Extensions */,
 				FABB4F192937C9CB00486E5A /* Helpers */,
 			);
 			path = Coder;
@@ -264,7 +281,9 @@
 		FADF594E295EE80A0006A2B5 /* SortScreen */ = {
 			isa = PBXGroup;
 			children = (
-				FADF5953296C6FC90006A2B5 /* Controller */,
+				FADF5954296D28CA0006A2B5 /* View */,
+				FADF5957296D29390006A2B5 /* Model */,
+				FADF595C296D74190006A2B5 /* Presenter */,
 			);
 			path = SortScreen;
 			sourceTree = "<group>";
@@ -276,6 +295,31 @@
 				FADF5951296C3BC70006A2B5 /* SortViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		FADF5954296D28CA0006A2B5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FADF5958296D71120006A2B5 /* SortStackView.swift */,
+				FADF5953296C6FC90006A2B5 /* Controller */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FADF5957296D29390006A2B5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FADF5955296D29350006A2B5 /* SortModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FADF595C296D74190006A2B5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FADF595A296D74150006A2B5 /* SortPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,17 +401,21 @@
 				FABB4F202938CB4D00486E5A /* StaffRootView.swift in Sources */,
 				FABB4F182937C9C700486E5A /* Constants.swift in Sources */,
 				FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */,
+				FADF5959296D71120006A2B5 /* SortStackView.swift in Sources */,
+				FADF5956296D29350006A2B5 /* SortModel.swift in Sources */,
 				FABB4F1B2938C01800486E5A /* StaffPresenter.swift in Sources */,
 				FABB4F36293F9CD900486E5A /* StaffTableViewCell.swift in Sources */,
 				FABB4F012937801400486E5A /* StaffViewController.swift in Sources */,
 				FABB4F132937A47800486E5A /* NetworkService.swift in Sources */,
 				FABB4F152937B7D300486E5A /* APIModel.swift in Sources */,
 				FADF5950295EFCEA0006A2B5 /* PresentationViewController.swift in Sources */,
+				FA82886F296EBF1A009F1619 /* Data+Settings.swift in Sources */,
 				FABB4F252938FF2F00486E5A /* DepartmentCollectionView.swift in Sources */,
 				FABB4F3029390B2B00486E5A /* StaffTableView.swift in Sources */,
 				FABB4F44294B4B3A00486E5A /* CircularSpinner.swift in Sources */,
 				FADF5952296C3BC70006A2B5 /* SortViewController.swift in Sources */,
 				FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */,
+				FADF595B296D74150006A2B5 /* SortPresenter.swift in Sources */,
 				FADF594A295712FA0006A2B5 /* SearchErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

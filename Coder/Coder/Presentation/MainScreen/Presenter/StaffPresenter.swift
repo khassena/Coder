@@ -22,11 +22,11 @@ protocol StaffViewPresenterProtocol {
     var items: [Person]? { get set }
     var selectedDepartmentPath: IndexPath? { get set }
     var departments: [Department] { get }
-    func filterTableView(searchText: String?)
+    func filterTableView(searchText: String?, sort: SortModel?)
 }
 
 class StaffPresenter: StaffViewPresenterProtocol {
-
+    
     weak var view: StaffViewProtocol?
     let networkService: NetworkServiceProtocol
     var items: [Person]?
@@ -35,7 +35,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
     private lazy var staffModel = StaffModel()
     var selectedDepartmentPath: IndexPath? {
         didSet {
-            filterTableView(searchText: nil)
+            filterTableView(searchText: nil, sort: nil)
         }
     }
     
@@ -60,7 +60,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
                 switch result {
                 case .success(let staff):
                     self?.staff = staff
-                    self?.filterTableView(searchText: nil)
+                    self?.filterTableView(searchText: nil, sort: nil)
                     self?.view?.networkSuccess()
                 case .failure(let error):
                     self?.view?.networkFailure(error: error)
@@ -83,11 +83,12 @@ class StaffPresenter: StaffViewPresenterProtocol {
         }
     }
     
-    func filterTableView(searchText: String?) {
+    func filterTableView(searchText: String?, sort: SortModel?) {
         staffModel.items = staff?.items
         staffModel.departments = departments
         staffModel.selectedDepartmentPath = self.selectedDepartmentPath
         staffModel.searchText = searchText?.lowercased() ?? ""
+        staffModel.sortModel = sort
         self.items = staffModel.filteredData()
     }
 }
