@@ -38,6 +38,8 @@ class StaffViewController: UIViewController {
     
     @objc private func pulledToRefresh() {
         presenter?.getData()
+        rootView.searchBar.setImage(Constants.SearchBar.sortButtonNormal, for: .bookmark, state: .normal)
+        sortController.didTap(button: .none)
         rootView.refreshControl.layer.removeAllAnimations()
         rootView.refreshControl.endRefreshing()
     }
@@ -82,9 +84,16 @@ extension StaffViewController: StaffViewProtocol {
 
 extension StaffViewController: SortViewProtocol {
     func sortBy(_ button: SortModel) {
-        presenter?.filterTableView(searchText: nil, sort: button)
-        rootView.searchBar.setImage(Constants.SearchBar.sortButtonSelected, for: .bookmark, state: .normal)
-        rootView.staffTableView.reloadData()
+        switch button {
+        case .none:
+            presenter?.filterTableView(searchText: nil, sort: SortModel.none)
+            rootView.searchBar.setImage(Constants.SearchBar.sortButtonNormal, for: .bookmark, state: .normal)
+            rootView.staffTableView.reloadData()
+        default:
+            presenter?.filterTableView(searchText: nil, sort: button)
+            rootView.searchBar.setImage(Constants.SearchBar.sortButtonSelected, for: .bookmark, state: .normal)
+            rootView.staffTableView.reloadData()
+        }
     }
 }
 

@@ -106,19 +106,42 @@ class SortViewController: UIViewController {
 extension SortViewController: SortStackViewDelegate {
     
     func didTap(button: SortModel) {
-        presenter?.didTapSortButton(button)
         switch button {
         case .alphabet:
-            sortButtonAlph.image = Constants.SortView.selectedImage
-            sortButtonBirth.image = Constants.SortView.unselectedImage
+            if sortButtonAlph.image == Constants.SortView.selectedImage {
+                unselectAllButton()
+                presenter?.didTapSortButton(.none)
+            } else {
+                selectAlphabet()
+                presenter?.didTapSortButton(.alphabet)
+            }
         case .birthday:
-            sortButtonBirth.image = Constants.SortView.selectedImage
-            sortButtonAlph.image = Constants.SortView.unselectedImage
+            if sortButtonBirth.image == Constants.SortView.selectedImage {
+                unselectAllButton()
+                presenter?.didTapSortButton(.none)
+            } else {
+                selectBirthday()
+                presenter?.didTapSortButton(.birthday)
+            }
         case .none:
-            sortButtonAlph.image = Constants.SortView.unselectedImage
-            sortButtonBirth.image = Constants.SortView.unselectedImage
+            unselectAllButton()
         }
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func unselectAllButton() {
+        sortButtonAlph.image = Constants.SortView.unselectedImage
+        sortButtonBirth.image = Constants.SortView.unselectedImage
+    }
+    
+    private func selectAlphabet() {
+        sortButtonAlph.image = Constants.SortView.selectedImage
+        sortButtonBirth.image = Constants.SortView.unselectedImage
+    }
+    
+    private func selectBirthday() {
+        sortButtonBirth.image = Constants.SortView.selectedImage
+        sortButtonAlph.image = Constants.SortView.unselectedImage
     }
 }
 
@@ -134,7 +157,6 @@ extension SortViewController {
     private static func createSortButton() -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.image = Constants.SortView.unselectedImage
         imageView.frame = CGRect(x: .zero, y: .zero, width: Constants.SortView.sortButtonFrame, height: Constants.SortView.sortButtonFrame)
         return imageView
     }
