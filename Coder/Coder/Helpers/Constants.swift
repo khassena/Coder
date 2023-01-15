@@ -38,7 +38,7 @@ enum Constants {
         static let imageSize: CGFloat = 72.0
         static let imageTrailing: CGFloat = 16.0
         static let dateOfBirthLeading: CGFloat = -20.0
-        static let dateOfBirthWidth: CGFloat = 50.0
+        static let dateOfBirthWidth: CGFloat = 30.0
         static let imageCornerRadius: CGFloat = 36.0
         static let stackViewSpacing: CGFloat = 4.0
         static let defaultImage: UIImage = UIImage(named: "goose.svg") ?? UIImage()
@@ -120,11 +120,25 @@ enum Constants {
         static let unselectedImage = UIImage(named: "unselected")
         static let selectedImage = UIImage(named: "selected")
     }
+    
+    enum HeaderView {
+        static let spacing: CGFloat = 12.0
+        static let lineHeight: CGFloat = 1.0
+        static let lineWidth: CGFloat = 72.0
+        static let yearLabelHeight: CGFloat = 20.0
+        static let leadingConstant: CGFloat = 20.0
+        static let trailingConstant: CGFloat = -20.0
+        static let heightForRow: CGFloat = 46.0
+        static let yearPosition: CGFloat = -11.0
+    }
 }
 
 enum Color {
     static let purple = UIColor(red: 0.396, green: 0.204, blue: 1, alpha: 1)
     static let borderColor = UIColor(red: 0.969, green: 0.969, blue: 0.973, alpha: 1)
+    static let darkGray = UIColor(red: 0.333, green: 0.333, blue: 0.361, alpha: 1)
+    static let gray = UIColor(red: 0.591, green: 0.591, blue: 0.609, alpha: 1)
+    static let lightGray = UIColor(red: 0.765, green: 0.765, blue: 0.776, alpha: 1)
 }
 
 enum Fonts {
@@ -138,4 +152,5 @@ enum Fonts {
     static let adviceFont = UIFont(name: "Inter-Regular", size: 16) ?? UIFont()
     static let sortTitle = UIFont(name: "Inter-SemiBold", size: 20) ?? UIFont()
     static let sortFont = UIFont(name: "Inter-Medium", size: 16) ?? UIFont()
+    static let yearFont = UIFont(name: "Inter-Medium", size: 15) ?? UIFont()
 }

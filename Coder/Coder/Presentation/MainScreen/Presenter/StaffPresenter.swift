@@ -12,6 +12,7 @@ protocol StaffViewProtocol: AnyObject {
     func networkSuccess()
     func imageLoader(with image: UIImage, indexPath: IndexPath)
     func networkFailure(error: Error)
+    func showBirthdaySelected(_ show: Bool)
 }
 
 protocol StaffViewPresenterProtocol {
@@ -23,6 +24,8 @@ protocol StaffViewPresenterProtocol {
     var selectedDepartmentPath: IndexPath? { get set }
     var departments: [Department] { get }
     func filterTableView(searchText: String?, sort: SortModel?)
+    var showBirthday: Bool { get set }
+    var itemsForSection: [Person]? { get }
 }
 
 class StaffPresenter: StaffViewPresenterProtocol {
@@ -30,9 +33,11 @@ class StaffPresenter: StaffViewPresenterProtocol {
     weak var view: StaffViewProtocol?
     let networkService: NetworkServiceProtocol
     var items: [Person]?
+    var itemsForSection: [Person]?
     var departments = [Department]()
     var staff: Staff?
-    private lazy var staffModel = StaffModel()
+//    lazy var staffModel = StaffModel()
+    lazy var showBirthday: Bool = false
     var selectedDepartmentPath: IndexPath? {
         didSet {
             filterTableView(searchText: nil, sort: nil)
@@ -60,7 +65,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
                 switch result {
                 case .success(let staff):
                     self?.staff = staff
-                    self?.filterTableView(searchText: nil, sort: nil)
+                    self?.filterTableView(searchText: nil, sort: SortModel.none)
                     self?.view?.networkSuccess()
                 case .failure(let error):
                     self?.view?.networkFailure(error: error)
@@ -84,11 +89,16 @@ class StaffPresenter: StaffViewPresenterProtocol {
     }
     
     func filterTableView(searchText: String?, sort: SortModel?) {
+        self.itemsForSection = nil
+        var staffModel = StaffModel()
         staffModel.items = staff?.items
         staffModel.departments = departments
         staffModel.selectedDepartmentPath = self.selectedDepartmentPath
         staffModel.searchText = searchText?.lowercased() ?? ""
         staffModel.sortModel = sort
         self.items = staffModel.filteredData()
+        self.itemsForSection = staffModel.filteredSecondSection
+        showBirthday = staffModel.showBirthday
+        view?.showBirthdaySelected(showBirthday)
     }
 }

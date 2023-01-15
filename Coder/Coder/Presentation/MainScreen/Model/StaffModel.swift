@@ -11,15 +11,17 @@ struct StaffModel {
     var searchText: String = ""
     var items: [Person]?
     var filteredItems: [Person]?
+    var filteredSecondSection: [Person]? = nil
     var departments: [Department] = []
     var selectedDepartmentPath: IndexPath?
     var searching: Bool = false
     var sortModel: SortModel?
+    var showBirthday: Bool = false
 }
 
 extension StaffModel {
     mutating func filteredData() -> [Person]? {
-        
+        filteredSecondSection = nil
         guard let selected = selectedDepartmentPath, departments[selected.row].name != Constants.Department.selectedDefault  else {
             filteredItems = self.items
             searchFilter()
@@ -46,21 +48,36 @@ extension StaffModel {
     }
     
     private mutating func sortItems() {
-        guard let sortModel = sortModel else { return }
-        
+        filteredSecondSection = nil
+        guard let sortModel = sortModel else {
+            filteredSecondSection = nil
+            return
+        }
         switch sortModel {
         case .alphabet:
             filteredItems = filteredItems?.sorted(by: {
                 $0.firstName < $1.firstName
             })
+            showBirthday = false
         case .birthday:
-            sortByDate()
+            
+            filteredSecondSection = filteredItems?.filter({
+                $0.birthdayDate?.getNextDate().getYear() ?? 0 > Date().currentYear
+            }).sorted(by: { person1, person2 in
+                person1.birthdayDate?.getNextDate().daysLeft() ?? 0 < person2.birthdayDate?.getNextDate().daysLeft() ?? 0
+            })
+            
+            filteredItems = filteredItems?.sorted(by: { person1, person2 in
+                person1.birthdayDate?.getNextDate().daysLeft() ?? 0 < person2.birthdayDate?.getNextDate().daysLeft() ?? 0
+            }).filter({
+                $0.birthdayDate?.getNextDate().getYear() == Date().currentYear
+            })
+            
+            showBirthday = true
+        case .none:
+            filteredSecondSection = nil
+            showBirthday = false
         }
     }
-
-    private mutating func sortByDate() {
-        
-    }
-    
     
 }

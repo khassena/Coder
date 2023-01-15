@@ -114,6 +114,9 @@ extension SortViewController: SortStackViewDelegate {
         case .birthday:
             sortButtonBirth.image = Constants.SortView.selectedImage
             sortButtonAlph.image = Constants.SortView.unselectedImage
+        case .none:
+            sortButtonAlph.image = Constants.SortView.unselectedImage
+            sortButtonBirth.image = Constants.SortView.unselectedImage
         }
         self.dismiss(animated: true, completion: nil)
     }

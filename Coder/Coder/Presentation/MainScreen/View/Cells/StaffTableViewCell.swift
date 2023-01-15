@@ -15,11 +15,11 @@ class StaffTableViewCell: UITableViewCell {
     
     var personFullName = StaffTableViewCell.label(color: .black, font: Fonts.fontFullName)
     
-    private let personUserTag = StaffTableViewCell.label(color: .systemGray, font: Fonts.fontUserTag)
+    private let personUserTag = StaffTableViewCell.label(color: Color.gray, font: Fonts.fontUserTag)
     
-    private let personPosition = StaffTableViewCell.label(color: .darkGray, font: Fonts.fontPosition)
+    private let personPosition = StaffTableViewCell.label(color: Color.darkGray, font: Fonts.fontPosition)
     
-    private let personDateOfBirth = StaffTableViewCell.label(color: .darkGray, font: Fonts.fontBirthDay)
+    private let personDateOfBirth = StaffTableViewCell.label(color: Color.darkGray, font: Fonts.fontBirthDay)
     
     private lazy var nameTagStackView = StaffTableViewCell.stackView(views:                                                                [personFullName,                                                                personUserTag],
                                                              axis: .horizontal,
@@ -99,6 +99,10 @@ class StaffTableViewCell: UITableViewCell {
         skeletonImage.isHidden = !bool
         skeletonNameView.isHidden = !bool
         skeletonPositionView.isHidden = !bool
+    }
+    
+    func showDateLabel(_ show: Bool) {
+        personDateOfBirth.isHidden = !show
     }
     
 }

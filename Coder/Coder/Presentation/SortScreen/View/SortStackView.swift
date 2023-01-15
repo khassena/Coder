@@ -18,7 +18,7 @@ class SortStackView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupViews()
+        settings()
     }
     
     required init(coder: NSCoder) {
@@ -37,7 +37,7 @@ class SortStackView: UIStackView {
         self.addGestureRecognizer(recognizer)
     }
     
-    private func setupViews() {
+    private func settings() {
         translatesAutoresizingMaskIntoConstraints = false
         axis = .horizontal
         spacing = Constants.SortView.spacingStack

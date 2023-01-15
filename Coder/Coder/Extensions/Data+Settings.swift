@@ -7,14 +7,19 @@
 
 import Foundation
 
-var calendarCurrent = currentDate()
+public var calendarCurrent = currentDate()
 
-func currentDate() -> Calendar {
+public func currentDate() -> Calendar {
     let calendar = Calendar.current
     return calendar
 }
 
 extension Date {
+    
+    var currentYear: Int {
+        return calendarCurrent.startOfDay(for: Date()).getYear()
+    }
+    
     func getNumOfMonth() -> Int {
         return calendarCurrent.component(.day, from: self)
     }
@@ -25,7 +30,10 @@ extension Date {
         formatter.dateFormat = "MMM"
         let monthString = formatter.string(from: date)
         return monthString.lowercased()
-//        return calendarCurrent.monthSymbols[calendarCurrent.component(.month, from: self) - 1]
+    }
+    
+    func getYear() -> Int {
+        return calendarCurrent.component(.year, from: self)
     }
     
     func getNextDate() -> Date {

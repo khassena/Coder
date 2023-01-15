@@ -22,6 +22,7 @@ class StaffViewController: UIViewController {
     var presenter: StaffViewPresenterProtocol?
     private var skeleton = true
     private lazy var sortController = SortViewController()
+    private lazy var showBirthday = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,7 @@ extension StaffViewController: UIViewControllerTransitioningDelegate {
 }
 
 extension StaffViewController: StaffViewProtocol {
-    
+
     func networkSuccess() {
         self.skeleton = false
         rootView.staffTableView.reloadData()
@@ -72,6 +73,10 @@ extension StaffViewController: StaffViewProtocol {
     
     func networkFailure(error: Error) {
         print("Network Fail")
+    }
+    
+    func showBirthdaySelected(_ show: Bool) {
+        showBirthday = show
     }
 }
 
@@ -157,6 +162,10 @@ extension StaffViewController: UITableViewDataSource {
             return Constants.Staff.defaultItemsCount
         }
         
+        if showBirthday == true {
+            return section == .zero ? presenter?.items?.count ?? 0 : presenter?.itemsForSection?.count ?? 0
+        }
+        
         return presenter?.items?.count ?? 0
     }
     
@@ -168,18 +177,29 @@ extension StaffViewController: UITableViewDataSource {
             return cell
         }
         
+        var item: Person!
         
-        guard let items = presenter?.items?[indexPath.row],
-              let avatarUrl = URL(string: items.avatarUrl) else {
+        if showBirthday == false {
+           item = presenter?.items?[indexPath.row]
+        } else {
+            if indexPath.section == .zero {
+                item = presenter?.items?[indexPath.row]
+            } else {
+                item = presenter?.itemsForSection?[indexPath.row]
+            }
+        }
+        
+        guard let avatarUrl = URL(string: item.avatarUrl) else {
             return UITableViewCell()
         }
         cell.showSkeleton(false)
         presenter?.getImage(with: avatarUrl, indexPath: indexPath)
-        cell.setupValue(firstName: items.firstName,
-                        lastName:  items.lastName,
-                        userTag:   items.userTag.lowercased(),
-                        position:  items.department.name,
-                        birthdayDate:  items.birthdayDate ?? Date())
+        cell.showDateLabel(showBirthday)
+        cell.setupValue(firstName: item.firstName,
+                        lastName:  item.lastName,
+                        userTag:   item.userTag.lowercased(),
+                        position:  item.department.name,
+                        birthdayDate:  item.birthdayDate ?? Date())
         return cell
     }
     
@@ -190,5 +210,17 @@ extension StaffViewController: UITableViewDataSource {
 }
 
 extension StaffViewController: UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return showBirthday ? 2 : 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        section != .zero ? HeaderSectionView() : nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section != .zero ? Constants.HeaderView.heightForRow : .zero
+    }
     
 }

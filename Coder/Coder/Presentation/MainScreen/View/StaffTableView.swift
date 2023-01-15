@@ -19,6 +19,9 @@ class StaffTableView: UITableView {
         register(StaffTableViewCell.self, forCellReuseIdentifier: StaffTableViewCell.cell)
         showsVerticalScrollIndicator = false
         separatorStyle = .none
+        sectionFooterHeight = 0
+        sectionHeaderTopPadding = 22
+        print(sectionHeaderTopPadding)
     }
     
     required init?(coder: NSCoder) {

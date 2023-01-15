@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA82886F296EBF1A009F1619 /* Data+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82886E296EBF1A009F1619 /* Data+Settings.swift */; };
+		FA828874296ECCC8009F1619 /* HeaderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA828873296ECCC8009F1619 /* HeaderSectionView.swift */; };
 		FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4EFC2937801400486E5A /* AppDelegate.swift */; };
 		FABB4F012937801400486E5A /* StaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F002937801400486E5A /* StaffViewController.swift */; };
 		FABB4F062937801500486E5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F052937801500486E5A /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		FA82886E296EBF1A009F1619 /* Data+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Settings.swift"; sourceTree = "<group>"; };
+		FA828873296ECCC8009F1619 /* HeaderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionView.swift; sourceTree = "<group>"; };
 		FABB4EF92937801400486E5A /* Coder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABB4EFC2937801400486E5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FABB4F002937801400486E5A /* StaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				FABB4F1D2938CB2B00486E5A /* StaffSearchBar.swift */,
 				FABB4F242938FF2F00486E5A /* DepartmentCollectionView.swift */,
 				FABB4F2F29390B2B00486E5A /* StaffTableView.swift */,
+				FA828873296ECCC8009F1619 /* HeaderSectionView.swift */,
 				FABB4F37293FA40C00486E5A /* Cells */,
 				FABB4F43294B4B3A00486E5A /* CircularSpinner.swift */,
 				FADF594B2957130A0006A2B5 /* Errors */,
@@ -417,6 +420,7 @@
 				FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */,
 				FADF595B296D74150006A2B5 /* SortPresenter.swift in Sources */,
 				FADF594A295712FA0006A2B5 /* SearchErrorView.swift in Sources */,
+				FA828874296ECCC8009F1619 /* HeaderSectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

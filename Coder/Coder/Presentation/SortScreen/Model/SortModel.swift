@@ -10,4 +10,5 @@ import Foundation
 enum SortModel: CaseIterable {
     case alphabet
     case birthday
+    case none
 }
