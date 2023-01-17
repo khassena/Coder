@@ -54,4 +54,11 @@ extension Date {
         guard let daysLeft = calendarCurrent.dateComponents([.day], from: today, to: self).day else { return 0 }
         return daysLeft - 1
     }
+    
+    func ageOfUser() -> Int {
+        let nextDate = calendarCurrent.startOfDay(for: getNextDate())
+        print(nextDate)
+        let age = calendarCurrent.dateComponents([.year], from: self, to: nextDate).year ?? 0
+        return age + 1
+    }
 }

@@ -28,12 +28,20 @@ class StaffViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.titleView = rootView.searchBar
         rootView.setup()
+        setDelegates()
+        setTarget()
+    }
+    
+    private func setTarget() {
+        rootView.refreshControl.addTarget(self, action: #selector(pulledToRefresh), for: .valueChanged)
+    }
+    
+    private func setDelegates() {
         rootView.departmentCollectionView.delegate = self
         rootView.departmentCollectionView.dataSource = self
         rootView.staffTableView.delegate = self
         rootView.staffTableView.dataSource = self
         rootView.searchBar.delegate = self
-        rootView.refreshControl.addTarget(self, action: #selector(pulledToRefresh), for: .valueChanged)
     }
     
     @objc private func pulledToRefresh() {
@@ -230,6 +238,23 @@ extension StaffViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         section != .zero ? Constants.HeaderView.heightForRow : .zero
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let profileController = ProfileViewController()
+        let network = NetworkService()
+        let profPresenter = ProfilePresenter(view: profileController, networkService: network)
+        profileController.presenter = profPresenter
+        var relevantItem: Person?
+        if indexPath.section == .zero {
+            relevantItem = presenter?.items?[indexPath.row]
+        } else {
+            relevantItem = presenter?.itemsForSection?[indexPath.row]
+        }
+
+        profPresenter.item = relevantItem
+        tableView.deselectRow(at: indexPath, animated: false)
+        navigationController?.pushViewController(profileController, animated: true)
     }
     
 }

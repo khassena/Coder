@@ -36,7 +36,6 @@ class StaffPresenter: StaffViewPresenterProtocol {
     var itemsForSection: [Person]?
     var departments = [Department]()
     var staff: Staff?
-//    lazy var staffModel = StaffModel()
     lazy var showBirthday: Bool = false
     var selectedDepartmentPath: IndexPath? {
         didSet {

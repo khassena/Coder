@@ -59,6 +59,7 @@ enum Constants {
         static let imageFrame: CGRect = CGRect(x: 0, y: 0, width: 72, height: 72)
         static let nameFrame: CGRect = CGRect(x: 0, y: 0, width: 144, height: 16)
         static let posFrame: CGRect = CGRect(x: 0, y: 0, width: 80, height: 12)
+        static let skeletonNameTop: CGFloat = 15.0
     }
     
     enum Gradient {
@@ -131,6 +132,27 @@ enum Constants {
         static let heightForRow: CGFloat = 46.0
         static let yearPosition: CGFloat = -11.0
     }
+    
+    enum ProfileView {
+        static let topViewBottom: CGFloat = 104.0
+        static let cornerRadius = CGFloat(104 / 2)
+        static let infoSpacing: CGFloat = 14.0
+        static let starImage: UIImage = UIImage(named: "star") ?? UIImage()
+        static let phoneImage: UIImage = UIImage(named: "phone") ?? UIImage()
+        static let avatarTop: CGFloat = 72.0
+        static let avatarSize: CGFloat = 104.0
+        static let nameSpacing: CGFloat = 4.0
+        static let nameTopAnch: CGFloat = 24.0
+        static let departmentTopAnch: CGFloat = 12.0
+        static let infoTopAnch: CGFloat = 27.0
+        static let starIconWidth: CGFloat = 20.67
+        static let separatorTop: CGFloat = 26.5
+        static let separatorLeftAnch: CGFloat = 16.0
+        static let separatorRightAnch: CGFloat = -16.0
+        static let separatorHeight: CGFloat = 1.0
+        static let phoneStackTopAnch: CGFloat = 21.0
+        static let labelWidthControl: CGFloat = 100.0
+    }
 }
 
 enum Color {
@@ -139,6 +161,9 @@ enum Color {
     static let darkGray = UIColor(red: 0.333, green: 0.333, blue: 0.361, alpha: 1)
     static let gray = UIColor(red: 0.591, green: 0.591, blue: 0.609, alpha: 1)
     static let lightGray = UIColor(red: 0.765, green: 0.765, blue: 0.776, alpha: 1)
+    static let backgroundGray = UIColor(red: 0.969, green: 0.969, blue: 0.973, alpha: 1)
+    static let black = UIColor(red: 0.02, green: 0.02, blue: 0.063, alpha: 1)
+    static let shadow = UIColor(red: 0.086, green: 0.118, blue: 0.204, alpha: 0.04)
 }
 
 enum Fonts {
@@ -153,4 +178,7 @@ enum Fonts {
     static let sortTitle = UIFont(name: "Inter-SemiBold", size: 20) ?? UIFont()
     static let sortFont = UIFont(name: "Inter-Medium", size: 16) ?? UIFont()
     static let yearFont = UIFont(name: "Inter-Medium", size: 15) ?? UIFont()
+    static let nameFont = UIFont(name: "Inter-Bold", size: 24) ?? UIFont()
+    static let profileFont = UIFont(name: "Inter-Regular", size: 17) ?? UIFont()
+    static let profileInfo = UIFont(name: "Inter-Medium", size: 16) ?? UIFont()
 }

@@ -7,8 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA82886F296EBF1A009F1619 /* Data+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82886E296EBF1A009F1619 /* Data+Settings.swift */; };
+		FA4968562976DA4000CAF769 /* ProfileRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968552976DA4000CAF769 /* ProfileRootView.swift */; };
+		FA4968582976DE9D00CAF769 /* DateOfBirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968572976DE9D00CAF769 /* DateOfBirthView.swift */; };
+		FA49685A2976DEAD00CAF769 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968592976DEAD00CAF769 /* PhoneView.swift */; };
+		FA49685C297706F700CAF769 /* String+PhoneNum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49685B297706F700CAF769 /* String+PhoneNum.swift */; };
+		FA82886F296EBF1A009F1619 /* Date+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82886E296EBF1A009F1619 /* Date+Settings.swift */; };
 		FA828874296ECCC8009F1619 /* HeaderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA828873296ECCC8009F1619 /* HeaderSectionView.swift */; };
+		FA8288A2297579B6009F1619 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8288A1297579B6009F1619 /* ProfileModel.swift */; };
+		FA8288A4297579C4009F1619 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8288A3297579C4009F1619 /* ProfilePresenter.swift */; };
+		FA8288A7297579F6009F1619 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8288A6297579F6009F1619 /* ProfileViewController.swift */; };
+		FA8288A9297594CE009F1619 /* BackBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8288A8297594CE009F1619 /* BackBarItem.swift */; };
+		FA8288AB2976869E009F1619 /* ImageView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8288AA2976869E009F1619 /* ImageView+Shadow.swift */; };
 		FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4EFC2937801400486E5A /* AppDelegate.swift */; };
 		FABB4F012937801400486E5A /* StaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB4F002937801400486E5A /* StaffViewController.swift */; };
 		FABB4F062937801500486E5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABB4F052937801500486E5A /* Assets.xcassets */; };
@@ -38,8 +47,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FA82886E296EBF1A009F1619 /* Data+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Settings.swift"; sourceTree = "<group>"; };
+		FA4968552976DA4000CAF769 /* ProfileRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRootView.swift; sourceTree = "<group>"; };
+		FA4968572976DE9D00CAF769 /* DateOfBirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOfBirthView.swift; sourceTree = "<group>"; };
+		FA4968592976DEAD00CAF769 /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
+		FA49685B297706F700CAF769 /* String+PhoneNum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PhoneNum.swift"; sourceTree = "<group>"; };
+		FA82886E296EBF1A009F1619 /* Date+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Settings.swift"; sourceTree = "<group>"; };
 		FA828873296ECCC8009F1619 /* HeaderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionView.swift; sourceTree = "<group>"; };
+		FA8288A1297579B6009F1619 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		FA8288A3297579C4009F1619 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		FA8288A6297579F6009F1619 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FA8288A8297594CE009F1619 /* BackBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackBarItem.swift; sourceTree = "<group>"; };
+		FA8288AA2976869E009F1619 /* ImageView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Shadow.swift"; sourceTree = "<group>"; };
 		FABB4EF92937801400486E5A /* Coder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABB4EFC2937801400486E5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FABB4F002937801400486E5A /* StaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewController.swift; sourceTree = "<group>"; };
@@ -84,9 +102,19 @@
 		FA828870296EC150009F1619 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FA82886E296EBF1A009F1619 /* Data+Settings.swift */,
+				FA82886E296EBF1A009F1619 /* Date+Settings.swift */,
+				FA8288AA2976869E009F1619 /* ImageView+Shadow.swift */,
+				FA49685B297706F700CAF769 /* String+PhoneNum.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA8288A5297579CF009F1619 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA8288A6297579F6009F1619 /* ProfileViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		FABB4EF02937801400486E5A = {
@@ -122,14 +150,13 @@
 		FABB4F10293784F900486E5A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FABB4F212938D88400486E5A /* Controller */,
 				FABB4F1F2938CB4D00486E5A /* StaffRootView.swift */,
 				FABB4F1D2938CB2B00486E5A /* StaffSearchBar.swift */,
 				FABB4F242938FF2F00486E5A /* DepartmentCollectionView.swift */,
 				FABB4F2F29390B2B00486E5A /* StaffTableView.swift */,
 				FA828873296ECCC8009F1619 /* HeaderSectionView.swift */,
-				FABB4F37293FA40C00486E5A /* Cells */,
 				FABB4F43294B4B3A00486E5A /* CircularSpinner.swift */,
+				FABB4F37293FA40C00486E5A /* Cells */,
 				FADF594B2957130A0006A2B5 /* Errors */,
 			);
 			path = View;
@@ -198,6 +225,7 @@
 		FABB4F282939049900486E5A /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FABB4F212938D88400486E5A /* Controller */,
 				FABB4F162937B7DE00486E5A /* Model */,
 				FABB4F10293784F900486E5A /* View */,
 				FABB4F1C2938C15B00486E5A /* Presenter */,
@@ -208,6 +236,7 @@
 		FABB4F29293904F900486E5A /* ProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FA8288A5297579CF009F1619 /* Controller */,
 				FABB4F2B2939068200486E5A /* Model */,
 				FABB4F2C2939068A00486E5A /* View */,
 				FABB4F2D2939069300486E5A /* Presenter */,
@@ -227,6 +256,7 @@
 		FABB4F2B2939068200486E5A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FA8288A1297579B6009F1619 /* ProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -234,6 +264,10 @@
 		FABB4F2C2939068A00486E5A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FA4968552976DA4000CAF769 /* ProfileRootView.swift */,
+				FA4968572976DE9D00CAF769 /* DateOfBirthView.swift */,
+				FA4968592976DEAD00CAF769 /* PhoneView.swift */,
+				FA8288A8297594CE009F1619 /* BackBarItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,6 +275,7 @@
 		FABB4F2D2939069300486E5A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				FA8288A3297579C4009F1619 /* ProfilePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -284,8 +319,9 @@
 		FADF594E295EE80A0006A2B5 /* SortScreen */ = {
 			isa = PBXGroup;
 			children = (
-				FADF5954296D28CA0006A2B5 /* View */,
+				FADF5953296C6FC90006A2B5 /* Controller */,
 				FADF5957296D29390006A2B5 /* Model */,
+				FADF5954296D28CA0006A2B5 /* View */,
 				FADF595C296D74190006A2B5 /* Presenter */,
 			);
 			path = SortScreen;
@@ -304,7 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				FADF5958296D71120006A2B5 /* SortStackView.swift */,
-				FADF5953296C6FC90006A2B5 /* Controller */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -400,9 +435,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABB4F34293A0E7400486E5A /* DepartmentCollectionViewCell.swift in Sources */,
+				FA49685A2976DEAD00CAF769 /* PhoneView.swift in Sources */,
 				FABB4F1E2938CB2B00486E5A /* StaffSearchBar.swift in Sources */,
 				FABB4F202938CB4D00486E5A /* StaffRootView.swift in Sources */,
 				FABB4F182937C9C700486E5A /* Constants.swift in Sources */,
+				FA4968562976DA4000CAF769 /* ProfileRootView.swift in Sources */,
+				FA8288AB2976869E009F1619 /* ImageView+Shadow.swift in Sources */,
 				FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */,
 				FADF5959296D71120006A2B5 /* SortStackView.swift in Sources */,
 				FADF5956296D29350006A2B5 /* SortModel.swift in Sources */,
@@ -412,13 +450,19 @@
 				FABB4F132937A47800486E5A /* NetworkService.swift in Sources */,
 				FABB4F152937B7D300486E5A /* APIModel.swift in Sources */,
 				FADF5950295EFCEA0006A2B5 /* PresentationViewController.swift in Sources */,
-				FA82886F296EBF1A009F1619 /* Data+Settings.swift in Sources */,
+				FA82886F296EBF1A009F1619 /* Date+Settings.swift in Sources */,
 				FABB4F252938FF2F00486E5A /* DepartmentCollectionView.swift in Sources */,
+				FA8288A2297579B6009F1619 /* ProfileModel.swift in Sources */,
+				FA4968582976DE9D00CAF769 /* DateOfBirthView.swift in Sources */,
 				FABB4F3029390B2B00486E5A /* StaffTableView.swift in Sources */,
+				FA8288A4297579C4009F1619 /* ProfilePresenter.swift in Sources */,
 				FABB4F44294B4B3A00486E5A /* CircularSpinner.swift in Sources */,
 				FADF5952296C3BC70006A2B5 /* SortViewController.swift in Sources */,
 				FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */,
 				FADF595B296D74150006A2B5 /* SortPresenter.swift in Sources */,
+				FA49685C297706F700CAF769 /* String+PhoneNum.swift in Sources */,
+				FA8288A7297579F6009F1619 /* ProfileViewController.swift in Sources */,
+				FA8288A9297594CE009F1619 /* BackBarItem.swift in Sources */,
 				FADF594A295712FA0006A2B5 /* SearchErrorView.swift in Sources */,
 				FA828874296ECCC8009F1619 /* HeaderSectionView.swift in Sources */,
 			);

@@ -13,31 +13,48 @@ class StaffTableViewCell: UITableViewCell {
     
     private let personImage = StaffTableViewCell.imageView()
     
-    var personFullName = StaffTableViewCell.label(color: .black, font: Fonts.fontFullName)
+    var personFullName = StaffTableViewCell.label(
+        color: .black,
+        font: Fonts.fontFullName
+    )
     
-    private let personUserTag = StaffTableViewCell.label(color: Color.gray, font: Fonts.fontUserTag)
+    private let personUserTag = StaffTableViewCell.label(
+        color: Color.gray,
+        font: Fonts.fontUserTag
+    )
     
-    private let personPosition = StaffTableViewCell.label(color: Color.darkGray, font: Fonts.fontPosition)
+    private let personPosition = StaffTableViewCell.label(
+        color: Color.darkGray,
+        font: Fonts.fontPosition
+    )
     
-    private let personDateOfBirth = StaffTableViewCell.label(color: Color.darkGray, font: Fonts.fontBirthDay)
+    private let personDateOfBirth = StaffTableViewCell.label(
+        color: Color.darkGray,
+        font: Fonts.fontBirthDay
+    )
     
-    private lazy var nameTagStackView = StaffTableViewCell.stackView(views:                                                                [personFullName,                                                                personUserTag],
-                                                             axis: .horizontal,
-                                                             alignment: .center)
+    private lazy var nameTagStackView = StaffTableViewCell.stackView(
+        views: [personFullName, personUserTag],
+        axis: .horizontal,
+        alignment: .center
+    )
     
-    private lazy var namePositionStackView = StaffTableViewCell.stackView(views:
-                                                                 [nameTagStackView,            personPosition],
-                                                                  axis: .vertical,
-                                                                  alignment: .leading)
+    private lazy var namePositionStackView = StaffTableViewCell.stackView(
+        views: [nameTagStackView, personPosition],
+        axis: .vertical,
+        alignment: .leading
+    )
     
     // MARK: Skeleton views
      let skeletonImage = StaffTableViewCell.skeletonImageView()
      let skeletonNameView = StaffTableViewCell.skeletonTempView(
-                                        frame: Constants.Skeleton.nameFrame,
-                                        radius: Constants.Skeleton.nameCornerRadius)
+        frame: Constants.Skeleton.nameFrame,
+        radius: Constants.Skeleton.nameCornerRadius
+     )
      let skeletonPositionView = StaffTableViewCell.skeletonTempView(
-                                            frame: Constants.Skeleton.posFrame,
-                                            radius:Constants.Skeleton.posCornerRadius)
+        frame: Constants.Skeleton.posFrame,
+        radius:Constants.Skeleton.posCornerRadius
+     )
     
     override func prepareForReuse() {
         personImage.image = Constants.Staff.defaultImage
@@ -131,9 +148,8 @@ extension StaffTableViewCell {
     }
     
     private static func stackView(views: [UIView], axis: NSLayoutConstraint.Axis, alignment: UIStackView.Alignment) -> UIStackView {
-        var stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: views)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView = UIStackView(arrangedSubviews: views)
         stackView.axis = axis
         stackView.spacing = Constants.Staff.stackViewSpacing
         stackView.alignment = alignment
@@ -192,7 +208,7 @@ extension StaffTableViewCell {
             skeletonImage.heightAnchor.constraint(equalToConstant: Constants.Staff.imageSize),
             
             skeletonNameView.leadingAnchor.constraint(equalTo: skeletonImage.trailingAnchor, constant: Constants.Staff.imageTrailing),
-            skeletonNameView.topAnchor.constraint(equalTo: layoutMargin.topAnchor, constant: 15),
+            skeletonNameView.topAnchor.constraint(equalTo: layoutMargin.topAnchor, constant: Constants.Skeleton.skeletonNameTop),
             skeletonNameView.widthAnchor.constraint(equalToConstant: Constants.Skeleton.nameViewWidth),
             skeletonNameView.heightAnchor.constraint(equalToConstant: Constants.Skeleton.nameViewHeight),
             
