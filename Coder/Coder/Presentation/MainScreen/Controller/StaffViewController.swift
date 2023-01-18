@@ -32,6 +32,10 @@ class StaffViewController: UIViewController {
         setTarget()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
     private func setTarget() {
         rootView.refreshControl.addTarget(self, action: #selector(pulledToRefresh), for: .valueChanged)
     }

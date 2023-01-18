@@ -26,6 +26,9 @@ class ProfileViewController: UIViewController {
         rootView.setupView()
         setBackButton()
         presenter?.configureData()
+        rootView.phoneInfoStack.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -60,3 +63,28 @@ extension ProfileViewController: ProfileViewProtocol {
         rootView.changeAvatar(image: image)
     }
 }
+
+extension ProfileViewController: PhoneViewDelegate {
+    
+    func didTapToCall(phoneNumber: String, _ stackView: PhoneView) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let number = UIAlertAction(title: phoneNumber, style: .default) { _ in
+            if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+                let application: UIApplication = UIApplication.shared
+                if application.canOpenURL(phoneCallURL) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                }
+            }
+        }
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        cancel.setValue(UIColor.black, forKey: "titleTextColor")
+        number.setValue(UIColor.black, forKey: "titleTextColor")
+        alert.addAction(number)
+        alert.addAction(cancel)
+        stackView.clickAnimation {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+}
+extension  ProfileViewController: UIGestureRecognizerDelegate { }

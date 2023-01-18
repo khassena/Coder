@@ -21,7 +21,7 @@ class StaffTableView: UITableView {
         separatorStyle = .none
         sectionFooterHeight = 0
         sectionHeaderTopPadding = 22
-        print(sectionHeaderTopPadding)
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {

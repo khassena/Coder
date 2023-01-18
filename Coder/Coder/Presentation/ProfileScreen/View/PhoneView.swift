@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol PhoneViewDelegate: AnyObject {
+    func didTapToCall(phoneNumber: String, _ stackView: PhoneView)
+}
+
 class PhoneView: UIStackView {
 
     lazy var phoneNumber = ProfileRootView.createLabel(
@@ -17,6 +21,8 @@ class PhoneView: UIStackView {
         image: Constants.ProfileView.phoneImage
     )
     
+    weak var delegate: PhoneViewDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -26,6 +32,12 @@ class PhoneView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        self.addGestureRecognizer(recognizer)
+    }
+    
     private func setupView() {
         [phoneIcon, phoneNumber].forEach {
             addArrangedSubview($0)
@@ -46,4 +58,8 @@ class PhoneView: UIStackView {
         self.phoneNumber.text = phone
     }
     
+    @objc func didTap() {
+        delegate?.didTapToCall(phoneNumber: self.phoneNumber.text ?? "", self)
+    }
 }
+
