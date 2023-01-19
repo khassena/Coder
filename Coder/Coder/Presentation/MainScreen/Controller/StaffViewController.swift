@@ -29,6 +29,11 @@ class StaffViewController: UIViewController {
         navigationItem.titleView = rootView.searchBar
         rootView.setup()
         setDelegates()
+//        setTarget()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        rootView.setupRefreshAnimation()
         setTarget()
     }
     
@@ -52,8 +57,8 @@ class StaffViewController: UIViewController {
         presenter?.getData()
         rootView.searchBar.setImage(Constants.SearchBar.sortButtonNormal, for: .bookmark, state: .normal)
         sortController.didTap(button: .none)
-        rootView.refreshControl.layer.removeAllAnimations()
-        rootView.refreshControl.endRefreshing()
+//        rootView.refreshControl.layer.removeAllAnimations()
+//        rootView.refreshControl.endRefreshing()
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {

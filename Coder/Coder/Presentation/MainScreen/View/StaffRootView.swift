@@ -18,6 +18,11 @@ class StaffRootView: UIView {
     lazy var staffTableView = StaffTableView(refreshControl: refreshControl)
     let searchErrorView = SearchErrorView()
     
+    func setupRefreshAnimation() {
+        refreshControl.addSubview(circularSpinner)
+        circularSpinner.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     func setup() {
         
         [departmentCollectionView, separetorbottomLine, staffTableView, searchErrorView].forEach {
@@ -27,8 +32,6 @@ class StaffRootView: UIView {
         
         departmentCollectionView.backgroundColor = .white
         
-        refreshControl.addSubview(circularSpinner)
-        circularSpinner.translatesAutoresizingMaskIntoConstraints = false
         
         separetorbottomLine.backgroundColor = .systemGray
         refreshControl.tintColor = .clear
