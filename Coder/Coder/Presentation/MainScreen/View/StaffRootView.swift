@@ -17,6 +17,7 @@ class StaffRootView: UIView {
     let circularSpinner = CircularSpinner(frame: Constants.refreshViewRect)
     lazy var staffTableView = StaffTableView(refreshControl: refreshControl)
     let searchErrorView = SearchErrorView()
+    let apiErrorView = APIErrorView()
     
     func setupRefreshAnimation() {
         refreshControl.addSubview(circularSpinner)
@@ -25,7 +26,7 @@ class StaffRootView: UIView {
     
     func setup() {
         
-        [departmentCollectionView, separetorbottomLine, staffTableView, searchErrorView].forEach {
+        [departmentCollectionView, separetorbottomLine, staffTableView, searchErrorView, apiErrorView].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -57,12 +58,22 @@ class StaffRootView: UIView {
             searchErrorView.leadingAnchor.constraint(equalTo: leadingAnchor),
             searchErrorView.topAnchor.constraint(equalTo: separetorbottomLine.bottomAnchor),
             searchErrorView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            searchErrorView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            searchErrorView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            apiErrorView.topAnchor.constraint(equalTo: topAnchor),
+            apiErrorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            apiErrorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            apiErrorView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
     func setErrorView(show: Bool?) {
         searchErrorView.isHidden = !(show ?? false)
+    }
+    
+    func setErrorView(error: Bool) {
+        apiErrorView.isHidden = !error
+        searchBar.isHidden = error
     }
     
 }

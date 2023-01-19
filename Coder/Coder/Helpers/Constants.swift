@@ -153,6 +153,23 @@ enum Constants {
         static let phoneStackTopAnch: CGFloat = 21.0
         static let labelWidthControl: CGFloat = 100.0
     }
+    
+    enum APIError {
+        static let ufoImage = UIImage(named: "UFO") ?? UIImage()
+        static let titleText = "Some alien broke everything"
+        static let subtitleText = "We will try to fix it quickly"
+        static let buttonText = "Try again"
+        static let imageCenterY = -50.0
+        static let stackViewTop = 16.0
+    }
+    enum NetworkError {
+        static let message = "I can't update the data.\nCheck your internet connection."
+        static let frameX: CGFloat = 24.0
+        static let frameY: CGFloat = -10.0
+        static let width: CGFloat = 327.0
+        static let height: CGFloat = 50.0
+        static let backgroundColor = UIColor(red: 0.957, green: 0.263, blue: 0.212, alpha: 1)
+    }
 }
 
 enum Color {
@@ -164,6 +181,7 @@ enum Color {
     static let backgroundGray = UIColor(red: 0.969, green: 0.969, blue: 0.973, alpha: 1)
     static let black = UIColor(red: 0.02, green: 0.02, blue: 0.063, alpha: 1)
     static let shadow = UIColor(red: 0.086, green: 0.118, blue: 0.204, alpha: 0.04)
+    static let darkBlue = UIColor(red: 0.396, green: 0.204, blue: 1, alpha: 1)
 }
 
 enum Fonts {
@@ -181,4 +199,6 @@ enum Fonts {
     static let nameFont = UIFont(name: "Inter-Bold", size: 24) ?? UIFont()
     static let profileFont = UIFont(name: "Inter-Regular", size: 17) ?? UIFont()
     static let profileInfo = UIFont(name: "Inter-Medium", size: 16) ?? UIFont()
+    static let subtitleFont = UIFont(name: "Inter-Regular", size: 16) ?? UIFont()
+    static let netErrorFont = UIFont(name: "Inter-Medium", size: 13) ?? UIFont()
 }

@@ -24,8 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navController.navigationBar.shadowImage = UIImage()
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
+        launchCheckingNetworkConnection()
         return true
     }
 
+    func launchCheckingNetworkConnection() {
+        NetworkMonitor.shared.startMonitoring()
+    }
 }
 

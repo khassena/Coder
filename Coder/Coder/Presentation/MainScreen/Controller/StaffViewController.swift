@@ -29,7 +29,13 @@ class StaffViewController: UIViewController {
         navigationItem.titleView = rootView.searchBar
         rootView.setup()
         setDelegates()
-//        setTarget()
+        networkMonitoring()
+        hideKeyboardWhenTappedAround()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        endSearching()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +49,7 @@ class StaffViewController: UIViewController {
     
     private func setTarget() {
         rootView.refreshControl.addTarget(self, action: #selector(pulledToRefresh), for: .valueChanged)
+        rootView.apiErrorView.tryAgainButton.addTarget(self, action: #selector(tryAgainConnectionButton), for: .touchUpInside)
     }
     
     private func setDelegates() {
@@ -57,8 +64,12 @@ class StaffViewController: UIViewController {
         presenter?.getData()
         rootView.searchBar.setImage(Constants.SearchBar.sortButtonNormal, for: .bookmark, state: .normal)
         sortController.didTap(button: .none)
-//        rootView.refreshControl.layer.removeAllAnimations()
-//        rootView.refreshControl.endRefreshing()
+        rootView.refreshControl.layer.removeAllAnimations()
+        rootView.refreshControl.endRefreshing()
+    }
+    
+    @objc private func tryAgainConnectionButton() {
+        presenter?.getData()
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
@@ -68,6 +79,16 @@ class StaffViewController: UIViewController {
         let presenterSort = SortPresenter(view: self)
         sortController.presenter = presenterSort
         present(sortController, animated: true)
+    }
+    
+    func networkMonitoring() {
+        if NetworkMonitor.shared.isConnected {
+            rootView.setErrorView(error: false)
+        } else {
+            rootView.setErrorView(error: true)
+        }
+        
+        NetworkMonitor.shared.stopMonitoring()
     }
 }
 
@@ -82,6 +103,7 @@ extension StaffViewController: StaffViewProtocol {
 
     func networkSuccess() {
         self.skeleton = false
+        rootView.setErrorView(error: false)
         rootView.staffTableView.reloadData()
     }
     
@@ -91,7 +113,7 @@ extension StaffViewController: StaffViewProtocol {
     }
     
     func networkFailure(error: Error) {
-        print("Network Fail")
+        PresentNetworkError().presentError()
     }
     
     func showBirthdaySelected(_ show: Bool) {
@@ -127,6 +149,14 @@ extension StaffViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        endSearching()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        endSearching()
+    }
+    
+    func endSearching() {
         rootView.searchBar.searchTextField.leftView = Constants.SearchBar.magnifierGray
         rootView.searchBar.showsCancelButton = false
         rootView.searchBar.text = nil
@@ -267,3 +297,17 @@ extension StaffViewController: UITableViewDelegate {
     }
     
 }
+
+extension StaffViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        rootView.departmentCollectionView.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        endSearching()
+        rootView.searchBar.endEditing(true)
+    }
+}
+

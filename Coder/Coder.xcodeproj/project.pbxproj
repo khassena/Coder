@@ -12,6 +12,10 @@
 		FA49685A2976DEAD00CAF769 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968592976DEAD00CAF769 /* PhoneView.swift */; };
 		FA49685C297706F700CAF769 /* String+PhoneNum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49685B297706F700CAF769 /* String+PhoneNum.swift */; };
 		FA4968602977E9C100CAF769 /* StackView+ClickAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49685F2977E9C100CAF769 /* StackView+ClickAnimation.swift */; };
+		FA496862297967DF00CAF769 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA496861297967DF00CAF769 /* NetworkMonitor.swift */; };
+		FA4968642979683A00CAF769 /* APIErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968632979683A00CAF769 /* APIErrorView.swift */; };
+		FA4968662979685800CAF769 /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968652979685800CAF769 /* NetworkErrorView.swift */; };
+		FA496868297986F800CAF769 /* PresentNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA496867297986F800CAF769 /* PresentNetworkError.swift */; };
 		FA82886F296EBF1A009F1619 /* Date+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82886E296EBF1A009F1619 /* Date+Settings.swift */; };
 		FA828874296ECCC8009F1619 /* HeaderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA828873296ECCC8009F1619 /* HeaderSectionView.swift */; };
 		FA8288A2297579B6009F1619 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8288A1297579B6009F1619 /* ProfileModel.swift */; };
@@ -53,6 +57,10 @@
 		FA4968592976DEAD00CAF769 /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
 		FA49685B297706F700CAF769 /* String+PhoneNum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PhoneNum.swift"; sourceTree = "<group>"; };
 		FA49685F2977E9C100CAF769 /* StackView+ClickAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView+ClickAnimation.swift"; sourceTree = "<group>"; };
+		FA496861297967DF00CAF769 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		FA4968632979683A00CAF769 /* APIErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorView.swift; sourceTree = "<group>"; };
+		FA4968652979685800CAF769 /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
+		FA496867297986F800CAF769 /* PresentNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentNetworkError.swift; sourceTree = "<group>"; };
 		FA82886E296EBF1A009F1619 /* Date+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Settings.swift"; sourceTree = "<group>"; };
 		FA828873296ECCC8009F1619 /* HeaderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionView.swift; sourceTree = "<group>"; };
 		FA8288A1297579B6009F1619 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -201,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				FABB4F002937801400486E5A /* StaffViewController.swift */,
+				FA496867297986F800CAF769 /* PresentNetworkError.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -252,6 +261,7 @@
 			children = (
 				FABB4F122937A47800486E5A /* NetworkService.swift */,
 				FABB4F142937B7D300486E5A /* APIModel.swift */,
+				FA496861297967DF00CAF769 /* NetworkMonitor.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -315,6 +325,8 @@
 			isa = PBXGroup;
 			children = (
 				FADF5949295712FA0006A2B5 /* SearchErrorView.swift */,
+				FA4968632979683A00CAF769 /* APIErrorView.swift */,
+				FA4968652979685800CAF769 /* NetworkErrorView.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -440,10 +452,13 @@
 				FABB4F34293A0E7400486E5A /* DepartmentCollectionViewCell.swift in Sources */,
 				FA49685A2976DEAD00CAF769 /* PhoneView.swift in Sources */,
 				FABB4F1E2938CB2B00486E5A /* StaffSearchBar.swift in Sources */,
+				FA4968642979683A00CAF769 /* APIErrorView.swift in Sources */,
 				FABB4F202938CB4D00486E5A /* StaffRootView.swift in Sources */,
 				FABB4F182937C9C700486E5A /* Constants.swift in Sources */,
+				FA4968662979685800CAF769 /* NetworkErrorView.swift in Sources */,
 				FA4968562976DA4000CAF769 /* ProfileRootView.swift in Sources */,
 				FA8288AB2976869E009F1619 /* ImageView+Shadow.swift in Sources */,
+				FA496868297986F800CAF769 /* PresentNetworkError.swift in Sources */,
 				FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */,
 				FADF5959296D71120006A2B5 /* SortStackView.swift in Sources */,
 				FADF5956296D29350006A2B5 /* SortModel.swift in Sources */,
@@ -459,6 +474,7 @@
 				FA4968582976DE9D00CAF769 /* DateOfBirthView.swift in Sources */,
 				FABB4F3029390B2B00486E5A /* StaffTableView.swift in Sources */,
 				FA8288A4297579C4009F1619 /* ProfilePresenter.swift in Sources */,
+				FA496862297967DF00CAF769 /* NetworkMonitor.swift in Sources */,
 				FABB4F44294B4B3A00486E5A /* CircularSpinner.swift in Sources */,
 				FADF5952296C3BC70006A2B5 /* SortViewController.swift in Sources */,
 				FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */,

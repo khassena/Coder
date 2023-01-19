@@ -22,6 +22,7 @@ class StaffTableView: UITableView {
         sectionFooterHeight = 0
         sectionHeaderTopPadding = 22
         backgroundColor = .white
+        keyboardDismissMode = .onDrag
     }
     
     required init?(coder: NSCoder) {
