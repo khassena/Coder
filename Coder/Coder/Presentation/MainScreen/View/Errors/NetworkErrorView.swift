@@ -25,14 +25,16 @@ class NetworkErrorView: UIView {
         addSubview(errorLabel)
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        errorLabel.frame = CGRect(x: Constants.NetworkError.frameX,
-                                  y: frame.midY - 10,
-                                  width: Constants.NetworkError.width,
-                                  height: Constants.NetworkError.height)
+        NSLayoutConstraint.activate([
+            errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.NetworkError.frameX),
+            errorLabel.topAnchor.constraint(equalTo: topAnchor, constant: frame.midY - 10),
+            errorLabel.widthAnchor.constraint(equalToConstant: Constants.NetworkError.width),
+            errorLabel.heightAnchor.constraint(equalToConstant: Constants.NetworkError.height)
+        ])
     }
 }
 
-extension NetworkErrorView {
+private extension NetworkErrorView {
     
     static func createLabel() -> UILabel {
         let label = UILabel()

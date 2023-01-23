@@ -21,8 +21,9 @@ class StaffViewController: UIViewController {
     
     var presenter: StaffViewPresenterProtocol?
     private var skeleton = true
-    private lazy var sortController = SortViewController()
+    weak var sortVC: SortViewController?
     private lazy var showBirthday = false
+    private lazy var sortButtonDidClick = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +63,8 @@ class StaffViewController: UIViewController {
     
     @objc private func pulledToRefresh() {
         presenter?.getData()
-        rootView.searchBar.setImage(Constants.SearchBar.sortButtonNormal, for: .bookmark, state: .normal)
-        sortController.didTap(button: .none)
+//        rootView.searchBar.sortButtonNormalState()
+//        sortVC?.didTap(button: .none)
         rootView.refreshControl.layer.removeAllAnimations()
         rootView.refreshControl.endRefreshing()
     }
@@ -73,12 +74,7 @@ class StaffViewController: UIViewController {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        sortController.modalPresentationStyle = .custom
-        sortController.transitioningDelegate = self
-        sortController.presenter?.staff = presenter?.staff
-        let presenterSort = SortPresenter(view: self)
-        sortController.presenter = presenterSort
-        present(sortController, animated: true)
+        presenter?.routToSortScreen(view: self , staff: presenter?.staff)
     }
     
     func networkMonitoring() {
@@ -123,17 +119,16 @@ extension StaffViewController: StaffViewProtocol {
 
 extension StaffViewController: SortViewProtocol {
     func sortBy(_ button: SortModel) {
+        presenter?.filterTableView(searchText: nil, sort: button)
         switch button {
         case .none:
-            presenter?.filterTableView(searchText: nil, sort: SortModel.none)
-            rootView.searchBar.setImage(Constants.SearchBar.sortButtonNormal, for: .bookmark, state: .normal)
-            rootView.staffTableView.reloadData()
+            rootView.searchBar.sortButtonNormalState()
         default:
-            presenter?.filterTableView(searchText: nil, sort: button)
-            rootView.searchBar.setImage(Constants.SearchBar.sortButtonSelected, for: .bookmark, state: .normal)
-            rootView.staffTableView.reloadData()
+            rootView.searchBar.sortButtonSelectedState()
         }
+        rootView.staffTableView.reloadData()
     }
+    
 }
 
 extension StaffViewController: UISearchBarDelegate {
@@ -160,7 +155,7 @@ extension StaffViewController: UISearchBarDelegate {
         rootView.searchBar.searchTextField.leftView = Constants.SearchBar.magnifierGray
         rootView.searchBar.showsCancelButton = false
         rootView.searchBar.text = nil
-        presenter?.filterTableView(searchText: nil, sort: nil)
+        presenter?.filterTableView(searchText: nil, sort: presenter?.sortModel)
         rootView.setErrorView(show: false)
         rootView.searchBar.endEditing(true)
         rootView.staffTableView.reloadData()
@@ -204,6 +199,8 @@ extension StaffViewController: UICollectionViewDelegate {
         } else {
             presenter?.selectedDepartmentPath = indexPath
         }
+//        sortVC?.didTap(button: .none)
+//        rootView.searchBar.sortButtonNormalState()
         collectionView.reloadData()
         rootView.staffTableView.reloadData()
         
@@ -280,20 +277,15 @@ extension StaffViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let profileController = ProfileViewController()
-        let network = NetworkService()
-        let profPresenter = ProfilePresenter(view: profileController, networkService: network)
-        profileController.presenter = profPresenter
         var relevantItem: Person?
         if indexPath.section == .zero {
             relevantItem = presenter?.items?[indexPath.row]
         } else {
             relevantItem = presenter?.itemsForSection?[indexPath.row]
         }
-
-        profPresenter.item = relevantItem
         tableView.deselectRow(at: indexPath, animated: false)
-        navigationController?.pushViewController(profileController, animated: true)
+        presenter?.routToProfileScreen(item: relevantItem)
+        
     }
     
 }

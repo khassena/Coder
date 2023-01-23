@@ -40,6 +40,14 @@ class SearchBar: UISearchBar {
         let barButtonAppearance = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
         barButtonAppearance.setTitleTextAttributes(Constants.SearchBar.cancelAttributes, for: .normal)
     }
+    
+    func sortButtonNormalState() {
+        setImage(Constants.SearchBar.sortButtonNormal, for: .bookmark, state: .normal)
+    }
+    
+    func sortButtonSelectedState() {
+        setImage(Constants.SearchBar.sortButtonSelected, for: .bookmark, state: .normal)
+    }
 
 }
 

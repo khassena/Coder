@@ -15,11 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
-        let net = NetworkService()
-        let view = StaffViewController()
-        let presenter = StaffPresenter(view: view, networkService: net)
-        view.presenter = presenter
-        let navController = UINavigationController(rootViewController: view)
+        let navController = UINavigationController()
+        let assemblyBuilder = AssemblyMainBuilder()
+        let router = Router(navigationController: navController, assemblyBuilder: assemblyBuilder)
+        router.initialViewController()
         navController.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navController.navigationBar.shadowImage = UIImage()
         window?.rootViewController = navController

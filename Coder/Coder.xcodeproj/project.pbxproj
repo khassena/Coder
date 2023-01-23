@@ -16,6 +16,8 @@
 		FA4968642979683A00CAF769 /* APIErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968632979683A00CAF769 /* APIErrorView.swift */; };
 		FA4968662979685800CAF769 /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968652979685800CAF769 /* NetworkErrorView.swift */; };
 		FA496868297986F800CAF769 /* PresentNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA496867297986F800CAF769 /* PresentNetworkError.swift */; };
+		FA49686A297BCF7100CAF769 /* AssemblyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA496869297BCF7100CAF769 /* AssemblyBuilder.swift */; };
+		FA49686C297BCF9C00CAF769 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49686B297BCF9C00CAF769 /* Router.swift */; };
 		FA82886F296EBF1A009F1619 /* Date+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82886E296EBF1A009F1619 /* Date+Settings.swift */; };
 		FA828874296ECCC8009F1619 /* HeaderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA828873296ECCC8009F1619 /* HeaderSectionView.swift */; };
 		FA8288A2297579B6009F1619 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8288A1297579B6009F1619 /* ProfileModel.swift */; };
@@ -61,6 +63,8 @@
 		FA4968632979683A00CAF769 /* APIErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorView.swift; sourceTree = "<group>"; };
 		FA4968652979685800CAF769 /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		FA496867297986F800CAF769 /* PresentNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentNetworkError.swift; sourceTree = "<group>"; };
+		FA496869297BCF7100CAF769 /* AssemblyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilder.swift; sourceTree = "<group>"; };
+		FA49686B297BCF9C00CAF769 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		FA82886E296EBF1A009F1619 /* Date+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Settings.swift"; sourceTree = "<group>"; };
 		FA828873296ECCC8009F1619 /* HeaderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionView.swift; sourceTree = "<group>"; };
 		FA8288A1297579B6009F1619 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				FABB4EFC2937801400486E5A /* AppDelegate.swift */,
+				FA496869297BCF7100CAF769 /* AssemblyBuilder.swift */,
+				FA49686B297BCF9C00CAF769 /* Router.swift */,
 				FABB4F112937A43700486E5A /* Services */,
 				FABB4F262939023F00486E5A /* Presentation */,
 				FABB4F272939037600486E5A /* Resources */,
@@ -455,11 +461,13 @@
 				FA4968642979683A00CAF769 /* APIErrorView.swift in Sources */,
 				FABB4F202938CB4D00486E5A /* StaffRootView.swift in Sources */,
 				FABB4F182937C9C700486E5A /* Constants.swift in Sources */,
+				FA49686C297BCF9C00CAF769 /* Router.swift in Sources */,
 				FA4968662979685800CAF769 /* NetworkErrorView.swift in Sources */,
 				FA4968562976DA4000CAF769 /* ProfileRootView.swift in Sources */,
 				FA8288AB2976869E009F1619 /* ImageView+Shadow.swift in Sources */,
 				FA496868297986F800CAF769 /* PresentNetworkError.swift in Sources */,
 				FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */,
+				FA49686A297BCF7100CAF769 /* AssemblyBuilder.swift in Sources */,
 				FADF5959296D71120006A2B5 /* SortStackView.swift in Sources */,
 				FADF5956296D29350006A2B5 /* SortModel.swift in Sources */,
 				FABB4F1B2938C01800486E5A /* StaffPresenter.swift in Sources */,

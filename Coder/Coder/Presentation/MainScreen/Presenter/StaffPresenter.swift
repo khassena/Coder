@@ -16,16 +16,20 @@ protocol StaffViewProtocol: AnyObject {
 }
 
 protocol StaffViewPresenterProtocol {
-    init(view: StaffViewProtocol, networkService: NetworkServiceProtocol)
-    func getData()
-    func getImage(with url: URL, indexPath: IndexPath)
+    init(view: StaffViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
+    
     var staff: Staff? { get }
     var items: [Person]? { get set }
     var selectedDepartmentPath: IndexPath? { get set }
     var departments: [Department] { get }
-    func filterTableView(searchText: String?, sort: SortModel?)
     var showBirthday: Bool { get set }
     var itemsForSection: [Person]? { get }
+    var sortModel: SortModel? { get }
+    func getData()
+    func getImage(with url: URL, indexPath: IndexPath)
+    func routToSortScreen(view: SortViewProtocol, staff: Staff?)
+    func routToProfileScreen(item: Person?)
+    func filterTableView(searchText: String?, sort: SortModel?)
 }
 
 class StaffPresenter: StaffViewPresenterProtocol {
@@ -36,16 +40,19 @@ class StaffPresenter: StaffViewPresenterProtocol {
     var itemsForSection: [Person]?
     var departments = [Department]()
     var staff: Staff?
+    var router: RouterProtocol?
+    var sortModel: SortModel?
     lazy var showBirthday: Bool = false
     var selectedDepartmentPath: IndexPath? {
         didSet {
-            filterTableView(searchText: nil, sort: nil)
+            filterTableView(searchText: nil, sort: self.sortModel)
         }
     }
     
-    required init(view: StaffViewProtocol, networkService: NetworkServiceProtocol) {
+    required init(view: StaffViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.view = view
         self.networkService = networkService
+        self.router = router
         initDepartments()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.getData()
@@ -64,7 +71,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
                 switch result {
                 case .success(let staff):
                     self?.staff = staff
-                    self?.filterTableView(searchText: nil, sort: SortModel.none)
+                    self?.filterTableView(searchText: nil, sort: self?.sortModel)
                     self?.view?.networkSuccess()
                 case .failure(let error):
                     self?.view?.networkFailure(error: error)
@@ -99,5 +106,14 @@ class StaffPresenter: StaffViewPresenterProtocol {
         self.itemsForSection = staffModel.filteredSecondSection
         showBirthday = staffModel.showBirthday
         view?.showBirthdaySelected(showBirthday)
+        self.sortModel = sort
+    }
+    
+    func routToSortScreen(view: SortViewProtocol, staff: Staff?) {
+        router?.showSortScreen(view: view, staff: staff)
+    }
+    
+    func routToProfileScreen(item: Person?) {
+        router?.showProfileScreen(item: item)
     }
 }

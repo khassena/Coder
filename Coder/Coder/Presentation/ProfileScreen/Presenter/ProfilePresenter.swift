@@ -15,7 +15,7 @@ protocol ProfileViewProtocol: AnyObject {
 
 protocol ProfileViewPresenterProtocol {
     var item: Person? { get set }
-    init(view: ProfileViewProtocol, networkService: NetworkServiceProtocol)
+    init(view: ProfileViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
     func configureData()
 }
 
@@ -26,7 +26,8 @@ class ProfilePresenter: ProfileViewPresenterProtocol {
     weak var view: ProfileViewProtocol?
     var networkService: NetworkServiceProtocol
     required init(view: ProfileViewProtocol,
-                  networkService: NetworkServiceProtocol) {
+                  networkService: NetworkServiceProtocol,
+                  router: RouterProtocol) {
         self.view = view
         self.networkService = networkService
     }

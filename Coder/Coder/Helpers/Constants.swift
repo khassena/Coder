@@ -165,7 +165,6 @@ enum Constants {
     enum NetworkError {
         static let message = "I can't update the data.\nCheck your internet connection."
         static let frameX: CGFloat = 24.0
-        static let frameY: CGFloat = -10.0
         static let width: CGFloat = 327.0
         static let height: CGFloat = 50.0
         static let backgroundColor = UIColor(red: 0.957, green: 0.263, blue: 0.212, alpha: 1)
