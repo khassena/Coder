@@ -19,6 +19,7 @@ class StaffViewController: UIViewController {
         self.view = StaffRootView()
     }
     
+    var dataSourceProvider: StaffDataSourceProtocol?
     var presenter: StaffViewPresenterProtocol?
     private var skeleton = true
     weak var sortVC: SortViewController?
@@ -40,12 +41,10 @@ class StaffViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         rootView.setupRefreshAnimation()
         setTarget()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        rootView.staffTableView.reloadData()
     }
     
     private func setTarget() {
@@ -56,15 +55,13 @@ class StaffViewController: UIViewController {
     private func setDelegates() {
         rootView.departmentCollectionView.delegate = self
         rootView.departmentCollectionView.dataSource = self
-        rootView.staffTableView.delegate = self
-        rootView.staffTableView.dataSource = self
+        rootView.staffTableView.delegate = dataSourceProvider
+        rootView.staffTableView.dataSource = dataSourceProvider
         rootView.searchBar.delegate = self
     }
     
     @objc private func pulledToRefresh() {
         presenter?.getData()
-//        rootView.searchBar.sortButtonNormalState()
-//        sortVC?.didTap(button: .none)
         rootView.refreshControl.layer.removeAllAnimations()
         rootView.refreshControl.endRefreshing()
     }
@@ -78,11 +75,7 @@ class StaffViewController: UIViewController {
     }
     
     func networkMonitoring() {
-        if NetworkMonitor.shared.isConnected {
-            rootView.setErrorView(error: false)
-        } else {
-            rootView.setErrorView(error: true)
-        }
+        NetworkMonitor.shared.isConnected == true ? rootView.setErrorView(error: false) : rootView.setErrorView(error: true)
         
         NetworkMonitor.shared.stopMonitoring()
     }
@@ -99,6 +92,7 @@ extension StaffViewController: StaffViewProtocol {
 
     func networkSuccess() {
         self.skeleton = false
+        dataSourceProvider?.skeleton = false
         rootView.setErrorView(error: false)
         rootView.staffTableView.reloadData()
     }
@@ -114,6 +108,7 @@ extension StaffViewController: StaffViewProtocol {
     
     func showBirthdaySelected(_ show: Bool) {
         showBirthday = show
+        dataSourceProvider?.showBirthday = show
     }
 }
 
@@ -199,95 +194,10 @@ extension StaffViewController: UICollectionViewDelegate {
         } else {
             presenter?.selectedDepartmentPath = indexPath
         }
-//        sortVC?.didTap(button: .none)
-//        rootView.searchBar.sortButtonNormalState()
         collectionView.reloadData()
         rootView.staffTableView.reloadData()
         
     }
-}
-
-
-extension StaffViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if skeleton == true {
-            return Constants.Staff.defaultItemsCount
-        }
-        
-        if showBirthday == true {
-            return section == .zero ? presenter?.items?.count ?? 0 : presenter?.itemsForSection?.count ?? 0
-        }
-        
-        return presenter?.items?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: StaffTableViewCell.cell, for: indexPath) as? StaffTableViewCell else { return UITableViewCell()
-        }
-        if skeleton == true {
-            cell.showSkeleton(skeleton)
-            return cell
-        }
-        
-        var item: Person!
-        
-        if showBirthday == false {
-           item = presenter?.items?[indexPath.row]
-        } else {
-            if indexPath.section == .zero {
-                item = presenter?.items?[indexPath.row]
-            } else {
-                item = presenter?.itemsForSection?[indexPath.row]
-            }
-        }
-        
-        guard let avatarUrl = URL(string: item.avatarUrl) else {
-            return UITableViewCell()
-        }
-        cell.showSkeleton(false)
-        presenter?.getImage(with: avatarUrl, indexPath: indexPath)
-        cell.showDateLabel(showBirthday)
-        cell.setupValue(firstName: item.firstName,
-                        lastName:  item.lastName,
-                        userTag:   item.userTag.lowercased(),
-                        position:  item.department.name,
-                        birthdayDate:  item.birthdayDate ?? Date())
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.Staff.cellHeight
-    }
-    
-}
-
-extension StaffViewController: UITableViewDelegate {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return showBirthday ? 2 : 1
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        section != .zero ? HeaderSectionView() : nil
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        section != .zero ? Constants.HeaderView.heightForRow : .zero
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var relevantItem: Person?
-        if indexPath.section == .zero {
-            relevantItem = presenter?.items?[indexPath.row]
-        } else {
-            relevantItem = presenter?.itemsForSection?[indexPath.row]
-        }
-        tableView.deselectRow(at: indexPath, animated: false)
-        presenter?.routToProfileScreen(item: relevantItem)
-        
-    }
-    
 }
 
 extension StaffViewController {

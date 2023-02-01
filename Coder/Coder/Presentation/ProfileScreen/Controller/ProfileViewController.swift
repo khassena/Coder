@@ -40,7 +40,8 @@ class ProfileViewController: UIViewController {
     }
     
     func setBackButton() {
-        navigationItem.leftBarButtonItem = BackBarItem(target: navigationController ?? UINavigationController())
+        let backButton = BackBarItem(target: presenter?.router?.navigationController ?? UINavigationController())
+        navigationItem.leftBarButtonItem = backButton
     }
 }
 

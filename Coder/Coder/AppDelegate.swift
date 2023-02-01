@@ -16,12 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         let navController = UINavigationController()
-        let assemblyBuilder = AssemblyMainBuilder()
-        let router = Router(navigationController: navController, assemblyBuilder: assemblyBuilder)
-        router.initialViewController()
         navController.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navController.navigationBar.shadowImage = UIImage()
-        window?.rootViewController = navController
+        let assemblyBuilder = AssemblyMainBuilder()
+        let router = Router(navigationController: navController, assemblyBuilder: assemblyBuilder)
+        let mainTabBarVC = router.initialViewController()
+        window?.rootViewController = mainTabBarVC
         window?.makeKeyAndVisible()
         launchCheckingNetworkConnection()
         return true

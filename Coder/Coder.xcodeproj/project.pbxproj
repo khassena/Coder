@@ -18,6 +18,9 @@
 		FA496868297986F800CAF769 /* PresentNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA496867297986F800CAF769 /* PresentNetworkError.swift */; };
 		FA49686A297BCF7100CAF769 /* AssemblyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA496869297BCF7100CAF769 /* AssemblyBuilder.swift */; };
 		FA49686C297BCF9C00CAF769 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49686B297BCF9C00CAF769 /* Router.swift */; };
+		FA49686E29854C0100CAF769 /* StaffDataSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49686D29854C0100CAF769 /* StaffDataSourceProvider.swift */; };
+		FA4968702986606000CAF769 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49686F2986606000CAF769 /* FavoriteViewController.swift */; };
+		FA4968732986610C00CAF769 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968722986610C00CAF769 /* MainTabBarController.swift */; };
 		FA82886F296EBF1A009F1619 /* Date+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82886E296EBF1A009F1619 /* Date+Settings.swift */; };
 		FA828874296ECCC8009F1619 /* HeaderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA828873296ECCC8009F1619 /* HeaderSectionView.swift */; };
 		FA8288A2297579B6009F1619 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8288A1297579B6009F1619 /* ProfileModel.swift */; };
@@ -65,6 +68,9 @@
 		FA496867297986F800CAF769 /* PresentNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentNetworkError.swift; sourceTree = "<group>"; };
 		FA496869297BCF7100CAF769 /* AssemblyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilder.swift; sourceTree = "<group>"; };
 		FA49686B297BCF9C00CAF769 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		FA49686D29854C0100CAF769 /* StaffDataSourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffDataSourceProvider.swift; sourceTree = "<group>"; };
+		FA49686F2986606000CAF769 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		FA4968722986610C00CAF769 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		FA82886E296EBF1A009F1619 /* Date+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Settings.swift"; sourceTree = "<group>"; };
 		FA828873296ECCC8009F1619 /* HeaderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionView.swift; sourceTree = "<group>"; };
 		FA8288A1297579B6009F1619 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -113,6 +119,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA4968712986606900CAF769 /* FavoriteScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FA49686F2986606000CAF769 /* FavoriteViewController.swift */,
+			);
+			path = FavoriteScreen;
+			sourceTree = "<group>";
+		};
 		FA828870296EC150009F1619 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,10 +237,13 @@
 		FABB4F262939023F00486E5A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FA49686D29854C0100CAF769 /* StaffDataSourceProvider.swift */,
+				FA4968722986610C00CAF769 /* MainTabBarController.swift */,
 				FABB4F2E2939085200486E5A /* LaunchScreen */,
 				FABB4F282939049900486E5A /* MainScreen */,
 				FADF594E295EE80A0006A2B5 /* SortScreen */,
 				FABB4F29293904F900486E5A /* ProfileScreen */,
+				FA4968712986606900CAF769 /* FavoriteScreen */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -467,7 +484,9 @@
 				FA8288AB2976869E009F1619 /* ImageView+Shadow.swift in Sources */,
 				FA496868297986F800CAF769 /* PresentNetworkError.swift in Sources */,
 				FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */,
+				FA49686E29854C0100CAF769 /* StaffDataSourceProvider.swift in Sources */,
 				FA49686A297BCF7100CAF769 /* AssemblyBuilder.swift in Sources */,
+				FA4968702986606000CAF769 /* FavoriteViewController.swift in Sources */,
 				FADF5959296D71120006A2B5 /* SortStackView.swift in Sources */,
 				FADF5956296D29350006A2B5 /* SortModel.swift in Sources */,
 				FABB4F1B2938C01800486E5A /* StaffPresenter.swift in Sources */,
@@ -484,6 +503,7 @@
 				FA8288A4297579C4009F1619 /* ProfilePresenter.swift in Sources */,
 				FA496862297967DF00CAF769 /* NetworkMonitor.swift in Sources */,
 				FABB4F44294B4B3A00486E5A /* CircularSpinner.swift in Sources */,
+				FA4968732986610C00CAF769 /* MainTabBarController.swift in Sources */,
 				FADF5952296C3BC70006A2B5 /* SortViewController.swift in Sources */,
 				FABB4EFD2937801400486E5A /* AppDelegate.swift in Sources */,
 				FADF595B296D74150006A2B5 /* SortPresenter.swift in Sources */,
