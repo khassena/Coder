@@ -16,7 +16,9 @@ protocol ProfileViewProtocol: AnyObject {
 protocol ProfileViewPresenterProtocol {
     var item: Person? { get set }
     init(view: ProfileViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
+    var router: RouterProtocol? { get set }
     func configureData()
+    func routPopToRootView()
 }
 
 class ProfilePresenter: ProfileViewPresenterProtocol {
@@ -25,11 +27,13 @@ class ProfilePresenter: ProfileViewPresenterProtocol {
     var profileModel = ProfileModel()
     weak var view: ProfileViewProtocol?
     var networkService: NetworkServiceProtocol
+    var router: RouterProtocol?
     required init(view: ProfileViewProtocol,
                   networkService: NetworkServiceProtocol,
                   router: RouterProtocol) {
         self.view = view
         self.networkService = networkService
+        self.router = router
     }
     
     func configureData() {
@@ -58,6 +62,10 @@ class ProfilePresenter: ProfileViewPresenterProtocol {
             }
             
         }
+    }
+    
+    @objc func routPopToRootView() {
+        router?.popToRootVC()
     }
     
 }

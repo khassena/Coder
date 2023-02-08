@@ -18,7 +18,7 @@ class SearchBar: UISearchBar {
     }
     
     private func setupView() {
-    
+        
         setSearchFieldBackgroundImage(SearchBar.getBackImage(), for: .normal)
         
         searchTextField.leftView = Constants.SearchBar.magnifierGray
@@ -48,7 +48,7 @@ class SearchBar: UISearchBar {
     func sortButtonSelectedState() {
         setImage(Constants.SearchBar.sortButtonSelected, for: .bookmark, state: .normal)
     }
-
+    
 }
 
 extension SearchBar {

@@ -8,18 +8,29 @@
 import UIKit
 
 protocol AssemblyBuilderProtocol {
+    func createMainTabBar() -> UITabBarController
     func createMainScreen(router: RouterProtocol) -> UIViewController
     func createSortScreen(view: SortViewProtocol, router: RouterProtocol) -> UIViewController
     func createProfileScreen(router: RouterProtocol, item: Person?) -> UIViewController
+    func createFavoriteScreen() -> UIViewController
 }
 
 class AssemblyMainBuilder: AssemblyBuilderProtocol {
+    
+    func createMainTabBar() -> UITabBarController {
+        let tabBar = MainTabBarController()
+        
+        return tabBar
+    }
     
     func createMainScreen(router: RouterProtocol) -> UIViewController {
         let view = StaffViewController()
         let networkService = NetworkService()
         let presenter = StaffPresenter(view: view, networkService: networkService, router: router)
+        let dataSourceProvider = StaffDataSourceProvider()
         view.presenter = presenter
+        view.dataSourceProvider = dataSourceProvider
+        dataSourceProvider.presenter = presenter
         return view
     }
     
@@ -39,6 +50,11 @@ class AssemblyMainBuilder: AssemblyBuilderProtocol {
         let presenter = ProfilePresenter(view: view, networkService: network, router: router)
         view.presenter = presenter
         presenter.item = item
+        return view
+    }
+    
+    func createFavoriteScreen() -> UIViewController {
+        let view = FavoriteViewController()
         return view
     }
 }
