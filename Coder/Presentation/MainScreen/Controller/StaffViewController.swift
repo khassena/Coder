@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class StaffViewController: UIViewController {
     
@@ -19,7 +20,6 @@ class StaffViewController: UIViewController {
         self.view = StaffRootView()
     }
     
-    var dataSourceProvider: StaffDataSourceProtocol?
     var presenter: StaffViewPresenterProtocol?
     private var skeleton = true
     weak var sortVC: SortViewController?
@@ -55,8 +55,8 @@ class StaffViewController: UIViewController {
     private func setDelegates() {
         rootView.departmentCollectionView.delegate = self
         rootView.departmentCollectionView.dataSource = self
-        rootView.staffTableView.delegate = dataSourceProvider
-        rootView.staffTableView.dataSource = dataSourceProvider
+        rootView.staffTableView.delegate = self
+        rootView.staffTableView.dataSource = self
         rootView.searchBar.delegate = self
     }
     
@@ -92,7 +92,6 @@ extension StaffViewController: StaffViewProtocol {
 
     func networkSuccess() {
         self.skeleton = false
-        dataSourceProvider?.skeleton = false
         rootView.setErrorView(error: false)
         rootView.staffTableView.reloadData()
     }
@@ -108,7 +107,6 @@ extension StaffViewController: StaffViewProtocol {
     
     func showBirthdaySelected(_ show: Bool) {
         showBirthday = show
-        dataSourceProvider?.showBirthday = show
     }
 }
 
@@ -197,6 +195,118 @@ extension StaffViewController: UICollectionViewDelegate {
         collectionView.reloadData()
         rootView.staffTableView.reloadData()
         
+    }
+}
+
+extension StaffViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if skeleton == true {
+            return Constants.Staff.defaultItemsCount
+        }
+        
+        if showBirthday == true {
+            return section == .zero ? presenter?.items?.count ?? 0 : presenter?.itemsForSection?.count ?? 0
+        }
+        
+        return presenter?.items?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StaffTableViewCell.cell, for: indexPath) as? StaffTableViewCell else { return UITableViewCell()
+        }
+        if skeleton == true {
+            cell.showSkeleton(skeleton)
+            return cell
+        }
+        
+        var item: Person!
+        
+        if showBirthday == false {
+           item = presenter?.items?[indexPath.row]
+        } else {
+            item = indexPath.section == .zero ? presenter?.items?[indexPath.row] : presenter?.itemsForSection?[indexPath.row]
+        }
+        
+        guard let avatarUrl = URL(string: item.avatarUrl) else {
+            return UITableViewCell()
+        }
+        cell.showSkeleton(false)
+        presenter?.getImage(with: avatarUrl, indexPath: indexPath)
+        cell.showDateLabel(showBirthday)
+        cell.setupValue(firstName: item.firstName,
+                        lastName:  item.lastName,
+                        userTag:   item.userTag.lowercased(),
+                        position:  item.department.name,
+                        birthdayDate:  item.birthdayDate ?? Date())
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.Staff.cellHeight
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return showBirthday ? 2 : 1
+    }
+    
+    internal func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        section != .zero ? HeaderSectionView() : nil
+    }
+    
+    internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section != .zero ? Constants.HeaderView.heightForRow : .zero
+    }
+}
+
+extension StaffViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var relevantItem: Person?
+        
+        relevantItem = indexPath.section == .zero ? presenter?.items?[indexPath.row] : presenter?.itemsForSection?[indexPath.row]
+        
+        tableView.deselectRow(at: indexPath, animated: false)
+        presenter?.routToProfileScreen(item: relevantItem)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        guard let item = presenter?.items?[indexPath.row] else { return nil}
+        
+        let favoriteAction = UIContextualAction(
+            style: .normal,
+            title: "Favorite"
+        ) { _, _, isDone in
+//            guard let self = self else { return }
+            let realm = try! Realm()
+//            print(Realm.Configuration.defaultConfiguration.fileURL)
+            
+            let data = FavoritePerson()
+            data.id = item.id
+            data.avatarUrl = item.avatarUrl
+            data.firstName = item.firstName
+            data.lastName = item.lastName
+            data.department = item.department.name
+            data.position = item.position
+            data.userTag = item.userTag.lowercased()
+            data.birthday = item.birthday
+            data.phone = item.phone
+            
+            do {
+                try realm.write {
+                    realm.add(data)
+                }
+            } catch {
+                print(error)
+            }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "preserved") , object: nil)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            
+            isDone(true)
+        }
+        favoriteAction.backgroundColor = Color.purple
+        return UISwipeActionsConfiguration(actions: [favoriteAction])
     }
 }
 

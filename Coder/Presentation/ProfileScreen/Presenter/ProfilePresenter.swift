@@ -18,7 +18,7 @@ protocol ProfileViewPresenterProtocol {
     init(view: ProfileViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
     var router: RouterProtocol? { get set }
     func configureData()
-    func routPopToRootView()
+//    func routPopToRootView()
 }
 
 class ProfilePresenter: ProfileViewPresenterProtocol {
@@ -64,8 +64,8 @@ class ProfilePresenter: ProfileViewPresenterProtocol {
         }
     }
     
-    @objc func routPopToRootView() {
-        router?.popToRootVC()
-    }
+//    @objc func routPopToRootView() {
+//        router?.popToRootVC(target: <#T##Target#>)
+//    }
     
 }

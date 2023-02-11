@@ -11,7 +11,7 @@ struct StaffModel {
     var searchText: String = ""
     var items: [Person]?
     var filteredItems: [Person]?
-    var filteredSecondSection: [Person]? = nil
+    var filteredSecondSection: [Person]?
     var departments: [Department] = []
     var selectedDepartmentPath: IndexPath?
     var searching: Bool = false

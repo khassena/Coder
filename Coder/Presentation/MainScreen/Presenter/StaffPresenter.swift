@@ -114,6 +114,6 @@ class StaffPresenter: StaffViewPresenterProtocol {
     }
     
     func routToProfileScreen(item: Person?) {
-        router?.showProfileScreen(item: item)
+        router?.showProfileScreen(item: item, target: .staff)
     }
 }

@@ -15,11 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
-        let navController = UINavigationController()
-        navController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navController.navigationBar.shadowImage = UIImage()
+        let staffNavigationVC = UINavigationController()
+        let favoriteNavigationVC = UINavigationController()
+        [staffNavigationVC, favoriteNavigationVC].forEach {
+            $0.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            $0.navigationBar.shadowImage = UIImage()
+        }
         let assemblyBuilder = AssemblyMainBuilder()
-        let router = Router(navigationController: navController, assemblyBuilder: assemblyBuilder)
+        let router = Router(staffNavigationController: staffNavigationVC,
+                            favoriteNavigationController: favoriteNavigationVC,
+                            assemblyBuilder: assemblyBuilder)
         let mainTabBarVC = router.initialViewController()
         window?.rootViewController = mainTabBarVC
         window?.makeKeyAndVisible()

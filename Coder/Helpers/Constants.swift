@@ -201,3 +201,9 @@ enum Fonts {
     static let subtitleFont = UIFont(name: "Inter-Regular", size: 16) ?? UIFont()
     static let netErrorFont = UIFont(name: "Inter-Medium", size: 13) ?? UIFont()
 }
+
+enum Target {
+    case staff
+    case favorite
+}
+

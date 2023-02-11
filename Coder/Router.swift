@@ -8,62 +8,79 @@
 import UIKit
 
 protocol RouterMain {
-    var navigationController: UINavigationController? { get set }
+    var staffNavigationController: UINavigationController? { get set }
+    var favoriteNavigationController: UINavigationController? { get set }
     var assemblyBuilder: AssemblyBuilderProtocol? { get set }
 }
 
 protocol RouterProtocol: RouterMain {
     func initialViewController() -> UIViewController
     func showSortScreen(view: SortViewProtocol?, staff: Staff?)
-    func showProfileScreen(item: Person?)
-    func popToRootVC()
+    func showProfileScreen(item: Person?, target: Target)
+    func popToRootVC(target: Target)
 }
 
 class Router: RouterProtocol {
     
-    var navigationController: UINavigationController?
+    var staffNavigationController: UINavigationController?
+    var favoriteNavigationController: UINavigationController?
     var assemblyBuilder: AssemblyBuilderProtocol?
     
-    init(navigationController: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
-        self.navigationController = navigationController
+    
+    
+    init(staffNavigationController: UINavigationController,
+         favoriteNavigationController: UINavigationController,
+         assemblyBuilder: AssemblyBuilderProtocol) {
+        self.staffNavigationController = staffNavigationController
+        self.favoriteNavigationController = favoriteNavigationController
         self.assemblyBuilder = assemblyBuilder
     }
     
     func initialViewController() -> UIViewController {
-        if let navigationController = navigationController {
+        if let staffNavigationController = staffNavigationController,
+           let favoriteNavigationController = favoriteNavigationController {
             guard let mainTabBar = assemblyBuilder?.createMainTabBar() as?
                     MainTabBarController,
                   let staffVC = assemblyBuilder?.createMainScreen(router: self) as? StaffViewController,
                   let _ = assemblyBuilder?.createSortScreen(view: staffVC, router: self) as? SortViewController,
-                  let favoriteVC = assemblyBuilder?.createFavoriteScreen() as? FavoriteViewController else { return UIViewController() }
-            navigationController.viewControllers = [staffVC]
-            let navVC = UINavigationController(rootViewController: favoriteVC)
-            navVC.title = "Favorite"
-            navigationController.title = "Staff"
-            navigationController.tabBarItem.image = UIImage(systemName: "list.bullet")
-            navVC.tabBarItem.image = UIImage(systemName: "star.fill")
-            mainTabBar.viewControllers = [navigationController, navVC]
+                  let favoriteVC = assemblyBuilder?.createFavoriteScreen(router: self) as? FavoriteViewController else { return UIViewController() }
+            staffNavigationController.viewControllers = [staffVC]
+            favoriteNavigationController.viewControllers = [favoriteVC]
+            favoriteNavigationController.title = "Favorite"
+            staffNavigationController.title = "Staff"
+            staffNavigationController.tabBarItem.image = UIImage(systemName: "list.bullet")
+            favoriteNavigationController.tabBarItem.image = UIImage(systemName: "star.fill")
+            mainTabBar.viewControllers = [staffNavigationController, favoriteNavigationController]
             return mainTabBar
         }
         return UIViewController()
     }
     
     func showSortScreen(view: SortViewProtocol?, staff: Staff?) {
-        if let navigationController = navigationController,
+        if let navigationController = staffNavigationController,
            let viewController = view?.sortVC {
             navigationController.present(viewController, animated: true)
         }
     }
     
-    func showProfileScreen(item: Person?) {
-        if let navigationController = navigationController {
-            guard let profileViewController = assemblyBuilder?.createProfileScreen(router: self, item: item) else { return }
-            navigationController.pushViewController(profileViewController, animated: true)
+    func showProfileScreen(item: Person?, target: Target) {
+        switch target {
+        case .staff:
+            if let navController = staffNavigationController {
+                guard let profileViewController = assemblyBuilder?.createProfileScreen(router: self, item: item, navController: navController) else { return }
+                navController.pushViewController(profileViewController, animated: true)
+            }
+        case .favorite:
+            if let navController = favoriteNavigationController {
+                guard let profileViewController = assemblyBuilder?.createProfileScreen(router: self, item: item, navController: navController) else { return }
+                navController.pushViewController(profileViewController, animated: true)
+            }
         }
+        
     }
     
-    func popToRootVC() {
-        if let navigationController = navigationController {
+    func popToRootVC(target: Target) {
+        if let navigationController = staffNavigationController {
             navigationController.popToRootViewController(animated: true)
         }
     }

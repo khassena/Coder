@@ -19,9 +19,14 @@
 		FA496868297986F800CAF769 /* PresentNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA496867297986F800CAF769 /* PresentNetworkError.swift */; };
 		FA49686A297BCF7100CAF769 /* AssemblyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA496869297BCF7100CAF769 /* AssemblyBuilder.swift */; };
 		FA49686C297BCF9C00CAF769 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49686B297BCF9C00CAF769 /* Router.swift */; };
-		FA49686E29854C0100CAF769 /* StaffDataSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49686D29854C0100CAF769 /* StaffDataSourceProvider.swift */; };
 		FA4968702986606000CAF769 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49686F2986606000CAF769 /* FavoriteViewController.swift */; };
 		FA4968732986610C00CAF769 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968722986610C00CAF769 /* MainTabBarController.swift */; };
+		FA4968BC299556C900CAF769 /* FavoritePersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968BB299556C900CAF769 /* FavoritePersonModel.swift */; };
+		FA4968C02996512700CAF769 /* FavoriteTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968BF2996512700CAF769 /* FavoriteTableView.swift */; };
+		FA4968C32996533000CAF769 /* FavoriteRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968C22996533000CAF769 /* FavoriteRootView.swift */; };
+		FA4968C52997540F00CAF769 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968C42997540F00CAF769 /* FavoritePresenter.swift */; };
+		FA4968C82997559800CAF769 /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968C72997559800CAF769 /* FavoriteModel.swift */; };
+		FA4968CB29976CCD00CAF769 /* String+Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968CA29976CCD00CAF769 /* String+Department.swift */; };
 		FA82886F296EBF1A009F1619 /* Date+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82886E296EBF1A009F1619 /* Date+Settings.swift */; };
 		FA828874296ECCC8009F1619 /* HeaderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA828873296ECCC8009F1619 /* HeaderSectionView.swift */; };
 		FA8288A2297579B6009F1619 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8288A1297579B6009F1619 /* ProfileModel.swift */; };
@@ -72,9 +77,14 @@
 		FA496867297986F800CAF769 /* PresentNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentNetworkError.swift; sourceTree = "<group>"; };
 		FA496869297BCF7100CAF769 /* AssemblyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilder.swift; sourceTree = "<group>"; };
 		FA49686B297BCF9C00CAF769 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		FA49686D29854C0100CAF769 /* StaffDataSourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffDataSourceProvider.swift; sourceTree = "<group>"; };
 		FA49686F2986606000CAF769 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		FA4968722986610C00CAF769 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		FA4968BB299556C900CAF769 /* FavoritePersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePersonModel.swift; sourceTree = "<group>"; };
+		FA4968BF2996512700CAF769 /* FavoriteTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableView.swift; sourceTree = "<group>"; };
+		FA4968C22996533000CAF769 /* FavoriteRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRootView.swift; sourceTree = "<group>"; };
+		FA4968C42997540F00CAF769 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
+		FA4968C72997559800CAF769 /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
+		FA4968CA29976CCD00CAF769 /* String+Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Department.swift"; sourceTree = "<group>"; };
 		FA82886E296EBF1A009F1619 /* Date+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Settings.swift"; sourceTree = "<group>"; };
 		FA828873296ECCC8009F1619 /* HeaderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionView.swift; sourceTree = "<group>"; };
 		FA8288A1297579B6009F1619 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -130,7 +140,6 @@
 				861DC8FF65FD1EB737AC4D4A /* Pods-Coder.debug.xcconfig */,
 				5B6B49D453212B631D85BE23 /* Pods-Coder.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -145,9 +154,53 @@
 		FA4968712986606900CAF769 /* FavoriteScreen */ = {
 			isa = PBXGroup;
 			children = (
-				FA49686F2986606000CAF769 /* FavoriteViewController.swift */,
+				FA4968BE299650A000CAF769 /* Controller */,
+				FA4968C9299755A000CAF769 /* Model */,
+				FA4968C12996518500CAF769 /* View */,
+				FA4968C62997541400CAF769 /* Presenter */,
 			);
 			path = FavoriteScreen;
+			sourceTree = "<group>";
+		};
+		FA4968BD299556D000CAF769 /* StorageService */ = {
+			isa = PBXGroup;
+			children = (
+				FA4968BB299556C900CAF769 /* FavoritePersonModel.swift */,
+			);
+			path = StorageService;
+			sourceTree = "<group>";
+		};
+		FA4968BE299650A000CAF769 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA49686F2986606000CAF769 /* FavoriteViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FA4968C12996518500CAF769 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA4968C22996533000CAF769 /* FavoriteRootView.swift */,
+				FA4968BF2996512700CAF769 /* FavoriteTableView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FA4968C62997541400CAF769 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FA4968C42997540F00CAF769 /* FavoritePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FA4968C9299755A000CAF769 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA4968C72997559800CAF769 /* FavoriteModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FA828870296EC150009F1619 /* Extensions */ = {
@@ -157,6 +210,7 @@
 				FA8288AA2976869E009F1619 /* ImageView+Shadow.swift */,
 				FA49685B297706F700CAF769 /* String+PhoneNum.swift */,
 				FA49685F2977E9C100CAF769 /* StackView+ClickAnimation.swift */,
+				FA4968CA29976CCD00CAF769 /* String+Department.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				FABB4F2A293905CF00486E5A /* NetworkService */,
+				FA4968BD299556D000CAF769 /* StorageService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -262,7 +317,6 @@
 		FABB4F262939023F00486E5A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				FA49686D29854C0100CAF769 /* StaffDataSourceProvider.swift */,
 				FA4968722986610C00CAF769 /* MainTabBarController.swift */,
 				FABB4F2E2939085200486E5A /* LaunchScreen */,
 				FABB4F282939049900486E5A /* MainScreen */,
@@ -543,17 +597,19 @@
 			files = (
 				FABB4F34293A0E7400486E5A /* DepartmentCollectionViewCell.swift in Sources */,
 				FA49685A2976DEAD00CAF769 /* PhoneView.swift in Sources */,
+				FA4968C02996512700CAF769 /* FavoriteTableView.swift in Sources */,
 				FABB4F1E2938CB2B00486E5A /* StaffSearchBar.swift in Sources */,
 				FA4968642979683A00CAF769 /* APIErrorView.swift in Sources */,
 				FABB4F202938CB4D00486E5A /* StaffRootView.swift in Sources */,
+				FA4968BC299556C900CAF769 /* FavoritePersonModel.swift in Sources */,
 				FABB4F182937C9C700486E5A /* Constants.swift in Sources */,
+				FA4968C32996533000CAF769 /* FavoriteRootView.swift in Sources */,
 				FA49686C297BCF9C00CAF769 /* Router.swift in Sources */,
 				FA4968662979685800CAF769 /* NetworkErrorView.swift in Sources */,
 				FA4968562976DA4000CAF769 /* ProfileRootView.swift in Sources */,
 				FA8288AB2976869E009F1619 /* ImageView+Shadow.swift in Sources */,
 				FA496868297986F800CAF769 /* PresentNetworkError.swift in Sources */,
 				FABB4F3229390C7A00486E5A /* StaffModel.swift in Sources */,
-				FA49686E29854C0100CAF769 /* StaffDataSourceProvider.swift in Sources */,
 				FA49686A297BCF7100CAF769 /* AssemblyBuilder.swift in Sources */,
 				FA4968702986606000CAF769 /* FavoriteViewController.swift in Sources */,
 				FADF5959296D71120006A2B5 /* SortStackView.swift in Sources */,
@@ -565,12 +621,14 @@
 				FABB4F152937B7D300486E5A /* APIModel.swift in Sources */,
 				FADF5950295EFCEA0006A2B5 /* PresentationViewController.swift in Sources */,
 				FA82886F296EBF1A009F1619 /* Date+Settings.swift in Sources */,
+				FA4968C82997559800CAF769 /* FavoriteModel.swift in Sources */,
 				FABB4F252938FF2F00486E5A /* DepartmentCollectionView.swift in Sources */,
 				FA8288A2297579B6009F1619 /* ProfileModel.swift in Sources */,
 				FA4968582976DE9D00CAF769 /* DateOfBirthView.swift in Sources */,
 				FABB4F3029390B2B00486E5A /* StaffTableView.swift in Sources */,
 				FA8288A4297579C4009F1619 /* ProfilePresenter.swift in Sources */,
 				FA496862297967DF00CAF769 /* NetworkMonitor.swift in Sources */,
+				FA4968CB29976CCD00CAF769 /* String+Department.swift in Sources */,
 				FABB4F44294B4B3A00486E5A /* CircularSpinner.swift in Sources */,
 				FA4968732986610C00CAF769 /* MainTabBarController.swift in Sources */,
 				FADF5952296C3BC70006A2B5 /* SortViewController.swift in Sources */,
@@ -580,6 +638,7 @@
 				FA4968602977E9C100CAF769 /* StackView+ClickAnimation.swift in Sources */,
 				FA8288A7297579F6009F1619 /* ProfileViewController.swift in Sources */,
 				FA8288A9297594CE009F1619 /* BackBarItem.swift in Sources */,
+				FA4968C52997540F00CAF769 /* FavoritePresenter.swift in Sources */,
 				FADF594A295712FA0006A2B5 /* SearchErrorView.swift in Sources */,
 				FA828874296ECCC8009F1619 /* HeaderSectionView.swift in Sources */,
 			);

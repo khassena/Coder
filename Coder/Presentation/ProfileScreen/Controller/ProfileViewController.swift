@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     }
     
     var presenter: ProfileViewPresenterProtocol?
+    var navController: UINavigationController?
     
     override func loadView() {
         super.loadView()
@@ -40,7 +41,7 @@ class ProfileViewController: UIViewController {
     }
     
     func setBackButton() {
-        let backButton = BackBarItem(target: presenter?.router?.navigationController ?? UINavigationController())
+        let backButton = BackBarItem(target: navController ?? UINavigationController())
         navigationItem.leftBarButtonItem = backButton
     }
 }

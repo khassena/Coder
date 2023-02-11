@@ -11,8 +11,8 @@ protocol AssemblyBuilderProtocol {
     func createMainTabBar() -> UITabBarController
     func createMainScreen(router: RouterProtocol) -> UIViewController
     func createSortScreen(view: SortViewProtocol, router: RouterProtocol) -> UIViewController
-    func createProfileScreen(router: RouterProtocol, item: Person?) -> UIViewController
-    func createFavoriteScreen() -> UIViewController
+    func createProfileScreen(router: RouterProtocol, item: Person?, navController: UINavigationController) -> UIViewController
+    func createFavoriteScreen(router: RouterProtocol) -> UIViewController
 }
 
 class AssemblyMainBuilder: AssemblyBuilderProtocol {
@@ -27,10 +27,7 @@ class AssemblyMainBuilder: AssemblyBuilderProtocol {
         let view = StaffViewController()
         let networkService = NetworkService()
         let presenter = StaffPresenter(view: view, networkService: networkService, router: router)
-        let dataSourceProvider = StaffDataSourceProvider()
         view.presenter = presenter
-        view.dataSourceProvider = dataSourceProvider
-        dataSourceProvider.presenter = presenter
         return view
     }
     
@@ -44,17 +41,25 @@ class AssemblyMainBuilder: AssemblyBuilderProtocol {
         return sortVC
     }
     
-    func createProfileScreen(router: RouterProtocol, item: Person?) -> UIViewController {
+    func createProfileScreen(router: RouterProtocol, item: Person?, navController: UINavigationController) -> UIViewController {
         let view = ProfileViewController()
         let network = NetworkService()
         let presenter = ProfilePresenter(view: view, networkService: network, router: router)
         view.presenter = presenter
+        view.navController = navController
         presenter.item = item
         return view
     }
     
-    func createFavoriteScreen() -> UIViewController {
+    func createFavoriteScreen(router: RouterProtocol) -> UIViewController {
         let view = FavoriteViewController()
+        let network = NetworkService()
+        let presenter = FavoritePresenter(
+            view: view,
+            networkService: network,
+            router: router
+        )
+        view.presenter = presenter
         return view
     }
 }
