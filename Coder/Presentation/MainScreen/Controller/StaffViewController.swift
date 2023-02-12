@@ -10,6 +10,8 @@ import RealmSwift
 
 class StaffViewController: UIViewController {
     
+    let realm = try! Realm()
+    
     // MARK: Casting super view to custom StaffRootView
     var rootView: StaffRootView {
         return self.view as! StaffRootView
@@ -231,6 +233,7 @@ extension StaffViewController: UITableViewDataSource {
         guard let avatarUrl = URL(string: item.avatarUrl) else {
             return UITableViewCell()
         }
+        let isfavorite = realm.objects(FavoritePerson.self).filter {item.id == $0.id}.first != nil
         cell.showSkeleton(false)
         presenter?.getImage(with: avatarUrl, indexPath: indexPath)
         cell.showDateLabel(showBirthday)
@@ -238,7 +241,8 @@ extension StaffViewController: UITableViewDataSource {
                         lastName:  item.lastName,
                         userTag:   item.userTag.lowercased(),
                         position:  item.department.name,
-                        birthdayDate:  item.birthdayDate ?? Date())
+                        birthdayDate:  item.birthdayDate ?? Date(),
+                        isFavorite: isfavorite)
         return cell
     }
     
@@ -273,6 +277,7 @@ extension StaffViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         guard let item = presenter?.items?[indexPath.row] else { return nil}
+        let isfavorite = realm.objects(FavoritePerson.self).filter {item.id == $0.id}.first != nil
         
         let favoriteAction = UIContextualAction(
             style: .normal,
@@ -281,31 +286,35 @@ extension StaffViewController: UITableViewDelegate {
 //            guard let self = self else { return }
             let realm = try! Realm()
 //            print(Realm.Configuration.defaultConfiguration.fileURL)
-            
-            let data = FavoritePerson()
-            data.id = item.id
-            data.avatarUrl = item.avatarUrl
-            data.firstName = item.firstName
-            data.lastName = item.lastName
-            data.department = item.department.name
-            data.position = item.position
-            data.userTag = item.userTag.lowercased()
-            data.birthday = item.birthday
-            data.phone = item.phone
-            
-            do {
-                try realm.write {
-                    realm.add(data)
+            if isfavorite {
+                self.presenter?.deleteItemFromDB(item: item)
+            } else {
+                let data = FavoritePerson()
+                data.id = item.id
+                data.avatarUrl = item.avatarUrl
+                data.firstName = item.firstName
+                data.lastName = item.lastName
+                data.department = item.department.name
+                data.position = item.position
+                data.userTag = item.userTag.lowercased()
+                data.birthday = item.birthday
+                data.phone = item.phone
+                
+                do {
+                    try realm.write {
+                        realm.add(data)
+                    }
+                } catch {
+                    print(error)
                 }
-            } catch {
-                print(error)
             }
+            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "preserved") , object: nil)
             tableView.reloadRows(at: [indexPath], with: .automatic)
             
             isDone(true)
         }
-        favoriteAction.backgroundColor = Color.purple
+        favoriteAction.backgroundColor = isfavorite ? Color.gray : Color.purple
         return UISwipeActionsConfiguration(actions: [favoriteAction])
     }
 }

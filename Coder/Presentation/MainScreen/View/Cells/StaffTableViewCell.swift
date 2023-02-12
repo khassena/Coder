@@ -10,8 +10,9 @@ import UIKit
 class StaffTableViewCell: UITableViewCell {
 
     static let cell = "staffCell"
+    private var isFavorite = false
     
-    private let personImage = StaffTableViewCell.imageView()
+    private let personImage = StaffTableViewCell.avatarImageView()
     
     var personFullName = StaffTableViewCell.label(
         color: .black,
@@ -33,14 +34,22 @@ class StaffTableViewCell: UITableViewCell {
         font: Fonts.fontBirthDay
     )
     
+    private let filledStarImage = StaffTableViewCell.starImageView()
+    
     private lazy var nameTagStackView = StaffTableViewCell.stackView(
         views: [personFullName, personUserTag],
         axis: .horizontal,
         alignment: .center
     )
     
+    private lazy var positionStarStackView = StaffTableViewCell.stackView(
+        views: [personPosition, filledStarImage],
+        axis: .horizontal,
+        alignment: .center
+    )
+    
     private lazy var namePositionStackView = StaffTableViewCell.stackView(
-        views: [nameTagStackView, personPosition],
+        views: [nameTagStackView, positionStarStackView],
         axis: .vertical,
         alignment: .leading
     )
@@ -91,6 +100,9 @@ class StaffTableViewCell: UITableViewCell {
             namePositionStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             namePositionStackView.trailingAnchor.constraint(equalTo: personDateOfBirth.leadingAnchor, constant: Constants.Staff.dateOfBirthLeading),
             
+            filledStarImage.widthAnchor.constraint(equalToConstant: Constants.Staff.filledStarWidth),
+            filledStarImage.heightAnchor.constraint(equalToConstant: Constants.Staff.filledStarHeight),
+            
             personDateOfBirth.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             personDateOfBirth.trailingAnchor.constraint(equalTo: layoutMargin.trailingAnchor),
             personDateOfBirth.widthAnchor.constraint(greaterThanOrEqualToConstant: Constants.Staff.dateOfBirthWidth),
@@ -105,11 +117,13 @@ class StaffTableViewCell: UITableViewCell {
                            lastName: String,
                            userTag: String,
                            position: String,
-                           birthdayDate: Date) {
+                           birthdayDate: Date,
+                           isFavorite: Bool) {
         personFullName.text = "\(firstName) \(lastName)"
         personUserTag.text = userTag
         personPosition.text = position
         personDateOfBirth.text = "\(birthdayDate.getNumOfMonth()) \(birthdayDate.getNameOfMonth())"
+        filledStarImage.isHidden = !isFavorite 
     }
 
     public func showSkeleton(_ bool: Bool) {
@@ -128,7 +142,7 @@ class StaffTableViewCell: UITableViewCell {
 
 extension StaffTableViewCell {
     
-    private static func imageView() -> UIImageView {
+    private static func avatarImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = Constants.Staff.imageCornerRadius
@@ -145,6 +159,15 @@ extension StaffTableViewCell {
         label.font = font
         label.textAlignment = .right
         return label
+    }
+    
+    private static func starImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.image = Constants.Staff.filledStarImage
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.isHidden = true
+        return imageView
     }
     
     private static func stackView(views: [UIView], axis: NSLayoutConstraint.Axis, alignment: UIStackView.Alignment) -> UIStackView {

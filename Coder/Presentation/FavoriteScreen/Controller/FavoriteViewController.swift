@@ -10,6 +10,8 @@ import RealmSwift
 
 class FavoriteViewController: UIViewController {
 
+    let realm = try! Realm()
+    
     // MARK: Casting super view to custom StaffRootView
     var rootView: FavoriteRootView {
         return self.view as! FavoriteRootView
@@ -77,12 +79,14 @@ extension FavoriteViewController: UITableViewDataSource {
               let item = presenter?.items?[indexPath.row],
               let avatarUrl = URL(string: item.avatarUrl) else { return UITableViewCell() }
         
+        let isfavorite = realm.objects(FavoritePerson.self).filter {item.id == $0.id}.first != nil
         presenter?.getImage(with: avatarUrl, indexPath: indexPath)
         cell.setupValue(firstName: item.firstName,
                         lastName:  item.lastName,
                         userTag:   item.userTag.lowercased(),
                         position:  item.department.name,
-                        birthdayDate:  item.birthdayDate ?? Date())
+                        birthdayDate:  item.birthdayDate ?? Date(),
+                        isFavorite: isfavorite)
         cell.showSkeleton(false)
         cell.showDateLabel(false)
         
@@ -111,8 +115,9 @@ extension FavoriteViewController: UITableViewDelegate {
         if editingStyle == .delete {
             self.presenter?.deleteItemFromDB(indexPath: indexPath)
             self.presenter?.items?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        tableView.reloadData()
+
     }
     
 }

@@ -15,7 +15,6 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tabBar.backgroundColor = .lightGray
         tabBar.tintColor = Color.purple
         tabBar.backgroundColor = Constants.SearchBar.backgroundColor
         tabBar.unselectedItemTintColor = .lightGray

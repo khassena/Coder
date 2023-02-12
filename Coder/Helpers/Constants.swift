@@ -43,6 +43,9 @@ enum Constants {
         static let stackViewSpacing: CGFloat = 4.0
         static let defaultImage: UIImage = UIImage(named: "goose.svg") ?? UIImage()
         static let defaultItemsCount: Int = 20
+        static let filledStarImage: UIImage = UIImage(named: "filledStar.svg") ?? UIImage()
+        static let filledStarWidth: CGFloat = 16
+        static let filledStarHeight: CGFloat = 16
     }
     
     enum Skeleton {

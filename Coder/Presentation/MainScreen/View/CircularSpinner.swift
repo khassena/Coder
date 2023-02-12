@@ -11,9 +11,6 @@ class CircularSpinner: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        layer.addSublayer(backgroundLayer)
-//        layer.addSublayer(spinnerLayer)
-//        startAnimation()
     }
     
     required init(coder: NSCoder) {

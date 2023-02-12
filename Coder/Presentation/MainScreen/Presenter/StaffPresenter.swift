@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 protocol StaffViewProtocol: AnyObject {
     func networkSuccess()
@@ -27,12 +28,15 @@ protocol StaffViewPresenterProtocol {
     var sortModel: SortModel? { get }
     func getData()
     func getImage(with url: URL, indexPath: IndexPath)
+    func deleteItemFromDB(item: Person)
     func routToSortScreen(view: SortViewProtocol, staff: Staff?)
     func routToProfileScreen(item: Person?)
     func filterTableView(searchText: String?, sort: SortModel?)
 }
 
 class StaffPresenter: StaffViewPresenterProtocol {
+    
+    let realm = try! Realm()
     
     weak var view: StaffViewProtocol?
     let networkService: NetworkServiceProtocol
@@ -107,6 +111,18 @@ class StaffPresenter: StaffViewPresenterProtocol {
         showBirthday = staffModel.showBirthday
         view?.showBirthdaySelected(showBirthday)
         self.sortModel = sort
+    }
+    
+    func deleteItemFromDB(item: Person) {
+        let deleteObject = realm.objects(FavoritePerson.self).filter{item.id == $0.id}
+        
+        do{
+            try realm.write({
+                realm.delete(deleteObject)
+            })
+        }catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     func routToSortScreen(view: SortViewProtocol, staff: Staff?) {
