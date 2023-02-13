@@ -141,6 +141,7 @@ enum Constants {
         static let cornerRadius = CGFloat(104 / 2)
         static let infoSpacing: CGFloat = 14.0
         static let starImage: UIImage = UIImage(named: "star") ?? UIImage()
+        static let filledStar: UIImage = UIImage(named: "filledStar") ?? UIImage()
         static let phoneImage: UIImage = UIImage(named: "phone") ?? UIImage()
         static let avatarTop: CGFloat = 72.0
         static let avatarSize: CGFloat = 104.0

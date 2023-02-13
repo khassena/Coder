@@ -15,7 +15,7 @@ class FavoriteTableView: UITableView {
         showsVerticalScrollIndicator = false
         separatorStyle = .none
         sectionFooterHeight = 0
-        sectionHeaderTopPadding = 22
+//        sectionHeaderTopPadding = 22
         backgroundColor = .white
         keyboardDismissMode = .onDrag
     }

@@ -1,5 +1,5 @@
 //
-//  StackView+ClickAnimation.swift
+//  UIView+ClickAnimation.swift
 //  Coder
 //
 //  Created by Amanzhan Zharkynuly on 18.01.2023.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UIStackView {
+extension UIView {
     func clickAnimation(_ completionBlock: @escaping () -> Void) {
       isUserInteractionEnabled = false
         UIView.animate(withDuration: 0.1,

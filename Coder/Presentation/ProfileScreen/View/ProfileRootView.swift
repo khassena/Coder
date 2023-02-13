@@ -89,12 +89,13 @@ extension ProfileRootView {
                  avatar: UIImage,
                  dateOfBirth: String,
                  yearsOld: String,
-                 phoneNumber: String) {
+                 phoneNumber: String,
+                 isFavorite: Bool) {
         nameLabel.text = "\(firstName) \(lastName)"
         tagLabel.text = tag
         departmentLabel.text = department
         avatarImage.image = avatar
-        dateInfoStack.setData(dateOfBirth, yearsOld)
+        dateInfoStack.setData(dateOfBirth, yearsOld, isFavorite)
         phoneInfoStack.setData(phoneNumber)
     }
     

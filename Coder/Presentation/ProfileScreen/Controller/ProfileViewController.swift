@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ProfileViewController: UIViewController {
     
@@ -26,10 +27,8 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .white
         rootView.setupView()
         setBackButton()
+        setDelegates()
         presenter?.configureData()
-        rootView.phoneInfoStack.delegate = self
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -40,6 +39,21 @@ class ProfileViewController: UIViewController {
         )
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        rootView.dateInfoStack.isFavorite = presenter?.checkIsFavorite() == true
+    }
+}
+
+extension ProfileViewController {
+    
+    func setDelegates() {
+        rootView.phoneInfoStack.delegate = self
+        rootView.dateInfoStack.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
     func setBackButton() {
         let backButton = BackBarItem(target: navController ?? UINavigationController())
         navigationItem.leftBarButtonItem = backButton
@@ -48,7 +62,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: ProfileViewProtocol {
     
-    func dataReceived(item: Person, birthday: String, phone: String, age: String) {
+    func dataReceived(item: Person, birthday: String, phone: String, age: String, isFavorite: Bool) {
         rootView.setData(
             firstName: item.firstName,
             lastName: item.lastName,
@@ -57,7 +71,8 @@ extension ProfileViewController: ProfileViewProtocol {
             avatar: Constants.Staff.defaultImage,
             dateOfBirth: birthday,
             yearsOld: age,
-            phoneNumber: phone
+            phoneNumber: phone,
+            isFavorite: isFavorite
         )
     }
     
@@ -89,4 +104,21 @@ extension ProfileViewController: PhoneViewDelegate {
         }
     }
 }
-extension  ProfileViewController: UIGestureRecognizerDelegate { }
+extension ProfileViewController: DateOfBirthViewDelegate {
+    
+    func didTapToChange(star: UIImageView) {
+        star.clickAnimation {
+            
+            if self.presenter?.checkIsFavorite() == true {
+                star.image = Constants.ProfileView.starImage
+                self.presenter?.deleteFromRealm()
+            } else {
+                star.image = Constants.ProfileView.filledStar
+                self.presenter?.addToRealm()
+            }
+        }
+    }
+    
+}
+
+extension ProfileViewController: UIGestureRecognizerDelegate { }

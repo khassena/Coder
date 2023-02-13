@@ -9,7 +9,6 @@ import UIKit
 
 final class PresentNetworkError {
     
-//    private lazy var window = UIApplication.shared.windows.last!
     private lazy var window = UIApplication.shared.connectedScenes.map({ $0 as? UIWindowScene }).compactMap({ $0 }).first?.windows.last
     private lazy var top = CGAffineTransform(translationX: .zero, y: -300)
     private lazy var viewToShow = NetworkErrorView(frame: CGRect(x: .zero,

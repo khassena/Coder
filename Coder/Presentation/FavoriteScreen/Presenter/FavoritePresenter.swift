@@ -19,7 +19,8 @@ protocol FavoritePresenterProtocol: AnyObject {
     var items: [Person]? { get set }
     func getData()
     func getImage(with url: URL, indexPath: IndexPath)
-    func deleteItemFromDB(indexPath: IndexPath)
+    func checkIsFavorite(item: Person) -> Bool
+    func deleteItemFromRealm(indexPath: IndexPath)
     func routToProfileScreen(item: Person?) 
 }
 
@@ -37,7 +38,6 @@ class FavoritePresenter: FavoritePresenterProtocol {
         self.view = view
         self.networkService = networkService
         self.router = router
-        getData()
     }
     
     func getData() {
@@ -60,7 +60,14 @@ class FavoritePresenter: FavoritePresenterProtocol {
         }
     }
     
-    func deleteItemFromDB(indexPath: IndexPath) {
+    func checkIsFavorite(item: Person) -> Bool {
+        return realm.objects(FavoritePerson.self).filter { item.id == $0.id }.first != nil
+    }
+    
+    func deleteItemFromRealm(indexPath: IndexPath) {
+        
+        self.items?.remove(at: indexPath.row)
+        
         let deleteObject = realm.objects(FavoritePerson.self)[indexPath.row]
 
         do{

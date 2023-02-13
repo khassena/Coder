@@ -12,6 +12,8 @@ class StaffViewController: UIViewController {
     
     let realm = try! Realm()
     
+    private var isFavorite = false
+    
     // MARK: Casting super view to custom StaffRootView
     var rootView: StaffRootView {
         return self.view as! StaffRootView
@@ -276,45 +278,26 @@ extension StaffViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        guard let item = presenter?.items?[indexPath.row] else { return nil}
-        let isfavorite = realm.objects(FavoritePerson.self).filter {item.id == $0.id}.first != nil
+        guard let item = presenter?.items?[indexPath.row],
+              let presenter = presenter else { return nil}
+        self.isFavorite = presenter.checkIsFavorite(item: item)
         
         let favoriteAction = UIContextualAction(
             style: .normal,
             title: "Favorite"
         ) { _, _, isDone in
-//            guard let self = self else { return }
-            let realm = try! Realm()
-//            print(Realm.Configuration.defaultConfiguration.fileURL)
-            if isfavorite {
-                self.presenter?.deleteItemFromDB(item: item)
+            
+            if self.isFavorite {
+                self.presenter?.deleteItemFromRealm(item: item)
             } else {
-                let data = FavoritePerson()
-                data.id = item.id
-                data.avatarUrl = item.avatarUrl
-                data.firstName = item.firstName
-                data.lastName = item.lastName
-                data.department = item.department.name
-                data.position = item.position
-                data.userTag = item.userTag.lowercased()
-                data.birthday = item.birthday
-                data.phone = item.phone
-                
-                do {
-                    try realm.write {
-                        realm.add(data)
-                    }
-                } catch {
-                    print(error)
-                }
+                self.presenter?.addToRealm(item: item)
             }
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "preserved") , object: nil)
             tableView.reloadRows(at: [indexPath], with: .automatic)
             
             isDone(true)
         }
-        favoriteAction.backgroundColor = isfavorite ? Color.gray : Color.purple
+        favoriteAction.backgroundColor = self.isFavorite ? Color.gray : Color.purple
         return UISwipeActionsConfiguration(actions: [favoriteAction])
     }
 }

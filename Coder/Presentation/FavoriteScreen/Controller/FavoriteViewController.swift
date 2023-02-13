@@ -29,7 +29,8 @@ class FavoriteViewController: UIViewController {
         view.backgroundColor = .white
         rootView.setup()
         setup()
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "preserved") , object: nil, queue: nil) { _ in
+        presenter?.getData()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "dataBaseUpdated") , object: nil, queue: nil) { _ in
             self.presenter?.getData()
             self.rootView.favoriteTableView.reloadData()
         }
@@ -77,10 +78,11 @@ extension FavoriteViewController: UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StaffTableViewCell.cell, for: indexPath) as? StaffTableViewCell,
               let item = presenter?.items?[indexPath.row],
-              let avatarUrl = URL(string: item.avatarUrl) else { return UITableViewCell() }
+              let avatarUrl = URL(string: item.avatarUrl),
+              let presenter = presenter else { return UITableViewCell() }
         
-        let isfavorite = realm.objects(FavoritePerson.self).filter {item.id == $0.id}.first != nil
-        presenter?.getImage(with: avatarUrl, indexPath: indexPath)
+        let isfavorite = presenter.checkIsFavorite(item: item)
+        presenter.getImage(with: avatarUrl, indexPath: indexPath)
         cell.setupValue(firstName: item.firstName,
                         lastName:  item.lastName,
                         userTag:   item.userTag.lowercased(),
@@ -95,6 +97,10 @@ extension FavoriteViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Constants.Staff.cellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
 
 }
@@ -113,8 +119,7 @@ extension FavoriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            self.presenter?.deleteItemFromDB(indexPath: indexPath)
-            self.presenter?.items?.remove(at: indexPath.row)
+            self.presenter?.deleteItemFromRealm(indexPath: indexPath)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
 

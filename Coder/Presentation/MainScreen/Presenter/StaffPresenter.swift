@@ -28,7 +28,9 @@ protocol StaffViewPresenterProtocol {
     var sortModel: SortModel? { get }
     func getData()
     func getImage(with url: URL, indexPath: IndexPath)
-    func deleteItemFromDB(item: Person)
+    func addToRealm(item: Person)
+    func deleteItemFromRealm(item: Person)
+    func checkIsFavorite(item: Person) -> Bool
     func routToSortScreen(view: SortViewProtocol, staff: Staff?)
     func routToProfileScreen(item: Person?)
     func filterTableView(searchText: String?, sort: SortModel?)
@@ -113,7 +115,31 @@ class StaffPresenter: StaffViewPresenterProtocol {
         self.sortModel = sort
     }
     
-    func deleteItemFromDB(item: Person) {
+    func addToRealm(item: Person) {
+        
+        let data = FavoritePerson()
+        data.id = item.id
+        data.avatarUrl = item.avatarUrl
+        data.firstName = item.firstName
+        data.lastName = item.lastName
+        data.department = item.department.name
+        data.position = item.position
+        data.userTag = item.userTag.lowercased()
+        data.birthday = item.birthday
+        data.phone = item.phone
+        
+        do {
+            try realm.write {
+                realm.add(data)
+            }
+        } catch {
+            print(error)
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataBaseUpdated") , object: nil)
+    }
+    
+    func deleteItemFromRealm(item: Person) {
         let deleteObject = realm.objects(FavoritePerson.self).filter{item.id == $0.id}
         
         do{
@@ -123,6 +149,10 @@ class StaffPresenter: StaffViewPresenterProtocol {
         }catch let error {
             print(error.localizedDescription)
         }
+    }
+    
+    func checkIsFavorite(item: Person) -> Bool {
+        return realm.objects(FavoritePerson.self).filter { item.id == $0.id }.first != nil
     }
     
     func routToSortScreen(view: SortViewProtocol, staff: Staff?) {

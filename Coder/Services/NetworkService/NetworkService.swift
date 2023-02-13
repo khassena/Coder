@@ -15,6 +15,8 @@ protocol NetworkServiceProtocol {
 
 class NetworkService: NetworkServiceProtocol {
     
+    // MARK: - Fetching Data
+    
     func fetchData(completion: @escaping (Result<Staff?, Error>) -> Void) {
         imageCache.removeAllObjects()
         guard let url = URL(string: Constants.API.baseUrl) else { return }
@@ -37,7 +39,7 @@ class NetworkService: NetworkServiceProtocol {
         task.resume()
     }
     
-    //MARK: Load Image and Cache
+    // MARK: - Load Image and Cache
     
     private let imageCache = NSCache<AnyObject, AnyObject>()
     

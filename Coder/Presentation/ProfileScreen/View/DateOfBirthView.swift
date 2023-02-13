@@ -7,7 +7,18 @@
 
 import UIKit
 
+protocol DateOfBirthViewDelegate: AnyObject {
+    func didTapToChange(star: UIImageView)
+}
+
 class DateOfBirthView: UIStackView {
+    
+    weak var delegate: DateOfBirthViewDelegate?
+    var isFavorite: Bool = false {
+        didSet {
+            self.starIcon.image = isFavorite ? Constants.ProfileView.filledStar : Constants.ProfileView.starImage
+        }
+    }
 
     let dateOfBirth = ProfileRootView.createLabel(
         font: Fonts.profileFont,
@@ -30,10 +41,17 @@ class DateOfBirthView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapStar))
+        self.addGestureRecognizer(recognizer)
+    }
+    
     private func setupView() {
         [starIcon, dateOfBirth, yearsOld].forEach {
             addArrangedSubview($0)
         }
+        
         axis = .horizontal
         spacing = Constants.ProfileView.infoSpacing
         distribution = .fill
@@ -45,9 +63,13 @@ class DateOfBirthView: UIStackView {
         ])
     }
     
-    func setData(_ dateOfBirth: String, _ yearsOld: String) {
+    func setData(_ dateOfBirth: String, _ yearsOld: String, _ isFavorite: Bool) {
         self.dateOfBirth.text = dateOfBirth
         self.yearsOld.text = yearsOld
+        self.isFavorite = isFavorite
     }
 
+    @objc func didTapStar() {
+        delegate?.didTapToChange(star: starIcon)
+    }
 }

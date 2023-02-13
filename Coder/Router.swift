@@ -26,8 +26,6 @@ class Router: RouterProtocol {
     var favoriteNavigationController: UINavigationController?
     var assemblyBuilder: AssemblyBuilderProtocol?
     
-    
-    
     init(staffNavigationController: UINavigationController,
          favoriteNavigationController: UINavigationController,
          assemblyBuilder: AssemblyBuilderProtocol) {
@@ -44,6 +42,7 @@ class Router: RouterProtocol {
                   let staffVC = assemblyBuilder?.createMainScreen(router: self) as? StaffViewController,
                   let _ = assemblyBuilder?.createSortScreen(view: staffVC, router: self) as? SortViewController,
                   let favoriteVC = assemblyBuilder?.createFavoriteScreen(router: self) as? FavoriteViewController else { return UIViewController() }
+            
             staffNavigationController.viewControllers = [staffVC]
             favoriteNavigationController.viewControllers = [favoriteVC]
             favoriteNavigationController.title = "Favorite"
@@ -51,6 +50,7 @@ class Router: RouterProtocol {
             staffNavigationController.tabBarItem.image = UIImage(systemName: "list.bullet")
             favoriteNavigationController.tabBarItem.image = UIImage(systemName: "star.fill")
             mainTabBar.viewControllers = [staffNavigationController, favoriteNavigationController]
+            
             return mainTabBar
         }
         return UIViewController()
