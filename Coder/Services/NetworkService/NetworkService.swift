@@ -10,7 +10,7 @@ import UIKit
 
 protocol NetworkServiceProtocol {
     func fetchData(completion: @escaping (Result<Staff?, Error>) -> Void)
-    func fetchImage(with url: URL, completion: @escaping (Result<UIImage, Error>) -> Void)
+    func fetchImage(with url: URL?, completion: @escaping (Result<UIImage, Error>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol {
@@ -43,7 +43,8 @@ class NetworkService: NetworkServiceProtocol {
     
     private let imageCache = NSCache<AnyObject, AnyObject>()
     
-    func fetchImage(with url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    func fetchImage(with url: URL?, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        guard let url = url else { return }
         if let imageFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage {
             completion(.success(imageFromCache))
             return

@@ -20,12 +20,11 @@ class StaffTableView: UITableView {
         showsVerticalScrollIndicator = false
         separatorStyle = .none
         sectionFooterHeight = 0
-//        if #available(iOS 15.0, *) {
-//            
-//        }
-//        sectionHeaderTopPadding = 22
         backgroundColor = .white
         keyboardDismissMode = .onDrag
+        if #available(iOS 15.0, *) {
+            sectionHeaderTopPadding = 22
+        }
     }
     
     required init?(coder: NSCoder) {

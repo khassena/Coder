@@ -8,10 +8,10 @@
 import Foundation
 
 struct Staff: Decodable {
-    let items: [Person]
+    var items: [Person]
 }
 
-struct Person: Decodable {
+struct Person: Decodable, Equatable {
     let id: String
     let avatarUrl: String
     let firstName: String

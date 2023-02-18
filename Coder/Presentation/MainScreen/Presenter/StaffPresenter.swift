@@ -18,12 +18,11 @@ protocol StaffViewProtocol: AnyObject {
 
 protocol StaffViewPresenterProtocol {
     init(view: StaffViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
-    
-    var staff: Staff? { get }
+    var view: StaffViewProtocol? { get set }
+    var staff: Staff? { get set }
     var items: [Person]? { get set }
     var selectedDepartmentPath: IndexPath? { get set }
     var departments: [Department] { get }
-    var showBirthday: Bool { get set }
     var itemsForSection: [Person]? { get }
     var sortModel: SortModel? { get }
     func getData()
@@ -101,18 +100,17 @@ class StaffPresenter: StaffViewPresenterProtocol {
     }
     
     func filterTableView(searchText: String?, sort: SortModel?) {
-        self.itemsForSection = nil
+        itemsForSection = nil
         var staffModel = StaffModel()
         staffModel.items = staff?.items
         staffModel.departments = departments
-        staffModel.selectedDepartmentPath = self.selectedDepartmentPath
+        staffModel.selectedDepartmentPath = selectedDepartmentPath
         staffModel.searchText = searchText?.lowercased() ?? ""
         staffModel.sortModel = sort
-        self.items = staffModel.filteredData()
-        self.itemsForSection = staffModel.filteredSecondSection
-        showBirthday = staffModel.showBirthday
-        view?.showBirthdaySelected(showBirthday)
-        self.sortModel = sort
+        items = staffModel.filteredData()
+        itemsForSection = staffModel.filteredSecondSection
+        view?.showBirthdaySelected(staffModel.showBirthday)
+        sortModel = sort
     }
     
     func addToRealm(item: Person) {

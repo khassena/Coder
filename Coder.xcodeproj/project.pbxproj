@@ -28,6 +28,9 @@
 		FA4968CB29976CCD00CAF769 /* String+Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968CA29976CCD00CAF769 /* String+Department.swift */; };
 		FA4968CC299A554700CAF769 /* Pods_Coder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43F21D194C436F20F85FC46 /* Pods_Coder.framework */; };
 		FA4968CD299A554700CAF769 /* Pods_Coder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E43F21D194C436F20F85FC46 /* Pods_Coder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA4968DD299E364800CAF769 /* StaffPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968DC299E364800CAF769 /* StaffPresenterTests.swift */; };
+		FA4968E1299E379B00CAF769 /* MockStaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968E0299E379B00CAF769 /* MockStaffView.swift */; };
+		FA4968E4299E393B00CAF769 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4968E3299E393B00CAF769 /* MockNetworkService.swift */; };
 		FA82886F296EBF1A009F1619 /* Date+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82886E296EBF1A009F1619 /* Date+Settings.swift */; };
 		FA828874296ECCC8009F1619 /* HeaderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA828873296ECCC8009F1619 /* HeaderSectionView.swift */; };
 		FA8288A2297579B6009F1619 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8288A1297579B6009F1619 /* ProfileModel.swift */; };
@@ -62,6 +65,16 @@
 		FADF5959296D71120006A2B5 /* SortStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF5958296D71120006A2B5 /* SortStackView.swift */; };
 		FADF595B296D74150006A2B5 /* SortPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF595A296D74150006A2B5 /* SortPresenter.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA4968D7299E23F000CAF769 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FABB4EF12937801400486E5A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FABB4EF82937801400486E5A;
+			remoteInfo = Coder;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FA4968CE299A554700CAF769 /* Embed Frameworks */ = {
@@ -100,6 +113,10 @@
 		FA4968C42997540F00CAF769 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		FA4968C72997559800CAF769 /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
 		FA4968CA29976CCD00CAF769 /* String+Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Department.swift"; sourceTree = "<group>"; };
+		FA4968D3299E23F000CAF769 /* CoderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA4968DC299E364800CAF769 /* StaffPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffPresenterTests.swift; sourceTree = "<group>"; };
+		FA4968E0299E379B00CAF769 /* MockStaffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStaffView.swift; sourceTree = "<group>"; };
+		FA4968E3299E393B00CAF769 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 		FA82886E296EBF1A009F1619 /* Date+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Settings.swift"; sourceTree = "<group>"; };
 		FA828873296ECCC8009F1619 /* HeaderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionView.swift; sourceTree = "<group>"; };
 		FA8288A1297579B6009F1619 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -138,6 +155,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FA4968D0299E23F000CAF769 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FABB4EF62937801400486E5A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -218,6 +242,40 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FA4968D4299E23F000CAF769 /* CoderTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA4968DE299E365600CAF769 /* Presentation */,
+			);
+			path = CoderTests;
+			sourceTree = "<group>";
+		};
+		FA4968DE299E365600CAF769 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				FA4968DF299E367000CAF769 /* MainScreen */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		FA4968DF299E367000CAF769 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FA4968E2299E37A200CAF769 /* Mock */,
+				FA4968DC299E364800CAF769 /* StaffPresenterTests.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		FA4968E2299E37A200CAF769 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				FA4968E0299E379B00CAF769 /* MockStaffView.swift */,
+				FA4968E3299E393B00CAF769 /* MockNetworkService.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		FA828870296EC150009F1619 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				FABB4EFB2937801400486E5A /* Coder */,
+				FA4968D4299E23F000CAF769 /* CoderTests */,
 				FABB4EFA2937801400486E5A /* Products */,
 				829D67CED3732B3697CA6DDC /* Pods */,
 				B27C0854B4F2496C8D0705EB /* Frameworks */,
@@ -252,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				FABB4EF92937801400486E5A /* Coder.app */,
+				FA4968D3299E23F000CAF769 /* CoderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -462,8 +522,8 @@
 		FADF5953296C6FC90006A2B5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FADF594F295EFCEA0006A2B5 /* PresentationViewController.swift */,
 				FADF5951296C3BC70006A2B5 /* SortViewController.swift */,
+				FADF594F295EFCEA0006A2B5 /* PresentationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -495,6 +555,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FA4968D2299E23F000CAF769 /* CoderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA4968D9299E23F000CAF769 /* Build configuration list for PBXNativeTarget "CoderTests" */;
+			buildPhases = (
+				FA4968CF299E23F000CAF769 /* Sources */,
+				FA4968D0299E23F000CAF769 /* Frameworks */,
+				FA4968D1299E23F000CAF769 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA4968D8299E23F000CAF769 /* PBXTargetDependency */,
+			);
+			name = CoderTests;
+			productName = CoderTests;
+			productReference = FA4968D3299E23F000CAF769 /* CoderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FABB4EF82937801400486E5A /* Coder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FABB4F0D2937801500486E5A /* Build configuration list for PBXNativeTarget "Coder" */;
@@ -525,6 +603,10 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					FA4968D2299E23F000CAF769 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = FABB4EF82937801400486E5A;
+					};
 					FABB4EF82937801400486E5A = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -544,11 +626,19 @@
 			projectRoot = "";
 			targets = (
 				FABB4EF82937801400486E5A /* Coder */,
+				FA4968D2299E23F000CAF769 /* CoderTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FA4968D1299E23F000CAF769 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FABB4EF72937801400486E5A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -607,6 +697,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FA4968CF299E23F000CAF769 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA4968E4299E393B00CAF769 /* MockNetworkService.swift in Sources */,
+				FA4968E1299E379B00CAF769 /* MockStaffView.swift in Sources */,
+				FA4968DD299E364800CAF769 /* StaffPresenterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FABB4EF52937801400486E5A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -662,6 +762,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FA4968D8299E23F000CAF769 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FABB4EF82937801400486E5A /* Coder */;
+			targetProxy = FA4968D7299E23F000CAF769 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		FABB4F072937801500486E5A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -674,6 +782,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FA4968DA299E23F000CAF769 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SQMYH8B9K2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bar.CoderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Coder.app/Coder";
+			};
+			name = Debug;
+		};
+		FA4968DB299E23F000CAF769 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SQMYH8B9K2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bar.CoderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Coder.app/Coder";
+			};
+			name = Release;
+		};
 		FABB4F0B2937801500486E5A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -850,6 +994,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FA4968D9299E23F000CAF769 /* Build configuration list for PBXNativeTarget "CoderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA4968DA299E23F000CAF769 /* Debug */,
+				FA4968DB299E23F000CAF769 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FABB4EF42937801400486E5A /* Build configuration list for PBXProject "Coder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
