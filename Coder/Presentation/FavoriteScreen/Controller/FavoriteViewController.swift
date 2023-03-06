@@ -6,11 +6,8 @@
 //
 
 import UIKit
-import RealmSwift
 
 class FavoriteViewController: UIViewController {
-
-    let realm = try! Realm()
     
     // MARK: Casting super view to custom StaffRootView
     var rootView: FavoriteRootView {

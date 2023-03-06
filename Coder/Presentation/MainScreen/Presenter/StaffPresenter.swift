@@ -18,6 +18,7 @@ protocol StaffViewProtocol: AnyObject {
 
 protocol StaffViewPresenterProtocol {
     init(view: StaffViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
+    var realm: Realm? { get set }
     var view: StaffViewProtocol? { get set }
     var staff: Staff? { get set }
     var items: [Person]? { get set }
@@ -37,7 +38,7 @@ protocol StaffViewPresenterProtocol {
 
 class StaffPresenter: StaffViewPresenterProtocol {
     
-    let realm = try! Realm()
+    var realm: Realm?
     
     weak var view: StaffViewProtocol?
     let networkService: NetworkServiceProtocol
@@ -114,6 +115,7 @@ class StaffPresenter: StaffViewPresenterProtocol {
     }
     
     func addToRealm(item: Person) {
+        guard let realm = realm else { return }
         
         let data = FavoritePerson()
         data.id = item.id
@@ -138,6 +140,8 @@ class StaffPresenter: StaffViewPresenterProtocol {
     }
     
     func deleteItemFromRealm(item: Person) {
+        guard let realm = realm else { return }
+        
         let deleteObject = realm.objects(FavoritePerson.self).filter{item.id == $0.id}
         
         do{
@@ -147,10 +151,11 @@ class StaffPresenter: StaffViewPresenterProtocol {
         }catch let error {
             print(error.localizedDescription)
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataBaseUpdated") , object: nil)
     }
     
     func checkIsFavorite(item: Person) -> Bool {
-        return realm.objects(FavoritePerson.self).filter { item.id == $0.id }.first != nil
+        return realm?.objects(FavoritePerson.self).filter { item.id == $0.id }.first != nil
     }
     
     func routToSortScreen(view: SortViewProtocol, staff: Staff?) {

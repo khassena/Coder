@@ -8,8 +8,8 @@
 import UIKit
 
 protocol SortViewProtocol: UIViewControllerTransitioningDelegate {
-    func sortBy(_ button: SortModel)
     var sortVC: SortViewController? { get set }
+    func sortBy(_ button: SortModel)
 }
 
 protocol SortViewPresenterProtocol: AnyObject {

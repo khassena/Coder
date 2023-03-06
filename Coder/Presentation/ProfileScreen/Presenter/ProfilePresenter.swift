@@ -15,6 +15,7 @@ protocol ProfileViewProtocol: AnyObject {
 }
 
 protocol ProfileViewPresenterProtocol {
+    var realm: Realm? { get set }
     var item: Person? { get set }
     init(view: ProfileViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
     var router: RouterProtocol? { get set }
@@ -26,7 +27,7 @@ protocol ProfileViewPresenterProtocol {
 
 class ProfilePresenter: ProfileViewPresenterProtocol {
     
-    let realm = try! Realm()
+    var realm: Realm?
     
     var item: Person?
     var profileModel = ProfileModel()
@@ -73,11 +74,12 @@ class ProfilePresenter: ProfileViewPresenterProtocol {
     
     func checkIsFavorite() -> Bool {
         guard let item = item else { return false }
-        return realm.objects(FavoritePerson.self).filter { item.id == $0.id }.first != nil
+        return realm?.objects(FavoritePerson.self).filter { item.id == $0.id }.first != nil
     }
     
     func addToRealm() {
-        guard let item = item else { return }
+        guard let item = item,
+              let realm = realm else { return }
         
         let data = FavoritePerson()
         data.id = item.id
@@ -102,7 +104,8 @@ class ProfilePresenter: ProfileViewPresenterProtocol {
     }
     
     func deleteFromRealm() {
-        guard let item = item else { return }
+        guard let item = item,
+              let realm = realm else { return }
         let deleteObject = realm.objects(FavoritePerson.self).filter{item.id == $0.id}
         
         do{

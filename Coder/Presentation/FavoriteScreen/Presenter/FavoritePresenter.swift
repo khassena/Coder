@@ -15,6 +15,7 @@ protocol FavoriteViewProtocol: AnyObject {
 
 protocol FavoritePresenterProtocol: AnyObject {
     init(view: FavoriteViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
+    var realm: Realm? { get set }
     var savedData: FavoritePerson? { get set }
     var items: [Person]? { get set }
     func getData()
@@ -26,8 +27,8 @@ protocol FavoritePresenterProtocol: AnyObject {
 
 class FavoritePresenter: FavoritePresenterProtocol {
 
-    lazy var realm = try! Realm()
-    
+    var realm: Realm?
+
     weak var view: FavoriteViewProtocol?
     let networkService: NetworkServiceProtocol
     var router: RouterProtocol?
@@ -42,7 +43,7 @@ class FavoritePresenter: FavoritePresenterProtocol {
     
     func getData() {
         var model = FavoriteModel()
-        model.person = realm.objects(FavoritePerson.self)
+        model.person = realm?.objects(FavoritePerson.self)
         items = model.convertToItem()
     }
     
@@ -61,11 +62,11 @@ class FavoritePresenter: FavoritePresenterProtocol {
     }
     
     func checkIsFavorite(item: Person) -> Bool {
-        return realm.objects(FavoritePerson.self).filter { item.id == $0.id }.first != nil
+        return realm?.objects(FavoritePerson.self).filter { item.id == $0.id }.first != nil
     }
     
     func deleteItemFromRealm(indexPath: IndexPath) {
-        
+        guard let realm = realm else { return }
         self.items?.remove(at: indexPath.row)
         
         let deleteObject = realm.objects(FavoritePerson.self)[indexPath.row]

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol AssemblyBuilderProtocol {
     func createMainTabBar() -> UITabBarController
@@ -17,6 +18,8 @@ protocol AssemblyBuilderProtocol {
 
 class AssemblyMainBuilder: AssemblyBuilderProtocol {
     
+    let realm = try! Realm()
+    
     func createMainTabBar() -> UITabBarController {
         let tabBar = MainTabBarController()
         
@@ -27,6 +30,7 @@ class AssemblyMainBuilder: AssemblyBuilderProtocol {
         let view = StaffViewController()
         let networkService = NetworkService()
         let presenter = StaffPresenter(view: view, networkService: networkService, router: router)
+        presenter.realm = realm
         view.presenter = presenter
         return view
     }
@@ -45,6 +49,7 @@ class AssemblyMainBuilder: AssemblyBuilderProtocol {
         let view = ProfileViewController()
         let network = NetworkService()
         let presenter = ProfilePresenter(view: view, networkService: network, router: router)
+        presenter.realm = realm
         view.presenter = presenter
         view.navController = navController
         presenter.item = item
@@ -59,6 +64,7 @@ class AssemblyMainBuilder: AssemblyBuilderProtocol {
             networkService: network,
             router: router
         )
+        presenter.realm = realm
         view.presenter = presenter
         return view
     }

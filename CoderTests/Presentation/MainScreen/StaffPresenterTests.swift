@@ -6,10 +6,12 @@
 //
 
 import XCTest
+import RealmSwift
+import Realm
 @testable import Coder
 
 class StaffPresenterTests: XCTestCase {
-
+    
     var view: StaffViewProtocol!
     var presenter: StaffViewPresenterProtocol!
     var networkService: NetworkServiceProtocol!
@@ -18,21 +20,20 @@ class StaffPresenterTests: XCTestCase {
     lazy var staff = Staff(items: items)
     
     override func setUpWithError() throws {
-        let assemblyBuilder = AssemblyMainBuilder()
-        let staffNavController = UINavigationController()
-        let favoriteNavController = UINavigationController()
-        router = Router(
-            staffNavigationController: staffNavController,
-            favoriteNavigationController: favoriteNavController,
-            assemblyBuilder: assemblyBuilder
-        )
         view = MockStaffView()
         networkService = MockNetworkService()
+        router = MockRouter()
         presenter = StaffPresenter(
             view: view,
             networkService: networkService,
             router: router
         )
+        var uniqueConfiguration = Realm.Configuration.defaultConfiguration
+        uniqueConfiguration.inMemoryIdentifier = NSUUID().uuidString
+        Realm.Configuration.defaultConfiguration = uniqueConfiguration
+        
+        let realm = try! Realm()
+        presenter.realm = realm
     }
 
     override func tearDownWithError() throws {
@@ -153,7 +154,7 @@ class StaffPresenterTests: XCTestCase {
             phone: "77"
         )
         let secondPerson = Person(
-            id: "0",
+            id: "1",
             avatarUrl: "http://",
             firstName: "Boo",
             lastName: "Boo",
@@ -187,7 +188,7 @@ class StaffPresenterTests: XCTestCase {
             phone: "77"
         )
         let secondPerson = Person(
-            id: "0",
+            id: "1",
             avatarUrl: "http://",
             firstName: "Boo",
             lastName: "Boo",
@@ -217,11 +218,11 @@ class StaffPresenterTests: XCTestCase {
             userTag: "tt",
             department: .start,
             position: "po",
-            birthday: "2000-01-01",
+            birthday: "2000-03-01",
             phone: "77"
         )
         let secondPerson = Person(
-            id: "0",
+            id: "1",
             avatarUrl: "http://",
             firstName: "Boo",
             lastName: "Boo",
@@ -233,14 +234,14 @@ class StaffPresenterTests: XCTestCase {
         )
         
         let thirdPerson = Person(
-            id: "0",
+            id: "2",
             avatarUrl: "http://",
             firstName: "Hoo",
             lastName: "hoo",
             userTag: "tt",
             department: .start,
             position: "po",
-            birthday: "1998-03-01",
+            birthday: "1998-01-01",
             phone: "77"
         )
         staff.items = [firstPerson, secondPerson, thirdPerson]
@@ -250,6 +251,8 @@ class StaffPresenterTests: XCTestCase {
         presenter.filterTableView(searchText: nil, sort: .birthday)
         
         // Then
-        XCTAssertEqual(thirdPerson, presenter.items?.first)
+        XCTAssertEqual(thirdPerson, presenter.itemsForSection?.first)
     }
+    
+    
 }
