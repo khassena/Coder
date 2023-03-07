@@ -25,13 +25,13 @@
     <tbody>
         <tr>
             <td>
-                <img width="250" src="Gif/Opening.gif">
+                <img width="250" src="Gifs/Opening.gif">
             </td>
             <td>
-                <img width="250" src="Gif/Search.gif">
+                <img width="250" src="Gifs/Search.gif">
             </td>
                         <td>
-                <img width="250" src="Gif/Sort.gif">
+                <img width="250" src="Gifs/Sort.gif">
             </td>
         </tr>
     </tbody>
@@ -48,13 +48,13 @@
     <tbody>
         <tr>
             <td>
-                <img width="250" src="Gif/Department.gif">
+                <img width="250" src="Gifs/Department.gif">
             </td>
             <td>
-                <img width="250" src="Gif/Refresh.gif">
+                <img width="250" src="Gifs/Refresh.gif">
             </td>
                         <td>
-                <img width="250" src="Gif/ProfileCall.gif">
+                <img width="250" src="Gifs/ProfileCall.gif">
             </td>
         </tr>
     </tbody>
@@ -71,13 +71,13 @@
     <tbody>
         <tr>
             <td>
-                <img width="250" src="Gif/Store2.gif">
+                <img width="250" src="Gifs/Store2.gif">
             </td>
             <td>
-                <img width="250" src="Gif/NetworkError.gif">
+                <img width="250" src="Gifs/NetworkError.gif">
             </td>
             <td>
-                <img width="250" src="Gif/InternalError.gif">
+                <img width="250" src="Gifs/InternalError.gif">
             </td>
         </tr>
     </tbody>
