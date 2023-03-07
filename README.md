@@ -46,7 +46,7 @@ deletion from the database is also carried out by swiping to the left of the cel
     <tbody>
         <tr>
             <td>
-                <img width="250" src="Gifs/Launch.gif">
+                <img width="250" src="Gifs/Launch1.gif">
             </td>
             <td>
                 <img width="250" src="Gifs/Search.gif">
