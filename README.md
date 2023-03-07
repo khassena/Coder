@@ -1,4 +1,18 @@
 <h1 align="center">Coder</h1> 
+
+## Description
+
+Task taken and modified from <a href="https://github.com/appKODE/trainee-test-ios">gitHub</a>
+
+iOS application that makes a request via an open API to get random data about employees of companies.
+The app can search by name, sort alphabetically and by the nearest birthday, divide by departments. By
+opening a profile user can make a phone call and save person to the Realm local storage. Storage and
+deletion from the database is also carried out by swiping to the left of the cell.
+
+## Description
+
+`pod install` and run 'Coder.xcworkspace'
+
 ## Technologies
 
 * iOS 13+
