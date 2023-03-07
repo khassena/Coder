@@ -4,8 +4,9 @@
 
 1. [Description](#description)
 2. [Installation](#installation)
-3. [App](#app)
-4. [Features](#features)
+3. [Technologies](#technologies)
+4. [App](#app)
+5. [Features](#features)
 
 ## Description
 
